@@ -32,7 +32,9 @@ const vessels = (await getCollection('vessels'))
   <!-- Vessel cards -->
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-      {vessels.map((vessel, i) => (
+      {vessels.map((vessel, i) => {
+        const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
+        return (
         <a
           href={`/vessels/${vessel.id.replace(/\.md$/, '')}`}
           class={`group reveal reveal-delay-${i + 1}`}
@@ -44,7 +46,7 @@ const vessels = (await getCollection('vessels'))
             <!-- Hover gradient overlay -->
             <div
               class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"
-              style={`background: linear-gradient(135deg, ${i === 0 ? 'rgba(170, 212, 196, 0.08)' : 'rgba(209, 189, 229, 0.08)'} 0%, transparent 60%);`}
+              style={`background: linear-gradient(135deg, ${accent === 'mint' ? 'rgba(170, 212, 196, 0.08)' : 'rgba(209, 189, 229, 0.08)'} 0%, transparent 60%);`}
             ></div>
 
             <!-- Decorative kanji -->
@@ -92,9 +94,9 @@ const vessels = (await getCollection('vessels'))
               <div class="flex flex-wrap items-center gap-2 pt-2">
                 <span
                   class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase"
-                  style={`font-family: var(--font-body); font-weight: 500; background: ${i === 0 ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${i === 0 ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                  style={`font-family: var(--font-body); font-weight: 500; background: ${accent === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
                 >
-                  <span class="w-1.5 h-1.5 rounded-full" style={`background: ${i === 0 ? 'var(--mint)' : 'var(--lavender)'};`}></span>
+                  <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}></span>
                   Active
                 </span>
                 {vessel.data.techStack.slice(0, 3).map((tech: string) => (
@@ -111,13 +113,13 @@ const vessels = (await getCollection('vessels'))
               <div class="pt-4 flex items-center gap-2">
                 <span
                   class="text-xs tracking-[0.15em] uppercase transition-colors duration-300"
-                  style={`font-family: var(--font-body); font-weight: 500; color: ${i === 0 ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                  style={`font-family: var(--font-body); font-weight: 500; color: ${accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
                 >
                   View vessel
                 </span>
                 <span
                   class="inline-block transition-transform duration-300 group-hover:translate-x-1.5"
-                  style={`color: ${i === 0 ? 'var(--mint)' : 'var(--lavender)'};`}
+                  style={`color: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}
                 >
                   &rarr;
                 </span>
@@ -125,7 +127,8 @@ const vessels = (await getCollection('vessels'))
             </div>
           </article>
         </a>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>

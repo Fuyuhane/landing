@@ -5,8 +5,9 @@ romaji: "Kamome"
 meaning: "The Seagull"
 description: "Messages that drift between ships on salt currents, healing their own path through the mesh."
 longDescription: "A peer-to-peer communication system for ships traversing cold seas, where messages fly like migrating birds across the frozen waves. Built from scratch in Rust to orchestrate fleet-scale coordination across the open sea: Gossip protocols, Raft consensus, and mesh networking. Ships form a self-organizing mesh network across the ocean — they discover each other, share status updates, relay distress signals, and maintain awareness of their maritime neighbors — all without central infrastructure."
+accent: "mint"
 status: "active"
-techStack: ["Rust", "Tokio", "Axum", "SQLite", "Protobuf", "Ratatui"]
+techStack: ["Rust", "Tokio", "Axum", "SQLX", "Ratatui"]
 tags: ["distributed-systems", "p2p", "mesh-networking", "rust"]
 links:
   github: "https://github.com/Fuyuhane/kamome"

@@ -5,6 +5,7 @@ romaji: "Hayai"
 meaning: "The Speed"
 description: "A real-time multiplayer typing race where you compete, climb ranks, and make it yours."
 longDescription: "Join a room, race others typing the same text, see everyone's progress live. Fastest fingers win. Track your ghost, climb the ladder, customize everything. Built with Elixir, Phoenix LiveView, and the satisfying sound of mechanical keyboards."
+accent: "lavender"
 status: "active"
 techStack: ["Elixir", "Phoenix", "LiveView", "PostgreSQL", "Oban", "Tailwind CSS"]
 tags: ["multiplayer", "real-time", "typing", "competitive", "elixir"]

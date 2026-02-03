@@ -66,7 +66,9 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
       </div>
 
       <div class="space-y-6">
-        {activeVessels.map((vessel, i) => (
+        {activeVessels.map((vessel, i) => {
+          const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
+          return (
           <a
             href={`/vessels/${vessel.id.replace(/\.md$/, '')}`}
             class={`group block reveal reveal-delay-${i + 1}`}
@@ -78,7 +80,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
               <!-- Hover gradient -->
               <div
                 class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"
-                style={`background: linear-gradient(135deg, ${i === 0 ? 'rgba(170, 212, 196, 0.06)' : 'rgba(209, 189, 229, 0.06)'} 0%, transparent 50%);`}
+                style={`background: linear-gradient(135deg, ${accent === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(209, 189, 229, 0.06)'} 0%, transparent 50%);`}
               ></div>
 
               <!-- Decorative kanji -->
@@ -91,16 +93,16 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
 
               <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 <!-- Kanji + Name -->
-                <div class="md:col-span-4 flex items-center gap-5">
+                <div class="md:col-span-5 flex items-center gap-5 min-w-0">
                   <span
                     class="text-5xl md:text-6xl shrink-0"
                     style="font-family: var(--font-kanji); font-weight: 400; color: var(--ink);"
                   >
                     {vessel.data.kanji}
                   </span>
-                  <div>
+                  <div class="flex-1 min-w-0">
                     <h2
-                      class="text-2xl md:text-3xl"
+                      class="text-xl md:text-2xl whitespace-nowrap"
                       style="font-family: var(--font-display); font-weight: 400;"
                     >
                       {vessel.data.title}
@@ -115,7 +117,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 </div>
 
                 <!-- Description -->
-                <div class="md:col-span-5">
+                <div class="md:col-span-4">
                   <p
                     class="text-sm leading-relaxed"
                     style="font-family: var(--font-body); color: var(--ink-muted);"
@@ -138,14 +140,14 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-4">
                   <span
                     class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase"
-                    style={`font-family: var(--font-body); font-weight: 500; background: ${i === 0 ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${i === 0 ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                    style={`font-family: var(--font-body); font-weight: 500; background: ${accent === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
                   >
-                    <span class="w-1.5 h-1.5 rounded-full" style={`background: ${i === 0 ? 'var(--mint)' : 'var(--lavender)'};`}></span>
+                    <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}></span>
                     Active
                   </span>
                   <span
                     class="text-2xl transition-transform duration-300 group-hover:translate-x-2"
-                    style={`color: ${i === 0 ? 'var(--mint)' : 'var(--lavender)'};`}
+                    style={`color: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}
                   >
                     &rarr;
                   </span>
@@ -153,7 +155,8 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
               </div>
             </article>
           </a>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>

@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { vessel } = Astro.props;
 const { Content } = await render(vessel);
 
-const accentColor = vessel.data.order === 1 ? 'mint' : 'lavender';
+const accentColor = vessel.data.accent ?? (vessel.data.order === 1 ? 'mint' : 'lavender');
 const accentVar = accentColor === 'mint' ? 'var(--mint)' : 'var(--lavender)';
 const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
 const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(209, 189, 229, 0.06)';
