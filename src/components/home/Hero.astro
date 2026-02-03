@@ -1,0 +1,117 @@
+---
+import { Image } from 'astro:assets';
+import SnowCanvas from '@components/effects/SnowCanvas.astro';
+import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
+---
+
+<section class="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
+  <!-- Atmospheric gradient layers -->
+  <div class="absolute inset-0 z-0">
+    <!-- Base gradient: pearl to subtle mint/lavender -->
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(180deg, var(--pearl) 0%, rgba(170, 212, 196, 0.08) 40%, rgba(209, 189, 229, 0.06) 70%, var(--pearl) 100%);"
+    ></div>
+
+    <!-- Radial glow behind logo -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]"
+      style="background: radial-gradient(ellipse, rgba(170, 212, 196, 0.12) 0%, transparent 70%); filter: blur(40px);"
+    ></div>
+
+    <!-- Lavender accent glow -->
+    <div
+      class="absolute top-1/4 right-1/4 w-[500px] h-[500px]"
+      style="background: radial-gradient(ellipse, rgba(209, 189, 229, 0.08) 0%, transparent 70%); filter: blur(60px);"
+    ></div>
+  </div>
+
+  <!-- Kanji watermark — large decorative 冬羽 -->
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[20rem] md:text-[28rem] leading-none opacity-[0.025] select-none pointer-events-none z-0"
+    style="color: var(--ink);"
+  >
+    冬羽
+  </div>
+
+  <!-- Snow particles -->
+  <SnowCanvas />
+
+  <!-- Main content -->
+  <div class="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto">
+    <!-- Logo reveal -->
+    <div
+      class="mb-8"
+      style="animation: fadeIn 2s var(--ease-out-expo) forwards;"
+    >
+      <Image
+        src={heroLogo}
+        alt="Fuyuhane — Winter Wings"
+        width={280}
+        height={280}
+        style="animation: float 6s ease-in-out infinite; animation-delay: 2s;"
+      />
+    </div>
+
+    <!-- Tagline -->
+    <div
+      class="space-y-5"
+      style="animation: fadeInUp 1.5s var(--ease-out-expo) 0.5s both;"
+    >
+      <p
+        class="text-base md:text-lg tracking-[0.25em] uppercase"
+        style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep);"
+      >
+        冬羽 &mdash; Winter Wings
+      </p>
+
+      <h1
+        class="text-4xl md:text-6xl lg:text-7xl"
+        style="font-family: var(--font-display); font-weight: 300; color: var(--ink);"
+      >
+        A craft atelier<br />
+        <span style="color: var(--mint-deep);">anchored in winter</span>
+      </h1>
+
+      <p
+        class="max-w-lg mx-auto text-base md:text-lg leading-relaxed"
+        style="font-family: var(--font-body); color: var(--ink-muted);"
+      >
+        We throw vessels — named works that emerge from the same clay
+        but serve different intimacies.
+      </p>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div
+      class="mt-16 flex flex-col items-center gap-2"
+      style="animation: fadeIn 1.5s var(--ease-out-expo) 1.5s both;"
+    >
+      <span
+        class="text-[10px] tracking-[0.3em] uppercase"
+        style="font-family: var(--font-body); color: var(--ink-muted); opacity: 0.5;"
+      >
+        Scroll
+      </span>
+      <div class="w-px h-10 relative overflow-hidden" style="background: rgba(28, 28, 28, 0.1);">
+        <div
+          class="w-full h-4 absolute top-0"
+          style="background: var(--mint); animation: scrollLine 2s ease-in-out infinite;"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div
+    class="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
+    style="background: linear-gradient(transparent, var(--pearl));"
+  ></div>
+</section>
+
+<style>
+  @keyframes scrollLine {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(300%); }
+  }
+</style>

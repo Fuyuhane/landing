@@ -1,0 +1,266 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import sealLogo from '@assets/logos/fuyuhane-02.jpg';
+import katsutoPhoto from '@assets/logos/katsuto.jpg';
+
+// Team data — expand this as the team grows
+const team = [
+  {
+    name: 'Katsuto',
+    nameJp: 'カツト',
+    role: 'Engineer & Founder',
+    bio: 'Building vessels from code and curiosity. Systems thinker, Rust enthusiast, believer in quiet craftsmanship.',
+    photo: katsutoPhoto,
+    socials: {
+      github: 'https://github.com/katsutoo',
+      x: 'https://x.com/katsutowo',
+      email: 'katsuto@fuyuhane.com',
+    },
+    accent: 'mint',
+  },
+  {
+    name: 'Designer',
+    nameJp: '',
+    role: 'Visual Designer',
+    bio: 'The hand behind the Ptarmigan. Shaping the visual language of Fuyuhane — from logo to palette to the feeling between the pixels.',
+    socials: {},
+    accent: 'lavender',
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Meet the artisans behind Fuyuhane — a craft atelier anchored in winter."
+>
+  <!-- Hero -->
+  <section class="relative py-32 md:py-44 overflow-hidden">
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(180deg, var(--pearl) 0%, rgba(170, 212, 196, 0.05) 30%, rgba(209, 189, 229, 0.05) 70%, var(--pearl) 100%);"
+    ></div>
+
+    <!-- Kanji watermark -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[16rem] md:text-[26rem] leading-none opacity-[0.02] pointer-events-none select-none"
+      style="color: var(--ink);"
+    >
+      人
+    </div>
+
+    <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+      <span
+        class="text-xs tracking-[0.3em] uppercase block mb-6"
+        style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep); animation: fadeIn 1s var(--ease-out-expo) both;"
+      >
+        About
+      </span>
+      <h1
+        class="text-4xl md:text-6xl lg:text-7xl"
+        style="font-family: var(--font-display); font-weight: 300; animation: fadeInUp 1.2s var(--ease-out-expo) 0.2s both;"
+      >
+        The artisans behind<br />
+        <span style="color: var(--mint-deep);">winter wings</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- The Atelier Story -->
+  <section class="py-24 md:py-36">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-start">
+        <!-- Left: Seal -->
+        <div class="md:col-span-4 reveal">
+          <div class="sticky top-28">
+            <Image
+              src={sealLogo}
+              alt="Fuyuhane seal"
+              width={200}
+              height={200}
+              class="rounded-2xl mx-auto md:mx-0"
+            />
+            <div class="mt-6 text-center md:text-left">
+              <span
+                class="text-xs tracking-[0.3em] uppercase block"
+                style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep);"
+              >
+                Est. 2026
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Story -->
+        <div class="md:col-span-8 space-y-8">
+          <div class="reveal">
+            <h2
+              class="text-2xl md:text-4xl mb-6"
+              style="font-family: var(--font-display); font-weight: 300;"
+            >
+              A winter craft atelier
+            </h2>
+            <p
+              class="text-base leading-relaxed"
+              style="font-family: var(--font-body); color: var(--ink-muted);"
+            >
+              Fuyuhane is a <em>k&#333;b&#333;</em> — a craft atelier anchored in winter.
+              We do not build products. We throw vessels — named works that emerge
+              from the same clay but serve different intimacies.
+            </p>
+          </div>
+
+          <div class="reveal reveal-delay-1">
+            <p
+              class="text-base leading-relaxed"
+              style="font-family: var(--font-body); color: var(--ink-muted);"
+            >
+              The name <strong style="font-family: var(--font-kanji);">冬羽</strong> (Fuyuhane) means
+              "winter wings" — inspired by the Ptarmigan, a bird that changes its plumage
+              with the seasons yet remains the same creature beneath. Our logo is that bird:
+              hand-drawn, imperfect, alive.
+            </p>
+          </div>
+
+          <div class="reveal reveal-delay-2">
+            <p
+              class="text-base leading-relaxed"
+              style="font-family: var(--font-body); color: var(--ink-muted);"
+            >
+              Each vessel we create carries the <strong style="font-family: var(--font-kanji);">冬羽</strong> seal —
+              a guarantee that it was made by hands that understand slowness as a feature,
+              not a flaw. From distributed systems to typing races, every project shares
+              the same DNA: quiet precision, honest craft, and winter's patience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(170, 212, 196, 0.3), rgba(209, 189, 229, 0.3), transparent);"></div>
+  </div>
+
+  <!-- The Artisans -->
+  <section class="py-24 md:py-36">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="mb-16 reveal">
+        <span
+          class="text-xs tracking-[0.3em] uppercase block mb-4"
+          style="font-family: var(--font-body); font-weight: 500; color: var(--lavender-deep);"
+        >
+          The Artisans
+        </span>
+        <h2
+          class="text-2xl md:text-4xl"
+          style="font-family: var(--font-display); font-weight: 300;"
+        >
+          People behind the vessels
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {team.map((member, i) => (
+          <article
+            class={`reveal reveal-delay-${i + 1} group relative p-8 md:p-10 rounded-2xl border transition-all duration-500 overflow-hidden`}
+            style="border-color: rgba(28, 28, 28, 0.06); background: rgba(246, 247, 244, 0.5);"
+          >
+            <!-- Hover accent glow -->
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"
+              style={`background: linear-gradient(135deg, ${member.accent === 'mint' ? 'rgba(170, 212, 196, 0.08)' : 'rgba(209, 189, 229, 0.08)'} 0%, transparent 60%);`}
+            ></div>
+
+            <div class="relative z-10 space-y-5">
+              <!-- Avatar placeholder + Name -->
+              <div class="flex items-center gap-5">
+                <div
+                  class="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center text-xl shrink-0"
+                  style={`background: ${member.accent === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; font-family: var(--font-kanji); color: ${member.accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                >
+                  {member.photo ? (
+                    <Image
+                      src={member.photo}
+                      alt={`${member.name} portrait`}
+                      width={64}
+                      height={64}
+                      class="w-full h-full object-cover"
+                    />
+                  ) : (
+                    member.nameJp ? member.nameJp.charAt(0) : member.name.charAt(0)
+                  )}
+                </div>
+                <div>
+                  <h3
+                    class="text-xl"
+                    style="font-family: var(--font-display); font-weight: 400;"
+                  >
+                    {member.name}
+                    {member.nameJp && (
+                      <span
+                        class="ml-2 text-sm opacity-40"
+                        style="font-family: var(--font-kanji);"
+                      >
+                        {member.nameJp}
+                      </span>
+                    )}
+                  </h3>
+                  <span
+                    class="text-xs tracking-[0.15em] uppercase"
+                    style={`font-family: var(--font-body); font-weight: 500; color: ${member.accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                  >
+                    {member.role}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bio -->
+              <p
+                class="text-sm leading-relaxed"
+                style="font-family: var(--font-body); color: var(--ink-muted);"
+              >
+                {member.bio}
+              </p>
+
+              <!-- Social links -->
+              {Object.keys(member.socials).length > 0 && (
+                <div class="flex gap-4 pt-2">
+                  {Object.entries(member.socials).map(([platform, url]) => {
+                    const href =
+                      platform === 'email' && typeof url === 'string' && !url.startsWith('mailto:')
+                        ? `mailto:${url}`
+                        : url;
+
+                    return (
+                      <a
+                        href={href as string}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-xs tracking-[0.1em] uppercase transition-colors duration-300 link-hover"
+                        style={`font-family: var(--font-body); font-weight: 500; color: var(--ink-muted);`}
+                      >
+                        {platform}
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Note about expanding team -->
+      <div class="mt-12 text-center reveal">
+        <p
+          class="text-sm"
+          style="font-family: var(--font-body); color: var(--ink-muted); opacity: 0.6;"
+        >
+          The atelier grows with the seasons. More artisans may join the craft.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

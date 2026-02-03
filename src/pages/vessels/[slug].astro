@@ -1,0 +1,264 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const vessels = await getCollection('vessels');
+  return vessels.map((vessel) => ({
+    params: { slug: vessel.id.replace(/\.md$/, '') },
+    props: { vessel },
+  }));
+}
+
+const { vessel } = Astro.props;
+const { Content } = await render(vessel);
+
+const accentColor = vessel.data.order === 1 ? 'mint' : 'lavender';
+const accentVar = accentColor === 'mint' ? 'var(--mint)' : 'var(--lavender)';
+const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
+const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(209, 189, 229, 0.06)';
+---
+
+<BaseLayout
+  title={`${vessel.data.title} (${vessel.data.kanji})`}
+  description={vessel.data.description}
+>
+  <!-- Hero -->
+  <section class="relative py-28 md:py-40 overflow-hidden">
+    <div
+      class="absolute inset-0"
+      style={`background: linear-gradient(180deg, var(--pearl) 0%, ${accentBg} 50%, var(--pearl) 100%);`}
+    ></div>
+
+    <!-- Large kanji watermark -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[20rem] md:text-[32rem] leading-none opacity-[0.03] pointer-events-none select-none"
+      style="color: var(--ink);"
+    >
+      {vessel.data.kanji}
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-10">
+      <!-- Back link -->
+      <a
+        href="/vessels"
+        class="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase mb-12 transition-colors duration-300 hover:opacity-70"
+        style={`font-family: var(--font-body); font-weight: 500; color: ${accentDeep};`}
+      >
+        <span>&larr;</span>
+        <span>All vessels</span>
+      </a>
+
+      <div class="flex flex-col md:flex-row items-start gap-8">
+        <!-- Kanji -->
+        <span
+          class="text-7xl md:text-9xl shrink-0"
+          style={`font-family: var(--font-kanji); font-weight: 400; color: var(--ink); animation: fadeIn 1s var(--ease-out-expo) both;`}
+        >
+          {vessel.data.kanji}
+        </span>
+
+        <!-- Info -->
+        <div style="animation: fadeInUp 1.2s var(--ease-out-expo) 0.2s both;">
+          <h1
+            class="text-4xl md:text-6xl mb-2"
+            style="font-family: var(--font-display); font-weight: 300;"
+          >
+            {vessel.data.title}
+          </h1>
+          <p
+            class="text-sm tracking-[0.15em] uppercase mb-6"
+            style={`font-family: var(--font-body); color: ${accentDeep};`}
+          >
+            {vessel.data.romaji} &mdash; {vessel.data.meaning}
+          </p>
+          <p
+            class="text-lg md:text-xl leading-relaxed max-w-xl"
+            style="font-family: var(--font-display); font-weight: 300; color: var(--ink-muted);"
+          >
+            {vessel.data.description}
+          </p>
+
+          <!-- Status + Links -->
+          <div class="flex flex-wrap items-center gap-4 mt-8">
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase"
+              style={`font-family: var(--font-body); font-weight: 500; background: ${accentColor === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${accentDeep};`}
+            >
+              <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accentVar};`}></span>
+              {vessel.data.status}
+            </span>
+
+            {vessel.data.links.github && (
+              <a
+                href={vessel.data.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-wider uppercase border transition-all duration-300 hover:bg-[var(--ink)] hover:text-[var(--pearl)]"
+                style="font-family: var(--font-body); font-weight: 500; border-color: rgba(28, 28, 28, 0.15);"
+              >
+                GitHub
+              </a>
+            )}
+
+            {vessel.data.links.live && (
+              <a
+                href={vessel.data.links.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-wider uppercase transition-all duration-300"
+                style={`font-family: var(--font-body); font-weight: 500; background: ${accentVar}; color: var(--pearl);`}
+              >
+                Visit
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-6 lg:px-10">
+      <!-- Extended description -->
+      <div class="reveal mb-16">
+        <p
+          class="text-base md:text-lg leading-relaxed"
+          style="font-family: var(--font-body); color: var(--ink-muted);"
+        >
+          {vessel.data.longDescription}
+        </p>
+      </div>
+
+      <!-- Tech stack -->
+      <div class="reveal reveal-delay-1 mb-16">
+        <h3
+          class="text-xs tracking-[0.3em] uppercase mb-6"
+          style={`font-family: var(--font-body); font-weight: 500; color: ${accentDeep};`}
+        >
+          Technology
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          {vessel.data.techStack.map((tech: string) => (
+            <span
+              class="px-4 py-2 rounded-full text-sm border transition-colors duration-300"
+              style="font-family: var(--font-body); border-color: rgba(28, 28, 28, 0.08); color: var(--ink);"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Markdown content -->
+      <div class="reveal reveal-delay-2 prose-vessel">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to vessels -->
+  <section class="py-16 text-center">
+    <a
+      href="/vessels"
+      class="group inline-flex items-center gap-3 text-sm tracking-[0.15em] uppercase transition-all duration-300"
+      style="font-family: var(--font-body); font-weight: 500; color: var(--ink);"
+    >
+      <span
+        class="inline-block transition-transform duration-300 group-hover:-translate-x-1"
+        style={`color: ${accentVar};`}
+      >
+        &larr;
+      </span>
+      <span class="link-hover">Back to all vessels</span>
+    </a>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .prose-vessel h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .prose-vessel h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .prose-vessel p {
+    font-family: var(--font-body);
+    color: var(--ink-muted);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-vessel ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .prose-vessel li {
+    font-family: var(--font-body);
+    color: var(--ink-muted);
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .prose-vessel li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--mint);
+  }
+
+  .prose-vessel strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .prose-vessel em {
+    font-style: italic;
+  }
+
+  .prose-vessel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+  }
+
+  .prose-vessel th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid rgba(28, 28, 28, 0.08);
+    color: var(--ink);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .prose-vessel td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(28, 28, 28, 0.04);
+    color: var(--ink-muted);
+  }
+</style>

@@ -1,0 +1,168 @@
+---
+import { Image } from 'astro:assets';
+import navLogo from '@assets/logos/fuyuhane-02.jpg';
+
+const navLinks = [
+  { href: '/vessels', label: 'Vessels' },
+  { href: '/philosophy', label: 'Philosophy' },
+  { href: '/about', label: 'About' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="site-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+>
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <nav class="flex items-center justify-between h-20" aria-label="Main navigation">
+      <!-- Logo -->
+      <a
+        href="/"
+        class="group flex items-center gap-3 relative z-10"
+        aria-label="Fuyuhane — Home"
+      >
+        <div class="w-11 h-11 rounded-full overflow-hidden transition-transform duration-500 ease-out group-hover:scale-110">
+          <Image
+            src={navLogo}
+            alt="Fuyuhane ptarmigan emblem"
+            width={44}
+            height={44}
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <span
+          class="text-sm tracking-[0.2em] uppercase font-medium opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+          style="font-family: var(--font-body);"
+        >
+          fuyuhane
+        </span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-10">
+        {navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class:list={[
+              'link-hover text-sm tracking-[0.15em] uppercase transition-colors duration-300',
+              currentPath.startsWith(href)
+                ? 'opacity-100'
+                : 'opacity-60 hover:opacity-100',
+            ]}
+            style="font-family: var(--font-body); font-weight: 500;"
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden relative z-10 w-10 h-10 flex items-center justify-center"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <div class="space-y-1.5" id="hamburger-icon">
+          <span class="block w-6 h-px bg-current transition-all duration-300 origin-center"></span>
+          <span class="block w-4 h-px bg-current transition-all duration-300 ml-auto"></span>
+        </div>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-40 pointer-events-none opacity-0 transition-opacity duration-500"
+  >
+    <div class="absolute inset-0 bg-[var(--pearl)] backdrop-blur-sm"></div>
+    <nav class="relative z-10 flex flex-col items-center justify-center h-full gap-10">
+      {navLinks.map(({ href, label }, i) => (
+        <a
+          href={href}
+          class="text-3xl tracking-[0.2em] uppercase opacity-0 translate-y-8 transition-all duration-500"
+          style={`font-family: var(--font-display); font-weight: 300; transition-delay: ${(i + 1) * 100}ms;`}
+          data-mobile-link
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<!-- Spacer for fixed nav -->
+<div class="h-20"></div>
+
+<script>
+  function initNav() {
+    const nav = document.getElementById('site-nav');
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('hamburger-icon');
+    const links = document.querySelectorAll('[data-mobile-link]');
+    let isOpen = false;
+
+    // Scroll-based nav background
+    const handleScroll = () => {
+      if (!nav) return;
+      if (window.scrollY > 60) {
+        nav.classList.add('frost-glass');
+        nav.style.borderBottom = '1px solid rgba(170, 212, 196, 0.15)';
+      } else {
+        nav.classList.remove('frost-glass');
+        nav.style.borderBottom = 'none';
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    // Mobile toggle
+    btn?.addEventListener('click', () => {
+      isOpen = !isOpen;
+      btn.setAttribute('aria-expanded', String(isOpen));
+
+      if (isOpen) {
+        menu?.classList.remove('pointer-events-none', 'opacity-0');
+        menu?.classList.add('pointer-events-auto', 'opacity-100');
+        document.body.style.overflow = 'hidden';
+        // Animate links in
+        links.forEach((link) => {
+          link.classList.remove('opacity-0', 'translate-y-8');
+          link.classList.add('opacity-100', 'translate-y-0');
+        });
+        // Animate hamburger to X
+        if (icon) {
+          icon.children[0].classList.add('rotate-45', 'translate-y-[4px]');
+          icon.children[1].classList.add('opacity-0', '-rotate-45', 'w-6');
+        }
+      } else {
+        menu?.classList.add('pointer-events-none', 'opacity-0');
+        menu?.classList.remove('pointer-events-auto', 'opacity-100');
+        document.body.style.overflow = '';
+        links.forEach((link) => {
+          link.classList.add('opacity-0', 'translate-y-8');
+          link.classList.remove('opacity-100', 'translate-y-0');
+        });
+        if (icon) {
+          icon.children[0].classList.remove('rotate-45', 'translate-y-[4px]');
+          icon.children[1].classList.remove('opacity-0', '-rotate-45', 'w-6');
+        }
+      }
+    });
+
+    // Close on link click
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        btn?.click();
+      });
+    });
+  }
+
+  initNav();
+  document.addEventListener('astro:page-load', initNav);
+</script>

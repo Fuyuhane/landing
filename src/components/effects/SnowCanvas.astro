@@ -1,0 +1,68 @@
+---
+// Lightweight CSS-only snow particles for the hero
+// No canvas, no JS overhead — pure CSS animation
+---
+
+<div class="snow-container" aria-hidden="true">
+  {Array.from({ length: 60 }).map((_, i) => (
+    <div
+      class="snowflake"
+      style={`
+        --x: ${Math.random() * 100}%;
+        --delay: ${Math.random() * 15}s;
+        --duration: ${8 + Math.random() * 12}s;
+        --size: ${1 + Math.random() * 3}px;
+        --drift: ${-30 + Math.random() * 60}px;
+        --opacity: ${0.15 + Math.random() * 0.45};
+      `}
+    />
+  ))}
+</div>
+
+<style>
+  .snow-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .snowflake {
+    position: absolute;
+    top: -10px;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    background: rgba(246, 247, 244, 0.9);
+    border-radius: 50%;
+    opacity: var(--opacity);
+    animation: snow-drift var(--duration) linear var(--delay) infinite;
+    will-change: transform;
+  }
+
+  @keyframes snow-drift {
+    0% {
+      transform: translateY(-10px) translateX(0);
+      opacity: 0;
+    }
+    5% {
+      opacity: var(--opacity);
+    }
+    85% {
+      opacity: var(--opacity);
+    }
+    100% {
+      transform: translateY(100vh) translateX(var(--drift));
+      opacity: 0;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .snowflake {
+      animation: none;
+      opacity: calc(var(--opacity) * 0.3);
+    }
+  }
+</style>

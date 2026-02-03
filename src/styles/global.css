@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/* ─── Fuyuhane Brand Tokens ─── */
+:root {
+  --pearl: #F6F7F4;
+  --mint: #AAD4C4;
+  --lavender: #D1BDE5;
+  --ink: #1C1C1C;
+
+  /* Derived shades */
+  --pearl-warm: #F0F1EC;
+  --mint-soft: #C5E2D8;
+  --mint-deep: #8BBFAD;
+  --lavender-soft: #E0D3EE;
+  --lavender-deep: #B9A0D0;
+  --ink-light: #2E2E2E;
+  --ink-muted: #6B6B6B;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
+  --font-body: 'DM Sans', 'Noto Sans JP', system-ui, sans-serif;
+  --font-kanji: 'Noto Serif JP', serif;
+
+  /* Spacing rhythm */
+  --space-unit: 0.5rem;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-slow: 1.2s;
+  --duration-normal: 0.6s;
+  --duration-fast: 0.3s;
+}
+
+/* ─── Base Reset & Typography ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--pearl);
+  color: var(--ink);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background-color: var(--mint);
+  color: var(--ink);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pearl);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mint);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mint-deep);
+}
+
+/* ─── Noise / Grain Texture Overlay ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ─── Scroll Reveal Animations ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out-expo),
+    transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ─── Kanji Watermark ─── */
+.kanji-watermark {
+  font-family: var(--font-kanji);
+  font-weight: 900;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ─── Frost Glass ─── */
+.frost-glass {
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  background: rgba(246, 247, 244, 0.7);
+}
+
+/* ─── Link Underline Animation ─── */
+.link-hover {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--mint);
+  transition: width var(--duration-fast) var(--ease-out-expo);
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+/* ─── Page Transitions ─── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(20px);
+    opacity: 0;
+  }
+}
