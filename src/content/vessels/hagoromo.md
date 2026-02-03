@@ -7,7 +7,7 @@ description: "A global penpal directory for finding kindred voices and exchangin
 longDescription: "A worldwide directory for penpals. Browse any country, scan rich profiles, and send text-only letters in a safety-first mailbox system. Timezone-aware activity, optional photos, and strict age tiers keep the exchange open yet protected, while the directory model keeps discovery effortless."
 accent: "lavender"
 status: "active"
-techStack: ["Gleam", "Wisp", "PostgreSQL", "SvelteKit", "Cloudflare R2"]
+techStack: ["Gleam", "Wisp", "PostgreSQL", "SvelteKit", "Cloudflare R2", "RedPanda"]
 tags: ["penpals", "directory", "safety", "global", "gleam"]
 links: {}
 order: 3

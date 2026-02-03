@@ -7,7 +7,7 @@ description: "A global blood donation coordination platform connecting donors an
 longDescription: "A coordination platform that bridges donors and healthcare facilities. Donors track their history and receive impact notifications, while facilities broadcast needs and mobilize donors during emergencies. The system emphasizes privacy, regional awareness, and a human connection to the life-saving impact of every donation."
 accent: "mint"
 status: "active"
-techStack: ["Go", "Chi", "PostgreSQL", "SvelteKit", "RabbitMQ", "SQLC"]
+techStack: ["Go", "Chi", "PostgreSQL", "SvelteKit", "RabbitMQ", "SQLC", "RedPanda"]
 tags: ["healthcare", "coordination", "donation", "global", "go"]
 links: {}
 order: 4
