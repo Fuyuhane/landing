@@ -1,16 +1,15 @@
 ---
-title: "Hayai"
-kanji: "速い"
-romaji: "Hayai"
-meaning: "The Speed"
-description: "A real-time multiplayer typing race where you compete, climb ranks, and make it yours."
+title: "Giccho"
+kanji: "擬音"
+romaji: "Giccho"
+meaning: "The Onomatopoeia"
+description: "The rhythm of fingers striking keys — where speed becomes music and competition becomes craft."
 longDescription: "Join a room, race others typing the same text, see everyone's progress live. Fastest fingers win. Track your ghost, climb the ladder, customize everything. Built with Elixir, Phoenix LiveView, and the satisfying sound of mechanical keyboards."
 accent: "lavender"
 status: "active"
 techStack: ["Elixir", "Phoenix", "LiveView", "PostgreSQL", "Oban", "Tailwind CSS"]
 tags: ["multiplayer", "real-time", "typing", "competitive", "elixir"]
-links:
-  github: "https://github.com/Fuyuhane/hayai"
+links: {}
 order: 2
 ---
 

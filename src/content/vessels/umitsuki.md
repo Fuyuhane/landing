@@ -1,16 +1,15 @@
 ---
-title: "Kamome"
-kanji: "鴎"
-romaji: "Kamome"
-meaning: "The Seagull"
-description: "Messages that drift between ships on salt currents, healing their own path through the mesh."
-longDescription: "A peer-to-peer communication system for ships traversing cold seas, where messages fly like migrating birds across the frozen waves. Built from scratch in Rust to orchestrate fleet-scale coordination across the open sea: Gossip protocols, Raft consensus, and mesh networking. Ships form a self-organizing mesh network across the ocean — they discover each other, share status updates, relay distress signals, and maintain awareness of their maritime neighbors — all without central infrastructure."
+title: "Umitsuki"
+kanji: "海月"
+romaji: "Umitsuki"
+meaning: "The Sea Moon"
+description: "Messages that drift between ships like jellyfish through dark waters, glowing faintly as they heal their path through the mesh."
+longDescription: "A peer-to-peer communication system for ships traversing cold seas, where messages drift like jellyfish through the night. Built from scratch in Rust to orchestrate fleet-scale coordination across the open sea: Gossip protocols, Raft consensus, and mesh networking. Ships form a self-organizing mesh network across the ocean — they discover each other, share status updates, relay distress signals, and maintain awareness of their maritime neighbors — all without central infrastructure."
 accent: "mint"
 status: "active"
 techStack: ["Rust", "Tokio", "Axum", "SQLX", "Ratatui"]
 tags: ["distributed-systems", "p2p", "mesh-networking", "rust"]
-links:
-  github: "https://github.com/Fuyuhane/kamome"
+links: {}
 order: 1
 ---
 
