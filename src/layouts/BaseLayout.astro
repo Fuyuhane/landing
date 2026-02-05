@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '@fontsource/cormorant-garamond/300.css';
 import '@fontsource/cormorant-garamond/400.css';
 import '@fontsource/cormorant-garamond/600.css';
@@ -22,10 +22,12 @@ interface Props {
 const {
   title,
   description = 'Fuyuhane (冬羽) — A craft atelier anchored in winter. We throw vessels — named works that emerge from the same clay but serve different intimacies.',
-  ogImage = '/og-image.jpg',
+  ogImage = '/og-image.svg',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const metadataBase = Astro.site ?? Astro.url;
+const canonicalURL = new URL(Astro.url.pathname, metadataBase);
+const ogImageURL = new URL(ogImage, metadataBase).toString();
 ---
 
 <!doctype html>
@@ -45,20 +47,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={`${title} | Fuyuhane`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="Fuyuhane" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | Fuyuhane`} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- View Transitions -->
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="min-h-screen flex flex-col">
     <Nav />
