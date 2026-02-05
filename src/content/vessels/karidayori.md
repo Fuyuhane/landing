@@ -1,9 +1,9 @@
 ---
-title: "Fumidori"
-kanji: "文鳥"
-romaji: "Fumidori"
-meaning: "The Letter Bird"
-description: "Words carried on small wings across oceans, connecting strangers who become friends through ink and patience."
+title: "Karidayori"
+kanji: "雁便り"
+romaji: "Karidayori"
+meaning: "Tidings Borne by Geese"
+description: "Words arriving from far horizons, carried across seasons and distance until unfamiliar names become familiar presences."
 longDescription: "A worldwide directory for penpals. Browse any country, scan rich profiles, and send text-only letters in a safety-first mailbox system. Timezone-aware activity, optional photos, and strict age tiers keep the exchange open yet protected, while the directory model keeps discovery effortless."
 accent: "lavender"
 status: "active"
@@ -15,7 +15,7 @@ order: 3
 
 ## The Vessel
 
-Hagoromo is a global letter-writing directory. It lets anyone browse by country, discover thoughtful profiles, and send text-only letters through a consent-first mailbox — an exchange shaped by care, not speed.
+Karidayori is a global letter-writing directory. It lets anyone browse by country, discover thoughtful profiles, and send text-only letters through a consent-first mailbox — an exchange shaped by care, not speed.
 
 ## Core Principles
 

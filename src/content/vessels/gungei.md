@@ -1,10 +1,10 @@
 ---
-title: "Umitsuki"
-kanji: "海月"
-romaji: "Umitsuki"
-meaning: "The Sea Moon"
-description: "Messages that drift between ships like jellyfish through dark waters, glowing faintly as they heal their path through the mesh."
-longDescription: "A peer-to-peer communication system for ships traversing cold seas, where messages drift like jellyfish through the night. Built from scratch in Rust to orchestrate fleet-scale coordination across the open sea: Gossip protocols, Raft consensus, and mesh networking. Ships form a self-organizing mesh network across the ocean — they discover each other, share status updates, relay distress signals, and maintain awareness of their maritime neighbors — all without central infrastructure."
+title: "Gungei"
+kanji: "群鯨"
+romaji: "Gungei"
+meaning: "The Whale Pod"
+description: "Messages crossing open seas in living formation, each traveler guiding the next, until direction emerges without any single captain to command it."
+longDescription: "A peer-to-peer communication system for ships traversing cold seas, where messages move in living formation across open waters. Built from scratch in Rust to orchestrate fleet-scale coordination across the open sea: Gossip protocols, Raft consensus, and mesh networking. Ships form a self-organizing mesh network across the ocean — they discover each other, share status updates, relay distress signals, and maintain awareness of their maritime neighbors — all without central infrastructure."
 accent: "mint"
 status: "active"
 techStack: ["Rust", "Tokio", "Axum", "SQLX", "Ratatui"]

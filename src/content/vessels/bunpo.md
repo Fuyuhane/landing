@@ -1,9 +1,9 @@
 ---
-title: "Myakkan"
-kanji: "脈絡"
-romaji: "Myakkan"
-meaning: "The Vascular Network"
-description: "Preserving the gift of blood through vessels that branch and reconnect, carrying life from those who give to those who need."
+title: "Bunpō"
+kanji: "分蜂"
+romaji: "Bunpō"
+meaning: "The Bees Dividing the Hive"
+description: "The gift of blood shared onward, where life continues because a living whole chose to divide, sustaining distant strangers who remain quietly linked by survival."
 longDescription: "A coordination platform that bridges donors and healthcare facilities. Donors track their history and receive impact notifications, while facilities broadcast needs and mobilize donors during emergencies. The system emphasizes privacy, regional awareness, and a human connection to the life-saving impact of every donation."
 accent: "mint"
 status: "active"
@@ -15,7 +15,7 @@ order: 4
 
 ## The Vessel
 
-Kura connects the act of giving with the moment it matters. Donors see where their blood is needed, receive meaningful impact notifications, and respond to urgent calls — while facilities gain a coordinated, privacy‑first network for managing supply and demand.
+Bunpō connects the act of giving with the moment it matters. Donors see where their blood is needed, receive meaningful impact notifications, and respond to urgent calls — while facilities gain a coordinated, privacy‑first network for managing supply and demand.
 
 ## Core Principles
 
