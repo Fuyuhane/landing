@@ -232,12 +232,13 @@ const team = [
                       platform === 'email' && typeof url === 'string' && !url.startsWith('mailto:')
                         ? `mailto:${url}`
                         : url;
+                    const isExternal = platform !== 'email';
 
                     return (
                       <a
                         href={href as string}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={isExternal ? '_blank' : undefined}
+                        rel={isExternal ? 'noopener noreferrer' : undefined}
                         class="text-xs tracking-[0.1em] uppercase transition-colors duration-300 link-hover"
                         style={`font-family: var(--font-body); font-weight: 500; color: var(--ink-muted);`}
                       >

@@ -33,8 +33,7 @@ const currentPath = Astro.url.pathname;
           />
         </div>
         <span
-          class="text-sm tracking-[0.2em] uppercase font-medium opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
-          style="font-family: var(--font-body);"
+          class="text-sm tracking-[0.2em] uppercase font-medium opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 text-body"
         >
           fuyuhane
         </span>
@@ -46,12 +45,11 @@ const currentPath = Astro.url.pathname;
           <a
             href={href}
             class:list={[
-              'link-hover text-sm tracking-[0.15em] uppercase transition-colors duration-300',
+              'link-hover text-sm tracking-[0.15em] uppercase transition-colors duration-300 text-body font-medium',
               currentPath.startsWith(href)
                 ? 'opacity-100'
                 : 'opacity-60 hover:opacity-100',
             ]}
-            style="font-family: var(--font-body); font-weight: 500;"
           >
             {label}
           </a>
@@ -64,6 +62,7 @@ const currentPath = Astro.url.pathname;
         class="md:hidden relative z-10 w-10 h-10 flex items-center justify-center"
         aria-label="Toggle menu"
         aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <div class="space-y-1.5" id="hamburger-icon">
           <span class="block w-6 h-px bg-current transition-all duration-300 origin-center"></span>
@@ -77,9 +76,12 @@ const currentPath = Astro.url.pathname;
   <div
     id="mobile-menu"
     class="fixed inset-0 z-40 pointer-events-none opacity-0 transition-opacity duration-500"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
   >
     <div class="absolute inset-0 bg-[var(--pearl)] backdrop-blur-sm"></div>
-    <nav class="relative z-10 flex flex-col items-center justify-center h-full gap-10">
+    <nav class="relative z-10 flex flex-col items-center justify-center h-full gap-10" aria-label="Mobile navigation">
       {navLinks.map(({ href, label }, i) => (
         <a
           href={href}
@@ -112,11 +114,18 @@ const currentPath = Astro.url.pathname;
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const icon = document.getElementById('hamburger-icon');
-    const links = document.querySelectorAll('[data-mobile-link]');
+    const links = Array.from(document.querySelectorAll<HTMLElement>('[data-mobile-link]'));
     let isOpen = false;
+    let lastFocusedEl: HTMLElement | null = null;
 
     const applyMenuState = () => {
+      menu?.setAttribute('aria-hidden', String(!isOpen));
+
       if (isOpen) {
+        if (document.activeElement instanceof HTMLElement) {
+          lastFocusedEl = document.activeElement;
+        }
+
         menu?.classList.remove('pointer-events-none', 'opacity-0');
         menu?.classList.add('pointer-events-auto', 'opacity-100');
         document.body.style.overflow = 'hidden';
@@ -128,6 +137,8 @@ const currentPath = Astro.url.pathname;
           icon.children[0]?.classList.add('rotate-45', 'translate-y-[4px]');
           icon.children[1]?.classList.add('opacity-0', '-rotate-45', 'w-6');
         }
+
+        links[0]?.focus();
       } else {
         menu?.classList.add('pointer-events-none', 'opacity-0');
         menu?.classList.remove('pointer-events-auto', 'opacity-100');
@@ -140,6 +151,11 @@ const currentPath = Astro.url.pathname;
           icon.children[0]?.classList.remove('rotate-45', 'translate-y-[4px]');
           icon.children[1]?.classList.remove('opacity-0', '-rotate-45', 'w-6');
         }
+
+        if (lastFocusedEl && document.contains(lastFocusedEl)) {
+          lastFocusedEl.focus();
+        }
+        lastFocusedEl = null;
       }
 
       btn?.setAttribute('aria-expanded', String(isOpen));
@@ -171,13 +187,45 @@ const currentPath = Astro.url.pathname;
     // Close on link click
     const handleLinkClick = () => {
       if (!isOpen) return;
+      lastFocusedEl = null;
       isOpen = false;
       applyMenuState();
+    };
+
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (!isOpen) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        isOpen = false;
+        applyMenuState();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+
+      const focusableEls = [btn, ...links].filter((el): el is HTMLElement => Boolean(el));
+      const firstEl = focusableEls[0];
+      const lastEl = focusableEls[focusableEls.length - 1];
+      const activeEl = document.activeElement as HTMLElement | null;
+
+      if (!firstEl || !lastEl) return;
+
+      if (event.shiftKey) {
+        if (activeEl === firstEl || !activeEl) {
+          event.preventDefault();
+          lastEl.focus();
+        }
+      } else if (activeEl === lastEl) {
+        event.preventDefault();
+        firstEl.focus();
+      }
     };
 
     links.forEach((link) => {
       link.addEventListener('click', handleLinkClick);
     });
+    document.addEventListener('keydown', handleKeydown);
 
     navWindow.__fuyuhaneNavCleanup = () => {
       window.removeEventListener('scroll', handleScroll);
@@ -185,6 +233,8 @@ const currentPath = Astro.url.pathname;
       links.forEach((link) => {
         link.removeEventListener('click', handleLinkClick);
       });
+      document.removeEventListener('keydown', handleKeydown);
+      lastFocusedEl = null;
       isOpen = false;
       applyMenuState();
     };

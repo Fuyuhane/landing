@@ -40,42 +40,35 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
   <!-- Main content -->
   <div class="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto">
     <!-- Logo reveal -->
-    <div
-      class="mb-8"
-      style="animation: fadeIn 2s var(--ease-out-expo) forwards;"
-    >
+    <div class="mb-8 hero-fade">
       <Image
         src={heroLogo}
         alt="Fuyuhane — Winter Wings"
         width={280}
         height={280}
-        style="animation: float 6s ease-in-out infinite; animation-delay: 2s;"
+        class="hero-logo"
       />
     </div>
 
     <!-- Tagline -->
-    <div
-      class="space-y-5"
-      style="animation: fadeInUp 1.5s var(--ease-out-expo) 0.5s both;"
-    >
+    <div class="space-y-5 hero-fade-up">
       <p
-        class="text-base md:text-lg tracking-[0.25em] uppercase"
-        style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep);"
+        class="text-base md:text-lg tracking-[0.25em] uppercase text-body font-medium"
+        style="color: var(--mint-deep);"
       >
         冬羽 &mdash; Winter Wings
       </p>
 
       <h1
-        class="text-4xl md:text-6xl lg:text-7xl"
-        style="font-family: var(--font-display); font-weight: 300; color: var(--ink);"
+        class="text-4xl md:text-6xl lg:text-7xl text-display-light"
+        style="color: var(--ink);"
       >
         A craft atelier<br />
         <span style="color: var(--mint-deep);">anchored in winter</span>
       </h1>
 
       <p
-        class="max-w-lg mx-auto text-base md:text-lg leading-relaxed"
-        style="font-family: var(--font-body); color: var(--ink-muted);"
+        class="max-w-lg mx-auto text-base md:text-lg leading-relaxed text-body-muted"
       >
         We throw vessels — named works that emerge from the same clay
         but serve different intimacies.
@@ -83,20 +76,17 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
     </div>
 
     <!-- Scroll indicator -->
-    <div
-      class="mt-16 flex flex-col items-center gap-2"
-      style="animation: fadeIn 1.5s var(--ease-out-expo) 1.5s both;"
-    >
+    <div class="mt-16 flex flex-col items-center gap-2 hero-fade-delayed">
       <span
-        class="text-[10px] tracking-[0.3em] uppercase"
-        style="font-family: var(--font-body); color: var(--ink-muted); opacity: 0.5;"
+        class="text-[10px] tracking-[0.3em] uppercase text-body"
+        style="color: var(--ink-muted); opacity: 0.5;"
       >
         Scroll
       </span>
       <div class="w-px h-10 relative overflow-hidden" style="background: rgba(28, 28, 28, 0.1);">
         <div
-          class="w-full h-4 absolute top-0"
-          style="background: var(--mint); animation: scrollLine 2s ease-in-out infinite;"
+          class="w-full h-4 absolute top-0 hero-scroll-line"
+          style="background: var(--mint);"
         ></div>
       </div>
     </div>
@@ -110,8 +100,38 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
 </section>
 
 <style>
+  .hero-fade {
+    animation: fadeIn 2s var(--ease-out-expo) forwards;
+  }
+
+  .hero-logo {
+    animation: float 6s ease-in-out 2s infinite;
+  }
+
+  .hero-fade-up {
+    animation: fadeInUp 1.5s var(--ease-out-expo) 0.5s both;
+  }
+
+  .hero-fade-delayed {
+    animation: fadeIn 1.5s var(--ease-out-expo) 1.5s both;
+  }
+
+  .hero-scroll-line {
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
   @keyframes scrollLine {
     0% { transform: translateY(-100%); }
     100% { transform: translateY(300%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-fade,
+    .hero-logo,
+    .hero-fade-up,
+    .hero-fade-delayed,
+    .hero-scroll-line {
+      animation: none;
+    }
   }
 </style>

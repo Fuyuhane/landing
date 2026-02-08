@@ -7,7 +7,4 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  prefetch: {
-    prefetchAll: true,
-  },
 });

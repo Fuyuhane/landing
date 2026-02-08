@@ -57,8 +57,8 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
       <div class="mb-12 reveal">
         <span
-          class="text-xs tracking-[0.3em] uppercase block mb-2"
-          style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep);"
+          class="eyebrow block mb-2"
+          style="color: var(--mint-deep);"
         >
           Currently Firing
         </span>
@@ -74,8 +74,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
             class={`group block reveal reveal-delay-${i + 1}`}
           >
             <article
-              class="relative p-8 md:p-12 rounded-2xl border transition-all duration-500 overflow-hidden"
-              style="border-color: rgba(28, 28, 28, 0.06); background: rgba(246, 247, 244, 0.5);"
+              class="relative p-8 md:p-12 rounded-2xl border transition-all duration-500 overflow-hidden surface-card"
             >
               <!-- Hover gradient -->
               <div
@@ -95,21 +94,20 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <!-- Kanji + Name -->
                 <div class="md:col-span-5 flex items-center gap-5 min-w-0">
                   <span
-                    class="text-5xl md:text-6xl shrink-0"
-                    style="font-family: var(--font-kanji); font-weight: 400; color: var(--ink);"
+                    class="text-5xl md:text-6xl shrink-0 text-kanji font-normal"
+                    style="color: var(--ink);"
                   >
                     {vessel.data.kanji}
                   </span>
                   <div class="flex-1 min-w-0">
                     <h2
-                      class="text-xl md:text-2xl whitespace-nowrap"
-                      style="font-family: var(--font-display); font-weight: 400;"
+                      class="text-xl md:text-2xl break-words font-normal"
+                      style="font-family: var(--font-display);"
                     >
                       {vessel.data.title}
                     </h2>
                     <span
-                      class="text-xs tracking-[0.15em] uppercase"
-                      style="font-family: var(--font-body); color: var(--ink-muted);"
+                      class="text-xs tracking-[0.15em] uppercase text-body-muted"
                     >
                       {vessel.data.meaning}
                     </span>
@@ -119,16 +117,15 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <!-- Description -->
                 <div class="md:col-span-4">
                   <p
-                    class="text-sm leading-relaxed"
-                    style="font-family: var(--font-body); color: var(--ink-muted);"
+                    class="text-sm leading-relaxed text-body-muted"
                   >
                     {vessel.data.description}
                   </p>
                   <div class="flex flex-wrap gap-2 mt-4">
                     {vessel.data.techStack.map((tech: string) => (
                       <span
-                        class="px-2.5 py-0.5 rounded-full text-[10px] tracking-wider"
-                        style="font-family: var(--font-body); background: rgba(28, 28, 28, 0.04); color: var(--ink-muted);"
+                        class="px-2.5 py-0.5 rounded-full text-[10px] tracking-wider text-body-muted"
+                        style="background: rgba(28, 28, 28, 0.04);"
                       >
                         {tech}
                       </span>
@@ -139,8 +136,8 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <!-- Status + Arrow -->
                 <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-4">
                   <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase"
-                    style={`font-family: var(--font-body); font-weight: 500; background: ${accent === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase text-body font-medium"
+                    style={`background: ${accent === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
                   >
                     <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}></span>
                     Active

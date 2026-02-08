@@ -59,6 +59,10 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
 
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+
     <!-- View Transitions -->
     <ClientRouter />
   </head>
@@ -71,24 +75,32 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
 
     <!-- Scroll Reveal Observer -->
     <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-      );
+      const revealElements = () =>
+        document.querySelectorAll('.reveal');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealElements().forEach((el) => el.classList.add('visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
 
-      // Re-run on view transitions
-      document.addEventListener('astro:page-load', () => {
-        document.querySelectorAll('.reveal:not(.visible)').forEach((el) => observer.observe(el));
-      });
+        revealElements().forEach((el) => observer.observe(el));
+
+        // Re-run on view transitions
+        document.addEventListener('astro:page-load', () => {
+          document.querySelectorAll('.reveal:not(.visible)').forEach((el) => observer.observe(el));
+        });
+      }
     </script>
   </body>
 </html>
