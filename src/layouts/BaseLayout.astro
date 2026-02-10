@@ -87,18 +87,36 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                return;
+              }
+
+              const hasFullyLeftViewport =
+                entry.boundingClientRect.bottom <= 0 ||
+                entry.boundingClientRect.top >= window.innerHeight;
+
+              if (hasFullyLeftViewport) {
+                entry.target.classList.remove('visible');
               }
             });
           },
-          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+          { threshold: 0.08, rootMargin: '0px 0px -12% 0px' }
         );
 
-        revealElements().forEach((el) => observer.observe(el));
+        const observeReveals = (reset = false) => {
+          revealElements().forEach((el) => {
+            if (reset) {
+              el.classList.remove('visible');
+            }
 
-        // Re-run on view transitions
+            observer.observe(el);
+          });
+        };
+
+        observeReveals();
+
+        // Re-run on view transitions and reset reveal state.
         document.addEventListener('astro:page-load', () => {
-          document.querySelectorAll('.reveal:not(.visible)').forEach((el) => observer.observe(el));
+          requestAnimationFrame(() => observeReveals(true));
         });
       }
     </script>
