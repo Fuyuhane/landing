@@ -94,14 +94,14 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <!-- Kanji + Name -->
                 <div class="md:col-span-5 flex items-center gap-5 min-w-0">
                   <span
-                    class="text-5xl md:text-6xl shrink-0 text-kanji font-normal"
+                    class="text-3xl md:text-4xl shrink-0 text-kanji font-normal"
                     style="color: var(--ink);"
                   >
                     {vessel.data.kanji}
                   </span>
                   <div class="flex-1 min-w-0">
                     <h2
-                      class="text-xl md:text-2xl break-words font-normal"
+                      class="text-sm md:text-base font-normal"
                       style="font-family: var(--font-display);"
                     >
                       {vessel.data.title}
