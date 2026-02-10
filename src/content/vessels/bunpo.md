@@ -3,8 +3,8 @@ title: "Bunpō"
 kanji: "分蜂"
 romaji: "Bunpō"
 meaning: "The Bees Dividing the Hive"
-description: "The gift of blood shared onward, where life continues because a living whole chose to divide, sustaining distant strangers who remain quietly linked by survival."
-longDescription: "A coordination platform that bridges donors and healthcare facilities. Donors track their history and receive impact notifications, while facilities broadcast needs and mobilize donors during emergencies. The system emphasizes privacy, regional awareness, and a human connection to the life-saving impact of every donation."
+description: "Like a hive in spring, one gift of blood moves outward and becomes many chances to live, binding distant strangers in a quiet swarm of care."
+longDescription: "A blood donation coordination platform connecting donors and healthcare facilities. Donors track their history and receive impact notifications, while facilities broadcast needs and mobilize donors during emergencies. The system emphasizes privacy, regional awareness, and a human connection to the life-saving impact of every donation, with global expansion readiness built in."
 accent: "mint"
 status: "active"
 techStack: ["Go", "Chi", "PostgreSQL", "SvelteKit", "RabbitMQ", "SQLC", "RedPanda"]
@@ -15,7 +15,7 @@ order: 4
 
 ## The Vessel
 
-Bunpō connects the act of giving with the moment it matters. Donors see where their blood is needed, receive meaningful impact notifications, and respond to urgent calls — while facilities gain a coordinated, privacy‑first network for managing supply and demand.
+Bunpō connects the act of giving with the moment it matters. Donors see where their blood is needed, receive meaningful impact notifications, and respond to urgent calls — while facilities gain a coordinated, privacy-first network for managing supply and demand.
 
 ## Core Principles
 
@@ -23,7 +23,7 @@ Bunpō connects the act of giving with the moment it matters. Donors see where t
 - **Impact connection** — donors feel the real-world outcome
 - **Graceful scope** — value at every integration level
 - **Medical boundaries** — coordination, not clinical decisioning
-- **Start local, design global** — built for multilingual, multi‑region growth
+- **Start local, design global** — built for multilingual, multi-region growth
 
 ## Operational Capabilities
 
@@ -34,4 +34,4 @@ Bunpō connects the act of giving with the moment it matters. Donors see where t
 | Emergency mobilization | Targeted alerts by blood type |
 | Impact tracking | Anonymized usage notifications |
 | Facility integration | Tiered API levels for inventory sync |
-| Compliance posture | GDPR + health data hosting standards |
+| Compliance posture | UAE PDPL + Federal Health ICT Law (local hosting) |
