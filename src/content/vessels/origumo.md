@@ -7,7 +7,7 @@ description: "Like a weaving spider in moonlight, each keystroke lays a thread, 
 longDescription: "Join a room, race others typing the same text, see everyone's progress live. Fastest fingers win. Track your ghost, climb the ladder, customize everything. Built with Go, SvelteKit, and the satisfying sound of mechanical keyboards."
 accent: "lavender"
 status: "active"
-techStack: ["Go", "Chi", "SvelteKit", "PostgreSQL", "Gorilla WebSocket", "Dragonfly"]
+techStack: ["Go", "Chi", "PostgreSQL", "sqlc", "SvelteKit", "Gorilla WebSocket", "Dragonfly"]
 tags: ["multiplayer", "real-time", "typing", "competitive", "go"]
 links: {}
 order: 2
