@@ -4,18 +4,18 @@ kanji: "織蛛"
 romaji: "Origumo"
 meaning: "The Weaving Spider"
 description: "Like a weaving spider in moonlight, each keystroke lays a thread, and thread by thread, speed becomes craft."
-longDescription: "Join a room, race others typing the same text, see everyone's progress live. Fastest fingers win. Track your ghost, climb the ladder, customize everything. Built with Elixir, Phoenix LiveView, and the satisfying sound of mechanical keyboards."
+longDescription: "Join a room, race others typing the same text, see everyone's progress live. Fastest fingers win. Track your ghost, climb the ladder, customize everything. Built with Go, SvelteKit, and the satisfying sound of mechanical keyboards."
 accent: "lavender"
 status: "active"
-techStack: ["Elixir", "Phoenix", "LiveView", "PostgreSQL", "Oban", "Tailwind CSS"]
-tags: ["multiplayer", "real-time", "typing", "competitive", "elixir"]
+techStack: ["Go", "Chi", "SvelteKit", "PostgreSQL", "Gorilla WebSocket", "Dragonfly"]
+tags: ["multiplayer", "real-time", "typing", "competitive", "go"]
 links: {}
 order: 2
 ---
 
 ## The Vessel
 
-A competitive typing race where speed meets craft. Real-time multiplayer, ELO-based ranked matchmaking, ghost racers, and deep customization — all built on the BEAM.
+A competitive typing race where speed meets craft. Real-time multiplayer, ELO-based ranked matchmaking, ghost racers, and deep customization — all built on a Go + SvelteKit backbone tuned for low-latency play.
 
 ## Core Features
 
@@ -30,9 +30,9 @@ A competitive typing race where speed meets craft. Real-time multiplayer, ELO-ba
 
 | Capability | Engine |
 |------------|--------|
-| Real-time rooms | GenServer-per-room with Phoenix PubSub fanout |
-| Race orchestration | Supervised race processes with fault isolation |
-| Low-latency updates | LiveView + PubSub keystroke streams |
+| Real-time rooms | Gorilla WebSocket room actors with channel fanout |
+| Race orchestration | Goroutine-per-race loops with typed message channels |
+| Low-latency updates | SvelteKit client + WebSocket keystroke streams |
 | Leaderboards + ranks | Postgres-backed ELO ladder + seasonal tiers |
-| Background jobs | Oban pipelines for scoring, rewards, and cleanup |
-| Always-on state | BEAM process memory with crash recovery |
+| Background jobs | Worker pipelines for scoring, rewards, and cleanup |
+| Always-on state | Dragonfly-backed sessions, cache, and rate limits |

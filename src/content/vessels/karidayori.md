@@ -7,8 +7,8 @@ description: "Like geese returning with the season, words arrive from far horizo
 longDescription: "A worldwide directory for penpals. Browse any country, scan rich profiles, and send text-only letters in a safety-first mailbox system. Timezone-aware activity, optional photos, and strict age tiers keep the exchange open yet protected, while the directory model keeps discovery effortless."
 accent: "lavender"
 status: "active"
-techStack: ["Gleam", "Wisp", "PostgreSQL", "SvelteKit", "Cloudflare R2", "RedPanda"]
-tags: ["penpals", "directory", "safety", "global", "gleam"]
+techStack: ["Rust", "Axum", "SQLx", "Tokio", "SvelteKit", "Cloudflare R2"]
+tags: ["penpals", "directory", "safety", "global", "rust"]
 links: {}
 order: 3
 ---
