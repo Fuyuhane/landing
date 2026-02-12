@@ -1,37 +1,19 @@
 ---
-// Atmospheric bokeh particles — circles of light like winter streetlamps through frost
-// Pure CSS, no JS overhead
+// Falling snow particles — pure CSS, no JS overhead
 ---
 
 <div class="particle-container" aria-hidden="true">
-  <!-- Bokeh orbs — larger, softer, fewer -->
-  {Array.from({ length: 20 }).map(() => (
-    <div
-      class="bokeh-orb"
-      style={`
-        --x: ${Math.random() * 100}%;
-        --y: ${20 + Math.random() * 60}%;
-        --size: ${4 + Math.random() * 20}px;
-        --opacity: ${0.03 + Math.random() * 0.08};
-        --duration: ${20 + Math.random() * 30}s;
-        --delay: ${Math.random() * 20}s;
-        --drift-x: ${-20 + Math.random() * 40}px;
-        --drift-y: ${-15 + Math.random() * 30}px;
-      `}
-    />
-  ))}
-
-  <!-- Fine snow particles — subtle -->
-  {Array.from({ length: 35 }).map(() => (
+  <!-- Fine snow particles -->
+  {Array.from({ length: 70 }).map(() => (
     <div
       class="snowflake"
       style={`
         --x: ${Math.random() * 100}%;
         --delay: ${Math.random() * 20}s;
-        --duration: ${12 + Math.random() * 18}s;
-        --size: ${1 + Math.random() * 2}px;
-        --drift: ${-25 + Math.random() * 50}px;
-        --opacity: ${0.08 + Math.random() * 0.2};
+        --duration: ${10 + Math.random() * 16}s;
+        --size: ${1.5 + Math.random() * 2.5}px;
+        --drift: ${-30 + Math.random() * 60}px;
+        --opacity: ${0.15 + Math.random() * 0.35};
       `}
     />
   ))}
@@ -46,50 +28,16 @@
     z-index: 1;
   }
 
-  /* Bokeh orbs — soft floating circles of light */
-  .bokeh-orb {
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(127, 203, 180, 0.4) 0%, rgba(184, 160, 212, 0.1) 50%, transparent 70%);
-    opacity: var(--opacity);
-    animation: bokeh-float var(--duration) ease-in-out var(--delay) infinite alternate;
-    will-change: transform;
-    filter: blur(1px);
-  }
-
-  .bokeh-orb:nth-child(odd) {
-    background: radial-gradient(circle, rgba(196, 168, 108, 0.3) 0%, rgba(127, 203, 180, 0.1) 50%, transparent 70%);
-  }
-
-  @keyframes bokeh-float {
-    0% {
-      transform: translate(0, 0) scale(1);
-    }
-    33% {
-      transform: translate(var(--drift-x), var(--drift-y)) scale(1.1);
-    }
-    66% {
-      transform: translate(calc(var(--drift-x) * -0.5), calc(var(--drift-y) * 0.7)) scale(0.95);
-    }
-    100% {
-      transform: translate(calc(var(--drift-x) * 0.3), calc(var(--drift-y) * -0.4)) scale(1.05);
-    }
-  }
-
   /* Fine snow particles */
   .snowflake {
     position: absolute;
     top: -10px;
     left: var(--x);
-    width: var(--size);
-    height: var(--size);
-    background: var(--paper, #F2EFE8);
+    width: calc(var(--size) + var(--snowflake-size-boost));
+    height: calc(var(--size) + var(--snowflake-size-boost));
+    background: var(--snowflake-color);
     border-radius: 50%;
-    opacity: var(--opacity);
+    opacity: calc(var(--opacity) * var(--snowflake-opacity-boost));
     animation: snow-drift var(--duration) linear var(--delay) infinite;
     will-change: transform;
   }
@@ -100,10 +48,10 @@
       opacity: 0;
     }
     5% {
-      opacity: var(--opacity);
+      opacity: calc(var(--opacity) * var(--snowflake-opacity-boost));
     }
     85% {
-      opacity: var(--opacity);
+      opacity: calc(var(--opacity) * var(--snowflake-opacity-boost));
     }
     100% {
       transform: translateY(100vh) translateX(var(--drift));
@@ -112,15 +60,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .snowflake,
-    .bokeh-orb {
-      animation: none;
-    }
     .snowflake {
+      animation: none;
       opacity: calc(var(--opacity) * 0.3);
-    }
-    .bokeh-orb {
-      opacity: calc(var(--opacity) * 0.5);
     }
   }
 </style>

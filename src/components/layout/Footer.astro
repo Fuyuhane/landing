@@ -32,7 +32,7 @@ const socialLinks = [
             alt="Fuyuhane"
             width={240}
             height={120}
-            class="footer-logo-dark group-hover:opacity-100 transition-opacity duration-500"
+            class="footer-logo-dark transition-opacity duration-500"
             style="opacity: var(--footer-logo-opacity);"
           />
           <!-- Black logo for light theme -->
@@ -41,7 +41,7 @@ const socialLinks = [
             alt="Fuyuhane"
             width={240}
             height={120}
-            class="footer-logo-light group-hover:opacity-100 transition-opacity duration-500"
+            class="footer-logo-light transition-opacity duration-500"
             style="opacity: var(--footer-logo-opacity);"
           />
         </a>
@@ -158,4 +158,10 @@ const socialLinks = [
   /* Light theme: show black logo, hide white */
   :global(.theme-light) .footer-logo-dark { display: none; }
   :global(.theme-light) .footer-logo-light { display: block; }
+
+  /* Hover opacity uses token */
+  .group:hover .footer-logo-dark,
+  .group:hover .footer-logo-light {
+    opacity: var(--footer-logo-hover-opacity) !important;
+  }
 </style>

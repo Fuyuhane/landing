@@ -29,6 +29,21 @@
   --gold-soft: #D4C49C;
   --gold-glow: rgba(196, 168, 108, 0.08);
 
+  /* Ambient glow backgrounds (radial-gradient washes) */
+  --mint-ambient-soft: rgba(127, 203, 180, 0.03);
+  --mint-ambient: rgba(127, 203, 180, 0.05);
+  --mint-ambient-strong: rgba(127, 203, 180, 0.06);
+  --lavender-ambient: rgba(184, 160, 212, 0.04);
+  --lavender-ambient-strong: rgba(184, 160, 212, 0.06);
+  --gold-ambient: rgba(196, 168, 108, 0.03);
+  --gold-ambient-strong: rgba(196, 168, 108, 0.04);
+  --gold-glow-strong: rgba(196, 168, 108, 0.08);
+
+  /* Snowflake particle tokens */
+  --snowflake-color: #F2EFE8;
+  --snowflake-opacity-boost: 1.4;
+  --snowflake-size-boost: 0px;
+
   /* Badge / avatar accent backgrounds */
   --mint-badge-bg: rgba(127, 203, 180, 0.12);
   --mint-badge-border: rgba(127, 203, 180, 0.15);
@@ -55,18 +70,11 @@
   --font-body: 'DM Sans', 'Noto Sans JP', system-ui, sans-serif;
   --font-kanji: 'Noto Serif JP', serif;
 
-  /* Spacing */
-  --space-unit: 0.5rem;
-
   /* Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --duration-slow: 1.4s;
   --duration-reveal: 1.8s;
   --duration-reveal-opacity: 2s;
-  --duration-normal: 0.6s;
   --duration-fast: 0.3s;
 
   /* Hero logo treatment */
@@ -108,6 +116,21 @@
   --gold: #96792E;
   --gold-soft: #BFA65C;
   --gold-glow: rgba(150, 121, 46, 0.06);
+
+  /* Ambient glow backgrounds — stronger for light bg contrast */
+  --mint-ambient-soft: rgba(75, 170, 142, 0.06);
+  --mint-ambient: rgba(75, 170, 142, 0.10);
+  --mint-ambient-strong: rgba(75, 170, 142, 0.14);
+  --lavender-ambient: rgba(142, 111, 184, 0.08);
+  --lavender-ambient-strong: rgba(142, 111, 184, 0.12);
+  --gold-ambient: rgba(150, 121, 46, 0.06);
+  --gold-ambient-strong: rgba(150, 121, 46, 0.10);
+  --gold-glow-strong: rgba(150, 121, 46, 0.14);
+
+  /* Snowflake particle tokens — boosted for light bg visibility */
+  --snowflake-color: #5A5750;
+  --snowflake-opacity-boost: 5;
+  --snowflake-size-boost: 1px;
 
   /* Badge / avatar accent backgrounds */
   --mint-badge-bg: rgba(75, 170, 142, 0.12);
