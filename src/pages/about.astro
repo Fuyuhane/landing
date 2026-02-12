@@ -4,7 +4,6 @@ import { Image } from 'astro:assets';
 import sealLogo from '@assets/logos/fuyuhane-02.jpg';
 import katsutoPhoto from '@assets/logos/katsuto.jpg';
 
-// Team data — expand this as the team grows
 const team = [
   {
     name: 'Vincent "Katsuto"',
@@ -35,55 +34,71 @@ const team = [
   description="Meet the artisans behind Fuyuhane — a craft atelier anchored in winter."
 >
   <!-- Hero -->
-  <section class="relative py-32 md:py-44 overflow-hidden">
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
     <div
       class="absolute inset-0"
-      style="background: linear-gradient(180deg, var(--pearl) 0%, rgba(170, 212, 196, 0.05) 30%, rgba(209, 189, 229, 0.05) 70%, var(--pearl) 100%);"
+      style="background: radial-gradient(ellipse 80% 80% at 50% 40%, var(--sumi) 0%, var(--void) 100%);"
     ></div>
 
-    <!-- Kanji watermark -->
+    <!-- Mint glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[16rem] md:text-[26rem] leading-none opacity-[0.02] pointer-events-none select-none"
-      style="color: var(--ink);"
+      class="absolute bottom-1/3 left-1/3 w-[40vw] h-[30vh]"
+      style="background: radial-gradient(ellipse, rgba(127, 203, 180, 0.05) 0%, transparent 60%); filter: blur(80px);"
+    ></div>
+
+    <!-- Kanji -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[45vw] md:text-[30vw] leading-none opacity-[0.02]"
     >
       人
     </div>
 
-    <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
       <span
-        class="text-xs tracking-[0.3em] uppercase block mb-6"
-        style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep); animation: fadeIn 1s var(--ease-out-expo) both;"
+        class="eyebrow block mb-6"
+        style="color: var(--gold); opacity: 0.7; animation: fadeIn 1s var(--ease-out-expo) both;"
       >
         About
       </span>
       <h1
-        class="text-4xl md:text-6xl lg:text-7xl"
-        style="font-family: var(--font-display); font-weight: 300; animation: fadeInUp 1.2s var(--ease-out-expo) 0.2s both;"
+        class="text-4xl md:text-7xl lg:text-8xl"
+        style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
       >
         The artisans behind<br />
-        <span style="color: var(--mint-deep);">冬羽</span>
+        <em class="font-300" style="color: var(--mint);">冬羽</em>
       </h1>
     </div>
+
+    <!-- Bottom fade -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
+      style="background: linear-gradient(transparent, var(--charcoal));"
+    ></div>
   </section>
 
   <!-- The Atelier Story -->
-  <section class="py-24 md:py-36">
-    <div class="max-w-5xl mx-auto px-6 lg:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-start">
+  <section class="py-28 md:py-40">
+    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-start">
         <!-- Left: Seal -->
         <div class="md:col-span-4 reveal">
           <div class="sticky top-28">
-            <Image
-              src={sealLogo}
-              alt="Fuyuhane seal"
-              width={200}
-              height={200}
-              class="rounded-2xl mx-auto md:mx-0"
-            />
-            <div class="mt-6 text-center md:text-left">
+            <div class="relative inline-block">
+              <Image
+                src={sealLogo}
+                alt="Fuyuhane seal"
+                width={200}
+                height={200}
+                class="rounded-xl ring-1"
+                style="--tw-ring-color: var(--surface-border);"
+              />
+              <!-- Subtle glow -->
+              <div class="absolute inset-0 -m-4 rounded-2xl" style="background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%); filter: blur(20px);"></div>
+            </div>
+            <div class="mt-8">
               <span
-                class="text-xs tracking-[0.3em] uppercase block"
-                style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep);"
+                class="eyebrow block"
+                style="color: var(--gold); opacity: 0.5;"
               >
                 Est. 2026
               </span>
@@ -92,17 +107,17 @@ const team = [
         </div>
 
         <!-- Right: Story -->
-        <div class="md:col-span-8 space-y-8">
+        <div class="md:col-span-8 space-y-10">
           <div class="reveal">
             <h2
-              class="text-2xl md:text-4xl mb-6"
-              style="font-family: var(--font-display); font-weight: 300;"
+              class="text-3xl md:text-4xl mb-8"
+              style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.03em;"
             >
               A winter craft atelier
             </h2>
             <p
-              class="text-base leading-relaxed"
-              style="font-family: var(--font-body); color: var(--ink-muted);"
+              class="text-sm md:text-base leading-[1.9] font-300"
+              style="color: var(--silver);"
             >
               Fuyuhane is a <em>k&#333;b&#333;</em> — a craft atelier anchored in winter.
               We do not build products. We throw vessels — named works that emerge
@@ -112,10 +127,10 @@ const team = [
 
           <div class="reveal reveal-delay-1">
             <p
-              class="text-base leading-relaxed"
-              style="font-family: var(--font-body); color: var(--ink-muted);"
+              class="text-sm md:text-base leading-[1.9] font-300"
+              style="color: var(--silver);"
             >
-              The name <strong style="font-family: var(--font-kanji);">冬羽</strong> (Fuyuhane) means
+              The name <strong class="font-400" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> (Fuyuhane) means
               "winter wings" — inspired by the Ptarmigan, a bird that changes its plumage
               with the seasons yet remains the same creature beneath. Our logo is that bird:
               hand-drawn, imperfect, alive.
@@ -124,10 +139,10 @@ const team = [
 
           <div class="reveal reveal-delay-2">
             <p
-              class="text-base leading-relaxed"
-              style="font-family: var(--font-body); color: var(--ink-muted);"
+              class="text-sm md:text-base leading-[1.9] font-300"
+              style="color: var(--silver);"
             >
-              Each vessel we create carries the <strong style="font-family: var(--font-kanji);">冬羽</strong> seal —
+              Each vessel we create carries the <strong class="font-400" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> seal —
               a guarantee that it was made by hands that understand slowness as a feature,
               not a flaw. From distributed systems to typing races, every project shares
               the same DNA: quiet precision, honest craft, and winter's patience.
@@ -138,47 +153,49 @@ const team = [
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="max-w-5xl mx-auto px-6 lg:px-10">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(170, 212, 196, 0.3), rgba(209, 189, 229, 0.3), transparent);"></div>
+  <!-- Rule -->
+  <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
+    <div class="rule-gold"></div>
   </div>
 
   <!-- The Artisans -->
-  <section class="py-24 md:py-36">
-    <div class="max-w-5xl mx-auto px-6 lg:px-10">
-      <div class="mb-16 reveal">
+  <section class="py-28 md:py-40">
+    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
+      <div class="mb-16 md:mb-24 reveal">
         <span
-          class="text-xs tracking-[0.3em] uppercase block mb-4"
-          style="font-family: var(--font-body); font-weight: 500; color: var(--lavender-deep);"
+          class="eyebrow block mb-5"
+          style="color: var(--gold); opacity: 0.7;"
         >
           The Artisans
         </span>
         <h2
-          class="text-2xl md:text-4xl"
-          style="font-family: var(--font-display); font-weight: 300;"
+          class="text-3xl md:text-4xl"
+          style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.03em;"
         >
           People behind the vessels
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {team.map((member, i) => (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {team.map((member, i) => {
+          const accentDeep = member.accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
+          const accentGlow = member.accent === 'mint' ? 'var(--mint-glow)' : 'var(--lavender-glow)';
+          return (
           <article
-            class={`reveal reveal-delay-${i + 1} group relative p-8 md:p-10 rounded-2xl border transition-all duration-500 overflow-hidden`}
-            style="border-color: rgba(28, 28, 28, 0.06); background: rgba(246, 247, 244, 0.5);"
+            class={`reveal reveal-delay-${i + 1} group relative p-8 md:p-10 rounded-xl border transition-all duration-700 overflow-hidden surface-card surface-card-hover`}
           >
-            <!-- Hover accent glow -->
+            <!-- Hover glow -->
             <div
-              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"
-              style={`background: linear-gradient(135deg, ${member.accent === 'mint' ? 'rgba(170, 212, 196, 0.08)' : 'rgba(209, 189, 229, 0.08)'} 0%, transparent 60%);`}
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-xl"
+              style={`background: radial-gradient(ellipse at 0% 0%, ${accentGlow} 0%, transparent 50%);`}
             ></div>
 
-            <div class="relative z-10 space-y-5">
-              <!-- Avatar placeholder + Name -->
+            <div class="relative z-10 space-y-6">
+              <!-- Avatar + Name -->
               <div class="flex items-center gap-5">
                 <div
-                  class="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center text-xl shrink-0"
-                  style={`background: ${member.accent === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; font-family: var(--font-kanji); color: ${member.accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                  class="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center text-lg shrink-0 ring-1"
+                  style={`--tw-ring-color: var(--surface-border); background: ${member.accent === 'mint' ? 'var(--mint-avatar-bg)' : 'var(--lavender-avatar-bg)'}; font-family: var(--font-kanji); color: ${accentDeep};`}
                 >
                   {member.photo ? (
                     <Image
@@ -194,22 +211,22 @@ const team = [
                 </div>
                 <div>
                   <h3
-                    class="text-xl"
-                    style="font-family: var(--font-display); font-weight: 400;"
+                    class="text-lg"
+                    style="font-family: var(--font-display); font-weight: 300; color: var(--paper);"
                   >
                     {member.name}
                     {member.nameJp && (
                       <span
-                        class="ml-2 text-sm opacity-40"
-                        style="font-family: var(--font-kanji);"
+                        class="ml-2 text-xs"
+                        style="font-family: var(--font-kanji); color: var(--mist);"
                       >
                         {member.nameJp}
                       </span>
                     )}
                   </h3>
                   <span
-                    class="text-xs tracking-[0.15em] uppercase"
-                    style={`font-family: var(--font-body); font-weight: 500; color: ${member.accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                    class="text-[10px] tracking-[0.2em] uppercase font-400"
+                    style={`color: ${accentDeep};`}
                   >
                     {member.role}
                   </span>
@@ -218,15 +235,15 @@ const team = [
 
               <!-- Bio -->
               <p
-                class="text-sm leading-relaxed"
-                style="font-family: var(--font-body); color: var(--ink-muted);"
+                class="text-sm leading-[1.8] font-300"
+                style="color: var(--silver);"
               >
                 {member.bio}
               </p>
 
               <!-- Social links -->
               {Object.keys(member.socials).length > 0 && (
-                <div class="flex gap-4 pt-2">
+                <div class="flex gap-5 pt-2">
                   {Object.entries(member.socials).map(([platform, url]) => {
                     const href =
                       platform === 'email' && typeof url === 'string' && !url.startsWith('mailto:')
@@ -239,8 +256,8 @@ const team = [
                         href={href as string}
                         target={isExternal ? '_blank' : undefined}
                         rel={isExternal ? 'noopener noreferrer' : undefined}
-                        class="text-xs tracking-[0.1em] uppercase transition-colors duration-300 link-hover"
-                        style={`font-family: var(--font-body); font-weight: 500; color: var(--ink-muted);`}
+                        class="text-[10px] tracking-[0.15em] uppercase transition-colors duration-300 link-hover font-400"
+                        style="color: var(--mist);"
                       >
                         {platform}
                       </a>
@@ -250,14 +267,15 @@ const team = [
               )}
             </div>
           </article>
-        ))}
+          );
+        })}
       </div>
 
-      <!-- Note about expanding team -->
-      <div class="mt-12 text-center reveal">
+      <!-- Note -->
+      <div class="mt-16 text-center reveal">
         <p
-          class="text-sm"
-          style="font-family: var(--font-body); color: var(--ink-muted); opacity: 0.6;"
+          class="text-xs font-300 tracking-wide"
+          style="color: var(--smoke);"
         >
           The atelier grows with the seasons. More artisans may join the craft.
         </p>

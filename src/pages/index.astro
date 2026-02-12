@@ -8,39 +8,49 @@ import VesselPreview from '@components/home/VesselPreview.astro';
 <BaseLayout title="冬羽">
   <Hero />
 
-  <!-- Divider -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(170, 212, 196, 0.3), transparent);"></div>
+  <!-- Gold rule divider -->
+  <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
+    <div class="rule-gold"></div>
   </div>
 
   <PhilosophyTeaser />
 
-  <!-- Divider -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(209, 189, 229, 0.3), transparent);"></div>
+  <!-- Mint rule divider -->
+  <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
+    <div class="rule-mint"></div>
   </div>
 
   <VesselPreview />
 
-  <!-- Closing statement before footer -->
-  <section class="relative py-32 md:py-44 text-center overflow-hidden">
+  <!-- Closing statement -->
+  <section class="relative py-40 md:py-56 text-center overflow-hidden">
+    <!-- Ambient glow -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[30vh]"
+      style="background: radial-gradient(ellipse, rgba(196, 168, 108, 0.03) 0%, transparent 50%); filter: blur(60px);"
+    ></div>
+
     <!-- Background kanji -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[16rem] md:text-[24rem] leading-none opacity-[0.02] pointer-events-none select-none"
-      style="color: var(--ink);"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[30vw] md:text-[25vw] leading-none opacity-[0.015]"
     >
       器
     </div>
 
     <div class="relative z-10 max-w-2xl mx-auto px-6 reveal">
+      <!-- Decorative gold line -->
+      <div class="w-8 h-px mx-auto mb-10" style="background: var(--gold); opacity: 0.3;"></div>
+
       <p
-        class="text-2xl md:text-3xl lg:text-4xl leading-snug"
-        style="font-family: var(--font-display); font-weight: 300; color: var(--ink);"
+        class="text-3xl md:text-4xl lg:text-5xl leading-[1.15]"
+        style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.03em;"
       >
         The garden is eternal.<br />
         The vessels are mortal.<br />
-        <span style="color: var(--mint-deep);">We craft accordingly.</span>
+        <em class="font-300" style="color: var(--mint);">We craft accordingly.</em>
       </p>
+
+      <div class="w-8 h-px mx-auto mt-10" style="background: var(--gold); opacity: 0.3;"></div>
     </div>
   </section>
 </BaseLayout>

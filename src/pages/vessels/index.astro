@@ -13,79 +13,94 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
   description="Each vessel bears its own mei (銘) — a name that carries the spirit of its purpose."
 >
   <!-- Hero -->
-  <section class="relative py-32 md:py-44 overflow-hidden">
+  <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
     <!-- Atmospheric gradient -->
     <div
       class="absolute inset-0"
-      style="background: linear-gradient(180deg, var(--pearl) 0%, rgba(170, 212, 196, 0.06) 50%, var(--pearl) 100%);"
+      style="background: radial-gradient(ellipse 80% 80% at 50% 40%, var(--sumi) 0%, var(--void) 100%);"
     ></div>
 
-    <!-- Kanji watermark -->
+    <!-- Mint glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[18rem] md:text-[26rem] leading-none opacity-[0.02] pointer-events-none select-none"
-      style="color: var(--ink);"
+      class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[50vw] h-[40vh]"
+      style="background: radial-gradient(ellipse, rgba(127, 203, 180, 0.05) 0%, transparent 60%); filter: blur(80px);"
+    ></div>
+
+    <!-- Kanji -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[45vw] md:text-[35vw] leading-none opacity-[0.02]"
     >
       器
     </div>
 
-    <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
       <span
-        class="text-xs tracking-[0.3em] uppercase block mb-6"
-        style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep); animation: fadeIn 1s var(--ease-out-expo) both;"
+        class="eyebrow block mb-6"
+        style="color: var(--gold); opacity: 0.7; animation: fadeIn 1s var(--ease-out-expo) both;"
       >
         Our Vessels
       </span>
       <h1
-        class="text-4xl md:text-6xl lg:text-7xl mb-6"
-        style="font-family: var(--font-display); font-weight: 300; animation: fadeInUp 1.2s var(--ease-out-expo) 0.2s both;"
+        class="text-4xl md:text-7xl lg:text-8xl mb-8"
+        style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
       >
         Named works,<br />
-        <span style="color: var(--mint-deep);">different intimacies</span>
+        <em class="font-300" style="color: var(--mint);">different intimacies</em>
       </h1>
       <p
-        class="max-w-lg mx-auto text-base md:text-lg leading-relaxed"
-        style="font-family: var(--font-body); color: var(--ink-muted); animation: fadeInUp 1.2s var(--ease-out-expo) 0.4s both;"
+        class="max-w-lg mx-auto text-sm md:text-base leading-[1.9] font-300"
+        style="color: var(--silver); animation: fadeInUp 1.4s var(--ease-out-expo) 0.4s both;"
       >
         Each piece bears its own <em style="font-family: var(--font-kanji);">mei</em> (銘) —
         a name that carries the spirit of its purpose.
       </p>
     </div>
+
+    <!-- Bottom fade -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
+      style="background: linear-gradient(transparent, var(--charcoal));"
+    ></div>
   </section>
 
   <!-- Active Vessels -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-6xl mx-auto px-6 lg:px-10">
-      <div class="mb-12 reveal">
-        <span
-          class="eyebrow block mb-2"
-          style="color: var(--mint-deep);"
-        >
-          Currently Firing
-        </span>
-        <div class="w-12 h-px" style="background: var(--mint);"></div>
+  <section class="py-20 md:py-32">
+    <div class="max-w-[80rem] mx-auto px-6 lg:px-12">
+      <div class="mb-16 reveal">
+        <div class="flex items-center gap-4 mb-2">
+          <span
+            class="eyebrow"
+            style="color: var(--gold); opacity: 0.7;"
+          >
+            Currently Firing
+          </span>
+          <div class="flex-1 rule-gold"></div>
+        </div>
       </div>
 
-      <div class="space-y-6">
+      <div class="space-y-4">
         {activeVessels.map((vessel, i) => {
           const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
+          const accentColor = accent === 'mint' ? 'var(--mint)' : 'var(--lavender)';
+          const accentDeep = accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
+          const accentGlow = accent === 'mint' ? 'var(--mint-glow)' : 'var(--lavender-glow)';
           return (
           <a
             href={`/vessels/${vessel.id.replace(/\.md$/, '')}`}
             class={`group block reveal reveal-delay-${i + 1}`}
           >
             <article
-              class="relative p-8 md:p-12 rounded-2xl border transition-all duration-500 overflow-hidden surface-card"
+              class="relative p-8 md:p-12 rounded-xl border transition-all duration-700 overflow-hidden surface-card surface-card-hover"
             >
-              <!-- Hover gradient -->
+              <!-- Hover glow -->
               <div
-                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"
-                style={`background: linear-gradient(135deg, ${accent === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(209, 189, 229, 0.06)'} 0%, transparent 50%);`}
+                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-xl"
+                style={`background: radial-gradient(ellipse at 0% 50%, ${accentGlow} 0%, transparent 50%);`}
               ></div>
 
               <!-- Decorative kanji -->
               <div
-                class="absolute -right-6 -bottom-6 kanji-watermark text-[12rem] leading-none opacity-[0.03] transition-opacity duration-500 group-hover:opacity-[0.06]"
-                style="color: var(--ink);"
+                class="absolute -right-6 -bottom-6 kanji-architectural text-[14rem] leading-none opacity-[0.02] transition-opacity duration-700 group-hover:opacity-[0.04]"
               >
                 {vessel.data.kanji}
               </div>
@@ -95,19 +110,20 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <div class="md:col-span-5 flex items-center gap-5 min-w-0">
                   <span
                     class="text-3xl md:text-4xl shrink-0 text-kanji font-normal"
-                    style="color: var(--ink);"
+                    style="color: var(--paper); opacity: 0.8;"
                   >
                     {vessel.data.kanji}
                   </span>
                   <div class="flex-1 min-w-0">
                     <h2
-                      class="text-sm md:text-base font-normal"
-                      style="font-family: var(--font-display);"
+                      class="text-base md:text-lg font-300"
+                      style="font-family: var(--font-display); color: var(--paper);"
                     >
                       {vessel.data.title}
                     </h2>
                     <span
-                      class="text-xs tracking-[0.15em] uppercase text-body-muted"
+                      class="text-[10px] tracking-[0.2em] uppercase font-400"
+                      style={`color: ${accentDeep};`}
                     >
                       {vessel.data.meaning}
                     </span>
@@ -117,15 +133,16 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <!-- Description -->
                 <div class="md:col-span-4">
                   <p
-                    class="text-sm leading-relaxed text-body-muted"
+                    class="text-sm leading-[1.8] font-300"
+                    style="color: var(--silver);"
                   >
                     {vessel.data.description}
                   </p>
-                  <div class="flex flex-wrap gap-2 mt-4">
+                  <div class="flex flex-wrap gap-1.5 mt-4">
                     {vessel.data.techStack.map((tech: string) => (
                       <span
-                        class="px-2.5 py-0.5 rounded-full text-[10px] tracking-wider text-body-muted"
-                        style="background: rgba(28, 28, 28, 0.04);"
+                        class="px-2.5 py-0.5 rounded text-[9px] tracking-[0.1em] uppercase font-400"
+                        style="background: var(--surface-tag-bg); color: var(--mist); border: 1px solid var(--surface-tag-border);"
                       >
                         {tech}
                       </span>
@@ -136,15 +153,15 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <!-- Status + Arrow -->
                 <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-4">
                   <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase text-body font-medium"
-                    style={`background: ${accent === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                    class="inline-flex items-center gap-1.5 text-[9px] tracking-[0.15em] uppercase font-400"
+                    style={`color: ${accentDeep};`}
                   >
-                    <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}></span>
+                    <span class="w-1 h-1 rounded-full" style={`background: ${accentColor};`}></span>
                     Active
                   </span>
                   <span
-                    class="text-2xl transition-transform duration-300 group-hover:translate-x-2"
-                    style={`color: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}
+                    class="text-xl transition-all duration-500 group-hover:translate-x-2 opacity-30 group-hover:opacity-80"
+                    style={`color: ${accentColor};`}
                   >
                     &rarr;
                   </span>
@@ -157,6 +174,4 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
       </div>
     </div>
   </section>
-
-
 </BaseLayout>

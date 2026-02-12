@@ -1,61 +1,77 @@
 ---
 ---
 
-<section class="relative py-32 md:py-44 overflow-hidden">
-  <!-- Background decorative kanji -->
+<section class="relative py-36 md:py-52 overflow-hidden">
+  <!-- Architectural kanji — off-center, massive -->
   <div
-    class="absolute -right-20 top-1/2 -translate-y-1/2 kanji-watermark text-[14rem] md:text-[22rem] leading-none opacity-[0.02] pointer-events-none select-none"
-    style="color: var(--ink);"
+    class="absolute -left-[10vw] top-1/2 -translate-y-1/2 kanji-architectural text-[50vw] md:text-[35vw] leading-none opacity-[0.015]"
   >
     道
   </div>
 
-  <div class="max-w-5xl mx-auto px-6 lg:px-10">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
-      <!-- Left: label -->
-      <div class="md:col-span-4 reveal">
+  <!-- Subtle glow -->
+  <div
+    class="absolute top-1/2 right-0 w-[40vw] h-[40vh] -translate-y-1/2"
+    style="background: radial-gradient(ellipse at 100% 50%, rgba(184, 160, 212, 0.04) 0%, transparent 60%); filter: blur(60px);"
+  ></div>
+
+  <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-start">
+      <!-- Left: label + decorative line -->
+      <div class="md:col-span-3 reveal">
         <span
-          class="eyebrow block mb-4"
-          style="color: var(--mint-deep);"
+          class="eyebrow block mb-5"
+          style="color: var(--gold); opacity: 0.7;"
         >
           The Philosophy
         </span>
-        <div class="w-12 h-px" style="background: var(--mint);"></div>
+        <div class="w-16 h-px" style="background: linear-gradient(90deg, var(--gold), transparent); opacity: 0.3;"></div>
+
+        <!-- Vertical line decoration on desktop -->
+        <div class="hidden md:block mt-12 ml-0">
+          <div class="w-px h-32" style="background: linear-gradient(180deg, var(--vert-line), transparent);"></div>
+        </div>
       </div>
 
       <!-- Right: content -->
-      <div class="md:col-span-8 space-y-8">
+      <div class="md:col-span-9 md:pl-4 space-y-10">
         <blockquote class="reveal">
           <p
-            class="text-2xl md:text-4xl leading-snug text-display-light"
-            style="color: var(--ink);"
+            class="text-3xl md:text-5xl lg:text-6xl leading-[1.12]"
+            style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.03em;"
           >
             We believe in quiet design,<br />
             in precision without spectacle,<br />
             in beauty that does not ask<br />
-            <span style="color: var(--mint-deep);">to be noticed.</span>
+            <em class="font-300" style="color: var(--lavender);">to be noticed.</em>
           </p>
         </blockquote>
 
         <div class="reveal reveal-delay-2">
           <p
-            class="text-base leading-relaxed max-w-md text-body-muted"
+            class="text-sm md:text-base leading-[1.9] max-w-lg font-300"
+            style="color: var(--silver);"
           >
             Our software speaks softly, moves effortlessly, and remains —
             like a flower that blooms in cold air.
           </p>
         </div>
 
-        <div class="reveal reveal-delay-3 pt-4">
+        <div class="reveal reveal-delay-3 pt-2">
           <a
             href="/philosophy"
-            class="group inline-flex items-center gap-3 text-sm tracking-[0.15em] uppercase transition-all duration-300 text-body font-medium"
-            style="color: var(--ink);"
+            class="group inline-flex items-center gap-4 transition-all duration-300"
           >
-            <span class="link-hover">Read our philosophy</span>
+            <span class="w-8 h-px transition-all duration-500 group-hover:w-12" style="background: var(--mint); opacity: 0.6;"></span>
             <span
-              class="inline-block transition-transform duration-300 group-hover:translate-x-1"
-              style="color: var(--mint);"
+              class="text-[11px] tracking-[0.25em] uppercase font-400 transition-colors duration-300"
+              style="color: var(--mist);"
+            >
+              Read our philosophy
+            </span>
+            <span
+              class="inline-block transition-transform duration-300 group-hover:translate-x-1.5 text-sm"
+              style="color: var(--mint); opacity: 0.6;"
             >
               &rarr;
             </span>

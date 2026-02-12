@@ -5,70 +5,85 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
 ---
 
 <section class="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
-  <!-- Atmospheric gradient layers -->
+  <!-- Deep atmospheric gradient layers -->
   <div class="absolute inset-0 z-0">
-    <!-- Base gradient: pearl to subtle mint/lavender -->
+    <!-- Base: void to charcoal -->
     <div
       class="absolute inset-0"
-      style="background: linear-gradient(180deg, var(--pearl) 0%, rgba(170, 212, 196, 0.08) 40%, rgba(209, 189, 229, 0.06) 70%, var(--pearl) 100%);"
+      style="background: radial-gradient(ellipse 80% 80% at 50% 40%, var(--sumi) 0%, var(--void) 100%);"
     ></div>
 
-    <!-- Radial glow behind logo -->
+    <!-- Mint glow — lower left -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]"
-      style="background: radial-gradient(ellipse, rgba(170, 212, 196, 0.12) 0%, transparent 70%); filter: blur(40px);"
+      class="absolute bottom-0 left-0 w-[70vw] h-[60vh]"
+      style="background: radial-gradient(ellipse at 20% 80%, rgba(127, 203, 180, 0.06) 0%, transparent 60%); filter: blur(80px);"
     ></div>
 
-    <!-- Lavender accent glow -->
+    <!-- Lavender glow — upper right -->
     <div
-      class="absolute top-1/4 right-1/4 w-[500px] h-[500px]"
-      style="background: radial-gradient(ellipse, rgba(209, 189, 229, 0.08) 0%, transparent 70%); filter: blur(60px);"
+      class="absolute top-0 right-0 w-[50vw] h-[50vh]"
+      style="background: radial-gradient(ellipse at 80% 20%, rgba(184, 160, 212, 0.04) 0%, transparent 60%); filter: blur(80px);"
+    ></div>
+
+    <!-- Gold accent — center -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]"
+      style="background: radial-gradient(circle, rgba(196, 168, 108, 0.04) 0%, transparent 50%); filter: blur(60px);"
     ></div>
   </div>
 
-  <!-- Kanji watermark — large decorative 冬羽 -->
+  <!-- Architectural kanji — massive structural element -->
   <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[20rem] md:text-[28rem] leading-none opacity-[0.025] select-none pointer-events-none z-0"
-    style="color: var(--ink);"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] kanji-architectural text-[40vw] md:text-[35vw] leading-none select-none pointer-events-none z-0"
   >
     冬羽
   </div>
 
-  <!-- Snow particles -->
+  <!-- Atmospheric particles -->
   <SnowCanvas />
 
   <!-- Main content -->
-  <div class="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto">
-    <!-- Logo reveal -->
-    <div class="mb-8 hero-fade">
+  <div class="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto">
+    <!-- Logo with glow -->
+    <div class="mb-10 hero-fade relative">
       <Image
         src={heroLogo}
         alt="Fuyuhane"
-        width={280}
-        height={280}
+        width={220}
+        height={220}
         class="hero-logo"
+        style="filter: var(--hero-logo-filter); opacity: var(--hero-logo-opacity);"
       />
+      <!-- Logo glow ring -->
+      <div
+        class="absolute inset-0 -m-6 rounded-full hero-glow"
+        style="background: radial-gradient(circle, rgba(196, 168, 108, 0.08) 0%, transparent 70%);"
+      ></div>
     </div>
 
+    <!-- Gold accent line -->
+    <div class="w-12 h-px mb-8 hero-fade-up" style="background: var(--gold); opacity: 0.4;"></div>
+
     <!-- Tagline -->
-    <div class="space-y-5 hero-fade-up">
+    <div class="space-y-6 hero-fade-up">
       <p
-        class="text-base md:text-lg tracking-[0.25em] uppercase text-body font-medium"
-        style="color: var(--mint-deep);"
+        class="text-[11px] md:text-xs tracking-[0.4em] uppercase text-body font-400"
+        style="color: var(--gold);"
       >
-        冬羽
+        冬羽 &mdash; Fuyuhane
       </p>
 
       <h1
-        class="text-4xl md:text-6xl lg:text-7xl text-display-light"
-        style="color: var(--ink);"
+        class="text-5xl md:text-7xl lg:text-8xl"
+        style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.04em; line-height: 1.05;"
       >
         A craft atelier<br />
-        <span style="color: var(--mint-deep);">anchored in winter</span>
+        <em class="font-300" style="color: var(--mint);">anchored in winter</em>
       </h1>
 
       <p
-        class="max-w-lg mx-auto text-base md:text-lg leading-relaxed text-body-muted"
+        class="max-w-md mx-auto text-sm md:text-base leading-[1.9] font-300"
+        style="color: var(--silver);"
       >
         We throw vessels — named works that emerge from the same clay
         but serve different intimacies.
@@ -76,58 +91,63 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
     </div>
 
     <!-- Scroll indicator -->
-    <div class="mt-16 flex flex-col items-center gap-2 hero-fade-delayed">
+    <div class="mt-20 flex flex-col items-center gap-3 hero-fade-delayed">
       <span
-        class="text-[10px] tracking-[0.3em] uppercase text-body"
-        style="color: var(--ink-muted); opacity: 0.5;"
+        class="text-[9px] tracking-[0.4em] uppercase font-400"
+        style="color: var(--smoke);"
       >
         Scroll
       </span>
-      <div class="w-px h-10 relative overflow-hidden" style="background: rgba(28, 28, 28, 0.1);">
+      <div class="w-px h-12 relative overflow-hidden" style="background: var(--scroll-indicator-bg);">
         <div
-          class="w-full h-4 absolute top-0 hero-scroll-line"
-          style="background: var(--mint);"
+          class="w-full h-5 absolute top-0 hero-scroll-line"
+          style="background: linear-gradient(180deg, var(--gold), transparent);"
         ></div>
       </div>
     </div>
   </div>
 
-  <!-- Bottom fade -->
+  <!-- Bottom fade into charcoal -->
   <div
-    class="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
-    style="background: linear-gradient(transparent, var(--pearl));"
+    class="absolute bottom-0 left-0 right-0 h-40 z-10 pointer-events-none"
+    style="background: linear-gradient(transparent, var(--charcoal));"
   ></div>
 </section>
 
 <style>
   .hero-fade {
-    animation: fadeIn 2s var(--ease-out-expo) forwards;
+    animation: fadeIn 2.5s var(--ease-out-expo) forwards;
   }
 
   .hero-logo {
-    animation: float 6s ease-in-out 2s infinite;
+    animation: float 8s ease-in-out 2s infinite;
+  }
+
+  .hero-glow {
+    animation: glowPulse 6s ease-in-out 1s infinite;
   }
 
   .hero-fade-up {
-    animation: fadeInUp 1.5s var(--ease-out-expo) 0.5s both;
+    animation: fadeInUp 1.8s var(--ease-out-expo) 0.6s both;
   }
 
   .hero-fade-delayed {
-    animation: fadeIn 1.5s var(--ease-out-expo) 1.5s both;
+    animation: fadeIn 1.5s var(--ease-out-expo) 1.8s both;
   }
 
   .hero-scroll-line {
-    animation: scrollLine 2s ease-in-out infinite;
+    animation: scrollLine 2.5s ease-in-out infinite;
   }
 
   @keyframes scrollLine {
     0% { transform: translateY(-100%); }
-    100% { transform: translateY(300%); }
+    100% { transform: translateY(350%); }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .hero-fade,
     .hero-logo,
+    .hero-glow,
     .hero-fade-up,
     .hero-fade-delayed,
     .hero-scroll-line {

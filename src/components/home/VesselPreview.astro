@@ -6,73 +6,93 @@ const vessels = (await getCollection('vessels'))
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section class="relative py-32 md:py-44">
+<section class="relative py-36 md:py-52">
+  <!-- Ambient glow -->
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-[60vw] h-[40vh]"
+    style="background: radial-gradient(ellipse at 50% 0%, rgba(127, 203, 180, 0.03) 0%, transparent 60%); filter: blur(80px);"
+  ></div>
+
   <!-- Section header -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 mb-16 md:mb-24">
-    <div class="reveal">
-      <span
-        class="eyebrow block mb-4"
-        style="color: var(--lavender-deep);"
-      >
-        Active Vessels
-      </span>
-      <h2 class="text-display-light">
-        Currently on the wheel
-      </h2>
-      <p
-        class="mt-4 max-w-lg text-base text-body-muted"
-      >
-        Like a potter's kiln, we fire one at a time. The others rest on the shelf,
-        complete, breathing — waiting for their season to return.
-      </p>
+  <div class="max-w-[90rem] mx-auto px-6 lg:px-12 mb-20 md:mb-28">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+      <div class="md:col-span-8 reveal">
+        <span
+          class="eyebrow block mb-5"
+          style="color: var(--gold); opacity: 0.7;"
+        >
+          Active Vessels
+        </span>
+        <h2
+          class="text-3xl md:text-5xl"
+          style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.03em;"
+        >
+          Currently on the wheel
+        </h2>
+      </div>
+      <div class="md:col-span-4 reveal reveal-delay-1">
+        <p
+          class="text-sm leading-[1.9] font-300 md:text-right"
+          style="color: var(--mist);"
+        >
+          Like a potter's kiln, we fire one at a time.<br class="hidden md:block" />
+          The others rest, breathing — waiting.
+        </p>
+      </div>
     </div>
+
+    <!-- Gold rule -->
+    <div class="mt-12 rule-gold"></div>
   </div>
 
-  <!-- Vessel cards -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+  <!-- Vessel cards — 2-column grid -->
+  <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
       {vessels.map((vessel, i) => {
         const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
+        const accentColor = accent === 'mint' ? 'var(--mint)' : 'var(--lavender)';
+        const accentDeep = accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
+        const accentGlow = accent === 'mint' ? 'var(--mint-glow)' : 'var(--lavender-glow)';
         return (
         <a
           href={`/vessels/${vessel.id.replace(/\.md$/, '')}`}
           class={`group reveal reveal-delay-${i + 1}`}
         >
           <article
-            class="relative p-8 md:p-10 rounded-2xl border transition-all duration-500 overflow-hidden h-full surface-card"
+            class="relative p-8 md:p-10 rounded-xl border transition-all duration-700 overflow-hidden h-full surface-card surface-card-hover"
           >
-            <!-- Hover gradient overlay -->
+            <!-- Hover glow -->
             <div
-              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"
-              style={`background: linear-gradient(135deg, ${accent === 'mint' ? 'rgba(170, 212, 196, 0.08)' : 'rgba(209, 189, 229, 0.08)'} 0%, transparent 60%);`}
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-xl"
+              style={`background: radial-gradient(ellipse at 20% 0%, ${accentGlow} 0%, transparent 60%);`}
             ></div>
 
             <!-- Decorative kanji -->
             <div
-              class="absolute -right-4 -top-4 kanji-watermark text-[8rem] leading-none opacity-[0.04] transition-opacity duration-500 group-hover:opacity-[0.08]"
-              style="color: var(--ink);"
+              class="absolute -right-4 -top-4 kanji-architectural text-[10rem] leading-none opacity-[0.02] transition-opacity duration-700 group-hover:opacity-[0.04]"
             >
               {vessel.data.kanji}
             </div>
 
-            <div class="relative z-10 space-y-4">
+            <div class="relative z-10 space-y-5">
               <!-- Kanji + Name -->
               <div class="flex items-baseline gap-4">
                 <span
-                  class="text-4xl md:text-5xl text-kanji font-normal"
-                  style="color: var(--ink);"
+                  class="text-4xl md:text-5xl text-kanji font-normal shrink-0"
+                  style="color: var(--paper); opacity: 0.8;"
                 >
                   {vessel.data.kanji}
                 </span>
                 <div>
                   <h3
-                    class="text-xl font-normal"
-                    style="font-family: var(--font-display);"
+                    class="text-xl md:text-2xl font-300"
+                    style="font-family: var(--font-display); color: var(--paper);"
                   >
                     {vessel.data.title}
                   </h3>
                   <span
-                    class="text-xs tracking-[0.15em] uppercase text-body-muted"
+                    class="text-[10px] tracking-[0.2em] uppercase font-400"
+                    style={`color: ${accentDeep};`}
                   >
                     {vessel.data.meaning}
                   </span>
@@ -81,41 +101,42 @@ const vessels = (await getCollection('vessels'))
 
               <!-- Description -->
               <p
-                class="text-sm leading-relaxed text-body-muted"
+                class="text-sm leading-[1.8] font-300"
+                style="color: var(--silver);"
               >
                 {vessel.data.description}
               </p>
 
               <!-- Status badge + Tech tags -->
-              <div class="flex flex-wrap items-center gap-2 pt-2">
+              <div class="flex flex-wrap items-center gap-2 pt-1">
                 <span
-                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase text-body font-medium"
-                  style={`background: ${accent === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] tracking-[0.15em] uppercase font-400"
+                  style={`background: ${accent === 'mint' ? 'var(--mint-badge-bg)' : 'var(--lavender-badge-bg)'}; color: ${accentDeep};`}
                 >
-                  <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}></span>
+                  <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accentColor};`}></span>
                   Active
                 </span>
                 {vessel.data.techStack.slice(0, 3).map((tech: string) => (
                   <span
-                    class="px-2.5 py-1 rounded-full text-[10px] tracking-wider text-body-muted"
-                    style="background: rgba(28, 28, 28, 0.04);"
+                    class="px-2.5 py-0.5 rounded text-[9px] tracking-[0.1em] uppercase font-400"
+                    style="background: var(--surface-tag-bg); color: var(--mist); border: 1px solid var(--surface-tag-border);"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
 
-              <!-- Arrow -->
-              <div class="pt-4 flex items-center gap-2">
+              <!-- View vessel link -->
+              <div class="pt-3 flex items-center gap-2">
                 <span
-                  class="text-xs tracking-[0.15em] uppercase transition-colors duration-300 text-body font-medium"
-                  style={`color: ${accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)'};`}
+                  class="text-[10px] tracking-[0.2em] uppercase font-400 transition-colors duration-500"
+                  style={`color: ${accentDeep};`}
                 >
                   View vessel
                 </span>
                 <span
-                  class="inline-block transition-transform duration-300 group-hover:translate-x-1.5"
-                  style={`color: ${accent === 'mint' ? 'var(--mint)' : 'var(--lavender)'};`}
+                  class="text-sm transition-all duration-500 group-hover:translate-x-1.5 opacity-50 group-hover:opacity-100"
+                  style={`color: ${accentColor};`}
                 >
                   &rarr;
                 </span>

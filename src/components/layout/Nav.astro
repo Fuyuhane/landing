@@ -13,47 +13,87 @@ const currentPath = Astro.url.pathname;
 
 <header
   id="site-nav"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-700"
 >
-  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+  <div class="mx-auto max-w-[90rem] px-6 lg:px-12">
     <nav class="flex items-center justify-between h-20" aria-label="Main navigation">
       <!-- Logo -->
       <a
         href="/"
-        class="group flex items-center gap-3 relative z-10"
+        class="group flex items-center gap-4 relative z-10"
         aria-label="Fuyuhane — Home"
       >
-        <div class="w-11 h-11 rounded-full overflow-hidden transition-transform duration-500 ease-out group-hover:scale-110">
-          <Image
-            src={navLogo}
-            alt="Fuyuhane ptarmigan emblem"
-            width={44}
-            height={44}
-            class="w-full h-full object-cover"
-          />
+        <div class="relative">
+          <div class="w-10 h-10 rounded-full overflow-hidden transition-all duration-500 ease-out group-hover:scale-110 ring-1" style="--tw-ring-color: var(--surface-border-hover);">
+            <Image
+              src={navLogo}
+              alt="Fuyuhane ptarmigan emblem"
+              width={44}
+              height={44}
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <!-- Subtle glow on hover -->
+          <div class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md" style="background: var(--mint-glow);"></div>
         </div>
-        <span
-          class="text-sm tracking-[0.2em] uppercase font-medium opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 text-body"
-        >
-          fuyuhane
-        </span>
+        <div class="flex items-baseline gap-2 opacity-0 -translate-x-3 transition-all duration-400 group-hover:opacity-100 group-hover:translate-x-0">
+          <span
+            class="text-xs tracking-[0.3em] uppercase font-400"
+            style="color: var(--paper);"
+          >
+            fuyuhane
+          </span>
+          <span
+            class="text-[10px] tracking-[0.2em] font-300"
+            style="color: var(--mist); font-family: var(--font-kanji);"
+          >
+            冬羽
+          </span>
+        </div>
       </a>
 
-      <!-- Desktop Links -->
-      <div class="hidden md:flex items-center gap-10">
+      <!-- Desktop Links + Theme Toggle -->
+      <div class="hidden md:flex items-center gap-12">
         {navLinks.map(({ href, label }) => (
           <a
             href={href}
             class:list={[
-              'link-hover text-sm tracking-[0.15em] uppercase transition-colors duration-300 text-body font-medium',
+              'relative text-[11px] tracking-[0.25em] uppercase transition-all duration-300 text-body font-400',
               currentPath.startsWith(href)
-                ? 'opacity-100'
-                : 'opacity-60 hover:opacity-100',
+                ? 'text-[var(--paper)]'
+                : 'text-[var(--mist)] hover:text-[var(--paper)]',
             ]}
           >
             {label}
+            {currentPath.startsWith(href) && (
+              <span class="absolute -bottom-1 left-0 w-full h-px" style="background: var(--gold); opacity: 0.6;"></span>
+            )}
           </a>
         ))}
+
+        <!-- Theme toggle -->
+        <button
+          id="theme-toggle"
+          class="relative w-8 h-8 flex items-center justify-center rounded-full transition-all duration-300 hover:bg-[var(--surface-tag-bg)]"
+          aria-label="Toggle theme"
+        >
+          <!-- Sun icon (shown in dark mode) -->
+          <svg class="theme-icon-sun w-3.5 h-3.5 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--mist);">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg class="theme-icon-moon w-3.5 h-3.5 absolute transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--mist);">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -65,8 +105,8 @@ const currentPath = Astro.url.pathname;
         aria-controls="mobile-menu"
       >
         <div class="space-y-1.5" id="hamburger-icon">
-          <span class="block w-6 h-px bg-current transition-all duration-300 origin-center"></span>
-          <span class="block w-4 h-px bg-current transition-all duration-300 ml-auto"></span>
+          <span class="block w-5 h-px transition-all duration-300 origin-center" style="background: var(--paper);"></span>
+          <span class="block w-3 h-px transition-all duration-300 ml-auto" style="background: var(--paper);"></span>
         </div>
       </button>
     </nav>
@@ -80,24 +120,88 @@ const currentPath = Astro.url.pathname;
     role="dialog"
     aria-modal="true"
   >
-    <div class="absolute inset-0 bg-[var(--pearl)] backdrop-blur-sm"></div>
-    <nav class="relative z-10 flex flex-col items-center justify-center h-full gap-10" aria-label="Mobile navigation">
+    <div class="absolute inset-0" style="background: var(--void); opacity: 0.98;"></div>
+
+    <!-- Decorative kanji in mobile menu -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[40vw] leading-none opacity-[0.015]"
+    >
+      冬
+    </div>
+
+    <nav class="relative z-10 flex flex-col items-center justify-center h-full gap-8" aria-label="Mobile navigation">
+      <!-- Gold accent line -->
+      <div class="w-8 h-px mb-4" style="background: var(--gold); opacity: 0.4;"></div>
+
       {navLinks.map(({ href, label }, i) => (
         <a
           href={href}
-          class="text-3xl tracking-[0.2em] uppercase opacity-0 translate-y-8 transition-all duration-500"
-          style={`font-family: var(--font-display); font-weight: 300; transition-delay: ${(i + 1) * 100}ms;`}
+          class="text-4xl tracking-[0.15em] uppercase opacity-0 translate-y-8 transition-all duration-500"
+          style={`font-family: var(--font-display); font-weight: 200; color: var(--paper); transition-delay: ${(i + 1) * 100}ms;`}
           data-mobile-link
         >
           {label}
         </a>
       ))}
+
+      <div class="w-8 h-px mt-4" style="background: var(--gold); opacity: 0.4;"></div>
+
+      <!-- Mobile theme toggle -->
+      <button
+        id="mobile-theme-toggle"
+        class="mt-6 flex items-center gap-3 opacity-0 translate-y-4 transition-all duration-500"
+        style="transition-delay: 400ms;"
+        aria-label="Toggle theme"
+        data-mobile-focusable
+      >
+        <svg class="theme-icon-sun w-4 h-4 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--mist);">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon-moon w-4 h-4 absolute transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--mist);">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <span
+          class="text-[10px] tracking-[0.25em] uppercase font-400"
+          style="color: var(--mist);"
+          id="mobile-theme-label"
+        >
+          Light mode
+        </span>
+      </button>
     </nav>
   </div>
 </header>
 
 <!-- Spacer for fixed nav -->
 <div class="h-20"></div>
+
+<style>
+  /* Theme icon visibility */
+  .theme-icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+  .theme-icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  .theme-light .theme-icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  .theme-light .theme-icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+</style>
 
 <script>
   const navWindow = window as Window & {
@@ -115,6 +219,8 @@ const currentPath = Astro.url.pathname;
     const menu = document.getElementById('mobile-menu');
     const icon = document.getElementById('hamburger-icon');
     const links = Array.from(document.querySelectorAll<HTMLElement>('[data-mobile-link]'));
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const allMobileAnimated = [...links, ...(mobileThemeToggle ? [mobileThemeToggle] : [])];
     let isOpen = false;
     let lastFocusedEl: HTMLElement | null = null;
 
@@ -129,13 +235,13 @@ const currentPath = Astro.url.pathname;
         menu?.classList.remove('pointer-events-none', 'opacity-0');
         menu?.classList.add('pointer-events-auto', 'opacity-100');
         document.body.style.overflow = 'hidden';
-        links.forEach((link) => {
-          link.classList.remove('opacity-0', 'translate-y-8');
-          link.classList.add('opacity-100', 'translate-y-0');
+        allMobileAnimated.forEach((el) => {
+          el.classList.remove('opacity-0', 'translate-y-8', 'translate-y-4');
+          el.classList.add('opacity-100', 'translate-y-0');
         });
         if (icon) {
           icon.children[0]?.classList.add('rotate-45', 'translate-y-[4px]');
-          icon.children[1]?.classList.add('opacity-0', '-rotate-45', 'w-6');
+          icon.children[1]?.classList.add('opacity-0', '-rotate-45', 'w-5');
         }
 
         links[0]?.focus();
@@ -147,9 +253,13 @@ const currentPath = Astro.url.pathname;
           link.classList.add('opacity-0', 'translate-y-8');
           link.classList.remove('opacity-100', 'translate-y-0');
         });
+        if (mobileThemeToggle) {
+          mobileThemeToggle.classList.add('opacity-0', 'translate-y-4');
+          mobileThemeToggle.classList.remove('opacity-100', 'translate-y-0');
+        }
         if (icon) {
           icon.children[0]?.classList.remove('rotate-45', 'translate-y-[4px]');
-          icon.children[1]?.classList.remove('opacity-0', '-rotate-45', 'w-6');
+          icon.children[1]?.classList.remove('opacity-0', '-rotate-45', 'w-5');
         }
 
         if (lastFocusedEl && document.contains(lastFocusedEl)) {
@@ -166,7 +276,7 @@ const currentPath = Astro.url.pathname;
       if (!nav) return;
       if (window.scrollY > 60) {
         nav.classList.add('frost-glass');
-        nav.style.borderBottom = '1px solid rgba(170, 212, 196, 0.15)';
+        nav.style.borderBottom = '1px solid var(--frost-border)';
       } else {
         nav.classList.remove('frost-glass');
         nav.style.borderBottom = 'none';
@@ -204,7 +314,7 @@ const currentPath = Astro.url.pathname;
 
       if (event.key !== 'Tab') return;
 
-      const focusableEls = [btn, ...links].filter((el): el is HTMLElement => Boolean(el));
+      const focusableEls = [btn, ...links, ...(mobileThemeToggle ? [mobileThemeToggle] : [])].filter((el): el is HTMLElement => Boolean(el));
       const firstEl = focusableEls[0];
       const lastEl = focusableEls[focusableEls.length - 1];
       const activeEl = document.activeElement as HTMLElement | null;
@@ -227,9 +337,40 @@ const currentPath = Astro.url.pathname;
     });
     document.addEventListener('keydown', handleKeydown);
 
+    // Theme toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+    const mobileThemeLabel = document.getElementById('mobile-theme-label');
+
+    const updateMobileThemeLabel = () => {
+      if (mobileThemeLabel) {
+        const isLight = document.documentElement.classList.contains('theme-light');
+        mobileThemeLabel.textContent = isLight ? 'Dark mode' : 'Light mode';
+      }
+    };
+
+    updateMobileThemeLabel();
+
+    const handleThemeToggle = () => {
+      const html = document.documentElement;
+      const isLight = html.classList.contains('theme-light');
+      if (isLight) {
+        html.classList.remove('theme-light');
+        localStorage.setItem('fuyuhane-theme', 'dark');
+      } else {
+        html.classList.add('theme-light');
+        localStorage.setItem('fuyuhane-theme', 'light');
+      }
+      updateMobileThemeLabel();
+    };
+    themeBtn?.addEventListener('click', handleThemeToggle);
+    mobileThemeBtn?.addEventListener('click', handleThemeToggle);
+
     navWindow.__fuyuhaneNavCleanup = () => {
       window.removeEventListener('scroll', handleScroll);
       btn?.removeEventListener('click', handleToggle);
+      themeBtn?.removeEventListener('click', handleThemeToggle);
+      mobileThemeBtn?.removeEventListener('click', handleThemeToggle);
       links.forEach((link) => {
         link.removeEventListener('click', handleLinkClick);
       });

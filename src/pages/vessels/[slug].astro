@@ -16,7 +16,7 @@ const { Content } = await render(vessel);
 const accentColor = vessel.data.accent ?? (vessel.data.order === 1 ? 'mint' : 'lavender');
 const accentVar = accentColor === 'mint' ? 'var(--mint)' : 'var(--lavender)';
 const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
-const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(209, 189, 229, 0.06)';
+const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender-glow)';
 ---
 
 <BaseLayout
@@ -24,68 +24,82 @@ const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(20
   description={vessel.data.description}
 >
   <!-- Hero -->
-  <section class="relative py-28 md:py-40 overflow-hidden">
+  <section class="relative py-32 md:py-44 overflow-hidden">
     <div
       class="absolute inset-0"
-      style={`background: linear-gradient(180deg, var(--pearl) 0%, ${accentBg} 50%, var(--pearl) 100%);`}
+      style={`background: radial-gradient(ellipse 80% 80% at 50% 40%, var(--sumi) 0%, var(--void) 100%);`}
     ></div>
 
-    <!-- Large kanji watermark -->
+    <!-- Accent glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[20rem] md:text-[32rem] leading-none opacity-[0.03] pointer-events-none select-none"
-      style="color: var(--ink);"
+      class="absolute top-1/3 left-1/3 w-[40vw] h-[30vh]"
+      style={`background: radial-gradient(ellipse, ${accentGlow} 0%, transparent 60%); filter: blur(80px);`}
+    ></div>
+
+    <!-- Large kanji -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[45vw] md:text-[35vw] leading-none opacity-[0.02]"
     >
       {vessel.data.kanji}
     </div>
 
-    <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-10">
+    <div class="relative z-10 max-w-[70rem] mx-auto px-6 lg:px-12">
       <!-- Back link -->
       <a
         href="/vessels"
-        class="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase mb-12 transition-colors duration-300 hover:opacity-70"
-        style={`font-family: var(--font-body); font-weight: 500; color: ${accentDeep};`}
+        class="group inline-flex items-center gap-3 mb-16 transition-all duration-300"
       >
-        <span>&larr;</span>
-        <span>All vessels</span>
+        <span
+          class="inline-block transition-transform duration-300 group-hover:-translate-x-1 text-sm"
+          style={`color: ${accentVar}; opacity: 0.6;`}
+        >
+          &larr;
+        </span>
+        <span
+          class="text-[10px] tracking-[0.2em] uppercase font-400 transition-colors duration-300"
+          style="color: var(--mist);"
+        >
+          All vessels
+        </span>
       </a>
 
-      <div class="flex flex-col md:flex-row items-start gap-8">
+      <div class="flex flex-col md:flex-row items-start gap-10">
         <!-- Kanji -->
         <span
           class="text-7xl md:text-9xl shrink-0"
-          style={`font-family: var(--font-kanji); font-weight: 400; color: var(--ink); animation: fadeIn 1s var(--ease-out-expo) both;`}
+          style={`font-family: var(--font-kanji); font-weight: 400; color: var(--paper); opacity: 0.9; animation: fadeIn 1s var(--ease-out-expo) both;`}
         >
           {vessel.data.kanji}
         </span>
 
         <!-- Info -->
-        <div style="animation: fadeInUp 1.2s var(--ease-out-expo) 0.2s both;">
+        <div style="animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;">
           <h1
-            class="text-4xl md:text-6xl mb-2"
-            style="font-family: var(--font-display); font-weight: 300;"
+            class="text-4xl md:text-6xl lg:text-7xl mb-3"
+            style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.04em;"
           >
             {vessel.data.title}
           </h1>
           <p
-            class="text-sm tracking-[0.15em] uppercase mb-6"
-            style={`font-family: var(--font-body); color: ${accentDeep};`}
+            class="text-[11px] tracking-[0.2em] uppercase mb-8 font-400"
+            style={`color: ${accentDeep};`}
           >
             {vessel.data.romaji} &mdash; {vessel.data.meaning}
           </p>
           <p
-            class="text-lg md:text-xl leading-relaxed max-w-xl"
-            style="font-family: var(--font-display); font-weight: 300; color: var(--ink-muted);"
+            class="text-lg md:text-xl leading-[1.6] max-w-xl font-300"
+            style="font-family: var(--font-display); color: var(--silver);"
           >
             {vessel.data.description}
           </p>
 
           <!-- Status + Links -->
-          <div class="flex flex-wrap items-center gap-4 mt-8">
+          <div class="flex flex-wrap items-center gap-4 mt-10">
             <span
-              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase"
-              style={`font-family: var(--font-body); font-weight: 500; background: ${accentColor === 'mint' ? 'rgba(170, 212, 196, 0.2)' : 'rgba(209, 189, 229, 0.2)'}; color: ${accentDeep};`}
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[9px] tracking-[0.15em] uppercase font-400"
+              style={`background: ${accentColor === 'mint' ? 'var(--mint-badge-bg)' : 'var(--lavender-badge-bg)'}; color: ${accentDeep}; border: 1px solid ${accentColor === 'mint' ? 'var(--mint-badge-border)' : 'var(--lavender-badge-border)'};`}
             >
-              <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accentVar};`}></span>
+              <span class="w-1 h-1 rounded-full" style={`background: ${accentVar};`}></span>
               {vessel.data.status}
             </span>
 
@@ -94,8 +108,8 @@ const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(20
                 href={vessel.data.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-wider uppercase border transition-all duration-300 hover:bg-[var(--ink)] hover:text-[var(--pearl)]"
-                style="font-family: var(--font-body); font-weight: 500; border-color: rgba(28, 28, 28, 0.15);"
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase border transition-all duration-300 font-400"
+                style="border-color: var(--surface-border-hover); color: var(--cloud);"
               >
                 GitHub
               </a>
@@ -106,51 +120,62 @@ const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(20
                 href={vessel.data.links.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-wider uppercase transition-all duration-300"
-                style={`font-family: var(--font-body); font-weight: 500; background: ${accentVar}; color: var(--pearl);`}
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase transition-all duration-300 font-400"
+                style={`background: ${accentVar}; color: var(--void);`}
               >
                 Visit
               </a>
             )}
-
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Bottom fade -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none"
+      style="background: linear-gradient(transparent, var(--charcoal));"
+    ></div>
   </section>
 
   <!-- Content -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-4xl mx-auto px-6 lg:px-10">
+  <section class="py-20 md:py-28">
+    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
       <!-- Extended description -->
-      <div class="reveal mb-16">
+      <div class="reveal mb-20">
         <p
-          class="text-base md:text-lg leading-relaxed"
-          style="font-family: var(--font-body); color: var(--ink-muted);"
+          class="text-sm md:text-base leading-[1.9] font-300 max-w-3xl"
+          style="color: var(--silver);"
         >
           {vessel.data.longDescription}
         </p>
       </div>
 
       <!-- Tech stack -->
-      <div class="reveal reveal-delay-1 mb-16">
-        <h3
-          class="text-xs tracking-[0.3em] uppercase mb-6"
-          style={`font-family: var(--font-body); font-weight: 500; color: ${accentDeep};`}
-        >
-          Technology
-        </h3>
-        <div class="flex flex-wrap gap-3">
+      <div class="reveal reveal-delay-1 mb-20">
+        <div class="flex items-center gap-4 mb-8">
+          <h3
+            class="eyebrow"
+            style={`color: ${accentDeep};`}
+          >
+            Technology
+          </h3>
+          <div class="flex-1 h-px" style={`background: linear-gradient(90deg, ${accentVar}, transparent); opacity: 0.15;`}></div>
+        </div>
+        <div class="flex flex-wrap gap-2">
           {vessel.data.techStack.map((tech: string) => (
             <span
-              class="px-4 py-2 rounded-full text-sm border transition-colors duration-300"
-              style="font-family: var(--font-body); border-color: rgba(28, 28, 28, 0.08); color: var(--ink);"
+              class="px-4 py-2 rounded text-sm border transition-all duration-300 font-300"
+              style="border-color: var(--surface-border); color: var(--cloud);"
             >
               {tech}
             </span>
           ))}
         </div>
       </div>
+
+      <!-- Rule -->
+      <div class="rule-gold mb-20"></div>
 
       <!-- Markdown content -->
       <div class="reveal reveal-delay-2 prose-vessel">
@@ -160,19 +185,23 @@ const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(20
   </section>
 
   <!-- Back to vessels -->
-  <section class="py-16 text-center">
+  <section class="py-20 text-center">
     <a
       href="/vessels"
-      class="group inline-flex items-center gap-3 text-sm tracking-[0.15em] uppercase transition-all duration-300"
-      style="font-family: var(--font-body); font-weight: 500; color: var(--ink);"
+      class="group inline-flex items-center gap-4 transition-all duration-300"
     >
       <span
-        class="inline-block transition-transform duration-300 group-hover:-translate-x-1"
-        style={`color: ${accentVar};`}
+        class="inline-block transition-transform duration-300 group-hover:-translate-x-1.5 text-sm"
+        style={`color: ${accentVar}; opacity: 0.6;`}
       >
         &larr;
       </span>
-      <span class="link-hover">Back to all vessels</span>
+      <span
+        class="text-[11px] tracking-[0.25em] uppercase font-400 transition-colors duration-300"
+        style="color: var(--mist);"
+      >
+        Back to all vessels
+      </span>
     </a>
   </section>
 </BaseLayout>
@@ -180,27 +209,30 @@ const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(20
 <style is:global>
   .prose-vessel h2 {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    color: var(--ink);
+    font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    margin-top: 3.5rem;
+    margin-bottom: 1.2rem;
+    color: var(--paper);
+    letter-spacing: -0.02em;
   }
 
   .prose-vessel h3 {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    margin-top: 2rem;
+    font-weight: 300;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    margin-top: 2.5rem;
     margin-bottom: 0.75rem;
-    color: var(--ink);
+    color: var(--paper);
+    letter-spacing: -0.01em;
   }
 
   .prose-vessel p {
     font-family: var(--font-body);
-    color: var(--ink-muted);
-    line-height: 1.8;
+    color: var(--silver);
+    line-height: 1.9;
     margin-bottom: 1.25rem;
+    font-weight: 300;
   }
 
   .prose-vessel ul {
@@ -211,27 +243,29 @@ const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(20
 
   .prose-vessel li {
     font-family: var(--font-body);
-    color: var(--ink-muted);
+    color: var(--silver);
     padding-left: 1.5rem;
     position: relative;
     margin-bottom: 0.5rem;
-    line-height: 1.7;
+    line-height: 1.8;
+    font-weight: 300;
   }
 
   .prose-vessel li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 0.7em;
-    width: 6px;
-    height: 6px;
+    top: 0.75em;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
-    background: var(--mint);
+    background: var(--gold);
+    opacity: 0.5;
   }
 
   .prose-vessel strong {
-    font-weight: 600;
-    color: var(--ink);
+    font-weight: 500;
+    color: var(--paper);
   }
 
   .prose-vessel em {
@@ -249,17 +283,18 @@ const accentBg = accentColor === 'mint' ? 'rgba(170, 212, 196, 0.06)' : 'rgba(20
   .prose-vessel th {
     text-align: left;
     padding: 0.75rem 1rem;
-    border-bottom: 2px solid rgba(28, 28, 28, 0.08);
-    color: var(--ink);
-    font-weight: 500;
+    border-bottom: 1px solid var(--surface-border-hover);
+    color: var(--paper);
+    font-weight: 400;
     text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
   }
 
   .prose-vessel td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid rgba(28, 28, 28, 0.04);
-    color: var(--ink-muted);
+    border-bottom: 1px solid var(--surface-border);
+    color: var(--silver);
+    font-weight: 300;
   }
 </style>

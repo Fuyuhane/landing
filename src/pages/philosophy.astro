@@ -8,57 +8,68 @@ import lavenderWordmark from '@assets/logos/fuyuhane-03.jpg';
   title="Philosophy"
   description="We believe in quiet design, in precision without spectacle, in beauty that does not ask to be noticed."
 >
-  <!-- Hero section -->
-  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-    <!-- Atmospheric lavender gradient -->
+  <!-- Hero -->
+  <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
+    <!-- Atmospheric gradient -->
     <div
       class="absolute inset-0"
-      style="background: linear-gradient(180deg, var(--pearl) 0%, rgba(209, 189, 229, 0.1) 50%, var(--pearl) 100%);"
+      style="background: radial-gradient(ellipse 80% 80% at 50% 40%, var(--sumi) 0%, var(--void) 100%);"
     ></div>
 
-    <!-- Large kanji watermark -->
+    <!-- Lavender glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-watermark text-[18rem] md:text-[30rem] leading-none opacity-[0.025] pointer-events-none select-none"
-      style="color: var(--ink);"
+      class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[60vw] h-[40vh]"
+      style="background: radial-gradient(ellipse, rgba(184, 160, 212, 0.06) 0%, transparent 60%); filter: blur(80px);"
+    ></div>
+
+    <!-- Large kanji -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[45vw] md:text-[35vw] leading-none opacity-[0.02]"
     >
       道
     </div>
 
-    <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
       <span
-        class="text-xs tracking-[0.3em] uppercase block mb-6"
-        style="font-family: var(--font-body); font-weight: 500; color: var(--lavender-deep); animation: fadeIn 1s var(--ease-out-expo) both;"
+        class="eyebrow block mb-6"
+        style="color: var(--gold); opacity: 0.7; animation: fadeIn 1s var(--ease-out-expo) both;"
       >
         The Philosophy
       </span>
       <h1
-        class="text-4xl md:text-6xl lg:text-7xl"
-        style="font-family: var(--font-display); font-weight: 300; animation: fadeInUp 1.2s var(--ease-out-expo) 0.2s both;"
+        class="text-4xl md:text-7xl lg:text-8xl"
+        style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
       >
         Quiet design,<br />
-        <span style="color: var(--lavender-deep);">infinite patience</span>
+        <em class="font-300" style="color: var(--lavender);">infinite patience</em>
       </h1>
     </div>
+
+    <!-- Bottom fade -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
+      style="background: linear-gradient(transparent, var(--charcoal));"
+    ></div>
   </section>
 
   <!-- The Craft -->
-  <section class="py-24 md:py-36">
-    <div class="max-w-4xl mx-auto px-6 lg:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20">
-        <div class="md:col-span-4 reveal">
+  <section class="py-28 md:py-40">
+    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
+        <div class="md:col-span-3 reveal">
           <span
-            class="text-xs tracking-[0.3em] uppercase block mb-4"
-            style="font-family: var(--font-body); font-weight: 500; color: var(--lavender-deep);"
+            class="eyebrow block mb-5"
+            style="color: var(--gold); opacity: 0.7;"
           >
             The Craft
           </span>
-          <div class="w-12 h-px" style="background: var(--lavender);"></div>
+          <div class="w-12 h-px" style="background: linear-gradient(90deg, var(--lavender), transparent); opacity: 0.3;"></div>
         </div>
 
-        <div class="md:col-span-8 space-y-8">
+        <div class="md:col-span-9 space-y-10">
           <p
-            class="text-xl md:text-2xl leading-relaxed reveal"
-            style="font-family: var(--font-display); font-weight: 300;"
+            class="text-2xl md:text-3xl leading-[1.3] reveal"
+            style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.02em;"
           >
             We shape these vessels as one might tend a winter garden:
             with patience, restraint, and care for what is unseen.
@@ -66,17 +77,17 @@ import lavenderWordmark from '@assets/logos/fuyuhane-03.jpg';
 
           <div class="space-y-6 reveal reveal-delay-1">
             <p
-              class="text-base leading-relaxed"
-              style="font-family: var(--font-body); color: var(--ink-muted);"
+              class="text-sm md:text-base leading-[1.9] font-300"
+              style="color: var(--silver);"
             >
               Our systems are light in the hand, clear in form, and calm in motion.
               Complexity rests beneath the surface, like roots beneath snow.
             </p>
             <p
-              class="text-base leading-relaxed"
-              style="font-family: var(--font-body); color: var(--ink-muted);"
+              class="text-sm md:text-base leading-[1.9] font-300"
+              style="color: var(--silver);"
             >
-              Each carries the <strong style="font-family: var(--font-kanji);">冬羽</strong> seal —
+              Each carries the <strong class="font-400" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> seal —
               a guarantee that it was made by hands that understand
               slowness as a feature, not a flaw.
             </p>
@@ -86,48 +97,48 @@ import lavenderWordmark from '@assets/logos/fuyuhane-03.jpg';
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="max-w-4xl mx-auto px-6 lg:px-10">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(209, 189, 229, 0.3), transparent);"></div>
+  <!-- Rule -->
+  <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
+    <div class="rule-lavender"></div>
   </div>
 
   <!-- The Atelier -->
-  <section class="py-24 md:py-36">
-    <div class="max-w-4xl mx-auto px-6 lg:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20">
-        <div class="md:col-span-4 reveal">
+  <section class="py-28 md:py-40">
+    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
+        <div class="md:col-span-3 reveal">
           <span
-            class="text-xs tracking-[0.3em] uppercase block mb-4"
-            style="font-family: var(--font-body); font-weight: 500; color: var(--mint-deep);"
+            class="eyebrow block mb-5"
+            style="color: var(--gold); opacity: 0.7;"
           >
             The Atelier
           </span>
-          <div class="w-12 h-px" style="background: var(--mint);"></div>
+          <div class="w-12 h-px" style="background: linear-gradient(90deg, var(--mint), transparent); opacity: 0.3;"></div>
         </div>
 
-        <div class="md:col-span-8 space-y-8">
+        <div class="md:col-span-9 space-y-10">
           <p
-            class="text-xl md:text-2xl leading-relaxed reveal"
-            style="font-family: var(--font-display); font-weight: 300;"
+            class="text-2xl md:text-3xl leading-[1.3] reveal"
+            style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.02em;"
           >
             Fuyuhane is a <em>k&#333;b&#333;</em> — a craft atelier anchored in winter.
-            We do not build products. We <strong>throw vessels</strong> — named works
+            We do not build products. We <strong class="font-400">throw vessels</strong> — named works
             that emerge from the same clay but serve different intimacies.
           </p>
 
           <div class="space-y-6 reveal reveal-delay-1">
             <p
-              class="text-base leading-relaxed"
-              style="font-family: var(--font-body); color: var(--ink-muted);"
+              class="text-sm md:text-base leading-[1.9] font-300"
+              style="color: var(--silver);"
             >
               Each piece bears its own <em style="font-family: var(--font-kanji);">mei</em> (銘) —
-              a name that carries the spirit of its purpose. From <strong>Gungei</strong>,
-              the whale pod relaying signals across open seas, to <strong>Origumo</strong>,
+              a name that carries the spirit of its purpose. From <strong class="font-400" style="color: var(--paper);">Gungei</strong>,
+              the whale pod relaying signals across open seas, to <strong class="font-400" style="color: var(--paper);">Origumo</strong>,
               where keystrokes gather into rhythm and craft.
             </p>
             <p
-              class="text-base leading-relaxed"
-              style="font-family: var(--font-body); color: var(--ink-muted);"
+              class="text-sm md:text-base leading-[1.9] font-300"
+              style="color: var(--silver);"
             >
               Like a potter's kiln, we fire one at a time. The others rest on the shelf,
               complete, breathing — waiting for their season to return.
@@ -138,88 +149,97 @@ import lavenderWordmark from '@assets/logos/fuyuhane-03.jpg';
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="max-w-4xl mx-auto px-6 lg:px-10">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(170, 212, 196, 0.3), transparent);"></div>
+  <!-- Rule -->
+  <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
+    <div class="rule-gold"></div>
   </div>
 
   <!-- The Promise -->
-  <section class="py-24 md:py-36">
-    <div class="max-w-4xl mx-auto px-6 lg:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20">
-        <div class="md:col-span-4 reveal">
+  <section class="py-28 md:py-40">
+    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
+        <div class="md:col-span-3 reveal">
           <span
-            class="text-xs tracking-[0.3em] uppercase block mb-4"
-            style="font-family: var(--font-body); font-weight: 500; color: var(--lavender-deep);"
+            class="eyebrow block mb-5"
+            style="color: var(--gold); opacity: 0.7;"
           >
             The Promise
           </span>
-          <div class="w-12 h-px" style="background: var(--lavender);"></div>
+          <div class="w-12 h-px" style="background: linear-gradient(90deg, var(--lavender), transparent); opacity: 0.3;"></div>
         </div>
 
-        <div class="md:col-span-8 reveal">
+        <div class="md:col-span-9 reveal">
           <p
-            class="text-xl md:text-2xl leading-relaxed"
-            style="font-family: var(--font-display); font-weight: 300;"
+            class="text-2xl md:text-3xl leading-[1.3]"
+            style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.02em;"
           >
             We believe in quiet design,
             in precision without spectacle,
             in beauty that does not ask to be noticed.
           </p>
           <p
-            class="mt-8 text-xl md:text-2xl leading-relaxed"
-            style="font-family: var(--font-display); font-weight: 300;"
+            class="mt-10 text-2xl md:text-3xl leading-[1.3]"
+            style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.02em;"
           >
             Our software speaks softly,
             moves effortlessly,
             and remains —
-            <span style="color: var(--lavender-deep);">like a flower that blooms in cold air.</span>
+            <em class="font-300" style="color: var(--lavender);">like a flower that blooms in cold air.</em>
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Lavender wordmark as decorative element -->
-  <section class="relative py-20 overflow-hidden">
-    <div class="max-w-md mx-auto px-6 reveal">
+  <!-- Lavender wordmark -->
+  <section class="relative py-24 overflow-hidden">
+    <div class="max-w-sm mx-auto px-6 reveal">
       <Image
         src={lavenderWordmark}
         alt=""
         width={400}
         height={400}
-        class="w-full rounded-2xl opacity-60"
+        class="w-full rounded-xl opacity-40 grayscale hover:grayscale-0 hover:opacity-60 transition-all duration-1000"
         aria-hidden="true"
       />
     </div>
   </section>
 
   <!-- Closing -->
-  <section class="py-24 md:py-36 text-center overflow-hidden">
+  <section class="relative py-32 md:py-48 text-center overflow-hidden">
+    <!-- Ambient glow -->
     <div
-      class="absolute left-1/2 -translate-x-1/2 kanji-watermark text-[14rem] md:text-[20rem] leading-none opacity-[0.015] pointer-events-none select-none"
-      style="color: var(--ink);"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[30vh]"
+      style="background: radial-gradient(ellipse, rgba(184, 160, 212, 0.04) 0%, transparent 50%); filter: blur(60px);"
+    ></div>
+
+    <div
+      class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 kanji-architectural text-[30vw] md:text-[22vw] leading-none opacity-[0.012]"
     >
       永
     </div>
 
     <div class="relative z-10 max-w-2xl mx-auto px-6 reveal">
+      <div class="w-8 h-px mx-auto mb-10" style="background: var(--gold); opacity: 0.3;"></div>
+
       <p
-        class="text-3xl md:text-4xl lg:text-5xl leading-snug"
-        style="font-family: var(--font-display); font-weight: 300;"
+        class="text-3xl md:text-5xl lg:text-6xl leading-[1.1]"
+        style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.03em;"
       >
         The garden is eternal.<br />
         The vessels are mortal.<br />
-        <span style="color: var(--lavender-deep);">We craft accordingly.</span>
+        <em class="font-300" style="color: var(--lavender);">We craft accordingly.</em>
       </p>
 
-      <div class="mt-12">
+      <div class="mt-14 flex items-center justify-center gap-3">
+        <div class="w-6 h-px" style="background: var(--gold); opacity: 0.2;"></div>
         <div
-          class="kanji-watermark text-5xl opacity-30"
-          style="color: var(--lavender);"
+          class="kanji-watermark text-3xl"
+          style="color: var(--lavender); opacity: 0.2;"
         >
           冬羽
         </div>
+        <div class="w-6 h-px" style="background: var(--gold); opacity: 0.2;"></div>
       </div>
     </div>
   </section>
