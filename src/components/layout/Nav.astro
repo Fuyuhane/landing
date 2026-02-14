@@ -61,7 +61,7 @@ const currentPath = Astro.url.pathname;
               'relative text-[11px] tracking-[0.25em] uppercase transition-all duration-300 text-body font-400',
               currentPath.startsWith(href)
                 ? 'text-[var(--paper)]'
-                : 'text-[var(--mist)] hover:text-[var(--paper)]',
+                : 'text-[var(--silver)] hover:text-[var(--paper)]',
             ]}
           >
             {label}
@@ -184,15 +184,12 @@ const currentPath = Astro.url.pathname;
 <div class="h-20"></div>
 
 <style>
-  /* Nav transitions — matches the scroll-reveal motion language.
-     opacity + transform use the same ease-reveal curve as content.
+  /* Nav transition — single transform slide using the reveal curve.
+     No opacity: one clean motion, no two-phase flash.
      Background applies instantly to prevent flash on first scroll. */
   #site-nav {
     transition:
-      transform 0.8s var(--ease-reveal),
-      opacity 0.6s var(--ease-reveal),
-      backdrop-filter 0.3s ease,
-      -webkit-backdrop-filter 0.3s ease,
+      transform 0.5s var(--ease-reveal),
       border-color 0.3s ease;
   }
 
@@ -283,46 +280,46 @@ const currentPath = Astro.url.pathname;
       btn?.setAttribute('aria-expanded', String(isOpen));
     };
 
-    // Scroll-based nav background + hide on scroll-down / show on scroll-up
-    // Uses the same ease-reveal motion as the content scroll-reveal animations.
+    // Scroll-based nav: hide on scroll-down, reveal on scroll-up.
+    // Frost-glass is only applied when the nav is visible AND past the threshold,
+    // never during a hide, so there is no background flash.
     let lastScrollY = window.scrollY;
     let navHidden = false;
 
-    const showNav = () => {
-      if (!nav || !navHidden) return;
-      nav.style.transform = 'translateY(0)';
-      nav.style.opacity = '1';
-      navHidden = false;
-    };
-
-    const hideNav = () => {
-      if (!nav || navHidden) return;
-      nav.style.transform = 'translateY(-100%)';
-      nav.style.opacity = '0';
-      navHidden = true;
-    };
-
-    const handleScroll = () => {
+    const applyFrost = (scrolled: boolean) => {
       if (!nav) return;
-      const currentY = window.scrollY;
-
-      // Frost-glass when scrolled past threshold
-      if (currentY > 60) {
+      if (scrolled) {
         nav.classList.add('frost-glass');
         nav.style.borderBottom = '1px solid var(--frost-border)';
       } else {
         nav.classList.remove('frost-glass');
         nav.style.borderBottom = '1px solid transparent';
       }
+    };
 
-      // Hide/show based on scroll direction
-      // Always show when near the top
+    const handleScroll = () => {
+      if (!nav) return;
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY;
+
+      // Near the top — always visible, no frost
       if (currentY <= 60) {
-        showNav();
-      } else if (currentY > lastScrollY) {
-        hideNav();
-      } else if (currentY < lastScrollY) {
-        showNav();
+        if (navHidden) {
+          nav.style.transform = 'translateY(0)';
+          navHidden = false;
+        }
+        applyFrost(false);
+      }
+      // Scrolling down — hide, don't touch frost (avoids flash)
+      else if (delta > 0 && !navHidden) {
+        nav.style.transform = 'translateY(-100%)';
+        navHidden = true;
+      }
+      // Scrolling up — show with frost
+      else if (delta < 0 && navHidden) {
+        applyFrost(true);
+        nav.style.transform = 'translateY(0)';
+        navHidden = false;
       }
 
       lastScrollY = currentY;
