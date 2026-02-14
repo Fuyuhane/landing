@@ -13,7 +13,7 @@ const currentPath = Astro.url.pathname;
 
 <header
   id="site-nav"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-700"
+  class="fixed top-0 left-0 right-0 z-50"
 >
   <div class="mx-auto max-w-[90rem] px-6 lg:px-12">
     <nav class="flex items-center justify-between h-20" aria-label="Main navigation">
@@ -184,6 +184,18 @@ const currentPath = Astro.url.pathname;
 <div class="h-20"></div>
 
 <style>
+  /* Nav transitions — matches the scroll-reveal motion language.
+     opacity + transform use the same ease-reveal curve as content.
+     Background applies instantly to prevent flash on first scroll. */
+  #site-nav {
+    transition:
+      transform 0.8s var(--ease-reveal),
+      opacity 0.6s var(--ease-reveal),
+      backdrop-filter 0.3s ease,
+      -webkit-backdrop-filter 0.3s ease,
+      border-color 0.3s ease;
+  }
+
   /* Theme icon visibility */
   .theme-icon-moon {
     opacity: 0;
@@ -271,16 +283,49 @@ const currentPath = Astro.url.pathname;
       btn?.setAttribute('aria-expanded', String(isOpen));
     };
 
-    // Scroll-based nav background
+    // Scroll-based nav background + hide on scroll-down / show on scroll-up
+    // Uses the same ease-reveal motion as the content scroll-reveal animations.
+    let lastScrollY = window.scrollY;
+    let navHidden = false;
+
+    const showNav = () => {
+      if (!nav || !navHidden) return;
+      nav.style.transform = 'translateY(0)';
+      nav.style.opacity = '1';
+      navHidden = false;
+    };
+
+    const hideNav = () => {
+      if (!nav || navHidden) return;
+      nav.style.transform = 'translateY(-100%)';
+      nav.style.opacity = '0';
+      navHidden = true;
+    };
+
     const handleScroll = () => {
       if (!nav) return;
-      if (window.scrollY > 60) {
+      const currentY = window.scrollY;
+
+      // Frost-glass when scrolled past threshold
+      if (currentY > 60) {
         nav.classList.add('frost-glass');
         nav.style.borderBottom = '1px solid var(--frost-border)';
       } else {
         nav.classList.remove('frost-glass');
-        nav.style.borderBottom = 'none';
+        nav.style.borderBottom = '1px solid transparent';
       }
+
+      // Hide/show based on scroll direction
+      // Always show when near the top
+      if (currentY <= 60) {
+        showNav();
+      } else if (currentY > lastScrollY) {
+        hideNav();
+      } else if (currentY < lastScrollY) {
+        showNav();
+      }
+
+      lastScrollY = currentY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
