@@ -34,4 +34,4 @@ Bunpō connects the act of giving with the moment it matters. Donors see where t
 | Emergency mobilization | Targeted alerts by blood type |
 | Impact tracking | Anonymized usage notifications |
 | Facility integration | Tiered API levels for inventory sync |
-| Compliance posture | Europe - GDPR, HDS, CNIL, Japan - APPI, PDPA, UAE - PDPL + ICT |
+| Compliance posture | Europe - GDPR, HDS, CNIL, Japan - APPI, SEA - PDPA, UAE - PDPL + ICT |
