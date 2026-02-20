@@ -111,74 +111,88 @@ const currentPath = Astro.url.pathname;
       </button>
     </nav>
   </div>
-
-  <!-- Mobile Menu Overlay -->
-  <div
-    id="mobile-menu"
-    class="fixed inset-0 z-40 pointer-events-none opacity-0 transition-opacity duration-500"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-  >
-    <div class="absolute inset-0" style="background: var(--void); opacity: 0.98;"></div>
-
-    <!-- Decorative kanji in mobile menu -->
-    <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[40vw] leading-none opacity-[0.015]"
-    >
-      冬
-    </div>
-
-    <nav class="relative z-10 flex flex-col items-center justify-center h-full gap-8" aria-label="Mobile navigation">
-      <!-- Gold accent line -->
-      <div class="w-8 h-px mb-4" style="background: var(--gold); opacity: 0.4;"></div>
-
-      {navLinks.map(({ href, label }, i) => (
-        <a
-          href={href}
-          class="text-4xl tracking-[0.15em] uppercase opacity-0 translate-y-8 transition-all duration-500"
-          style={`font-family: var(--font-display); font-weight: 200; color: var(--paper); transition-delay: ${(i + 1) * 100}ms;`}
-          data-mobile-link
-        >
-          {label}
-        </a>
-      ))}
-
-      <div class="w-8 h-px mt-4" style="background: var(--gold); opacity: 0.4;"></div>
-
-      <!-- Mobile theme toggle -->
-      <button
-        id="mobile-theme-toggle"
-        class="mt-6 flex items-center gap-3 opacity-0 translate-y-4 transition-all duration-500"
-        style="transition-delay: 400ms;"
-        aria-label="Toggle theme"
-        data-mobile-focusable
-      >
-        <svg class="theme-icon-sun w-4 h-4 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--mist);">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="theme-icon-moon w-4 h-4 absolute transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--mist);">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <span
-          class="text-[10px] tracking-[0.25em] uppercase font-400"
-          style="color: var(--mist);"
-          id="mobile-theme-label"
-        >
-          Light mode
-        </span>
-      </button>
-    </nav>
-  </div>
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-[55] pointer-events-none opacity-0 transition-opacity duration-500"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="absolute inset-0" style="background: var(--void); opacity: 0.98;"></div>
+
+  <!-- Close button -->
+  <div class="absolute top-0 right-0 flex items-center h-20 px-6 z-20">
+    <button
+      id="mobile-menu-close"
+      class="w-10 h-10 flex items-center justify-center"
+      aria-label="Close menu"
+    >
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--paper);">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Decorative kanji in mobile menu -->
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[40vw] leading-none opacity-[0.015]"
+  >
+    冬
+  </div>
+
+  <nav class="relative z-10 flex flex-col items-center justify-center h-full gap-8" aria-label="Mobile navigation">
+    <!-- Gold accent line -->
+    <div class="w-8 h-px mb-4" style="background: var(--gold); opacity: 0.4;"></div>
+
+    {navLinks.map(({ href, label }, i) => (
+      <a
+        href={href}
+        class="text-4xl tracking-[0.15em] uppercase opacity-0 translate-y-8 transition-all duration-500"
+        style={`font-family: var(--font-display); font-weight: 200; color: var(--paper); transition-delay: ${(i + 1) * 100}ms;`}
+        data-mobile-link
+      >
+        {label}
+      </a>
+    ))}
+
+    <div class="w-8 h-px mt-4" style="background: var(--gold); opacity: 0.4;"></div>
+
+    <!-- Mobile theme toggle -->
+    <button
+      id="mobile-theme-toggle"
+      class="mt-6 flex items-center gap-3 opacity-0 translate-y-4 transition-all duration-500"
+      style="transition-delay: 400ms;"
+      aria-label="Toggle theme"
+      data-mobile-focusable
+    >
+      <svg class="theme-icon-sun w-4 h-4 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--mist);">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="theme-icon-moon w-4 h-4 absolute transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--mist);">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <span
+        class="text-[10px] tracking-[0.25em] uppercase font-400"
+        style="color: var(--mist);"
+        id="mobile-theme-label"
+      >
+        Light mode
+      </span>
+    </button>
+  </nav>
+</div>
 
 <!-- Spacer for fixed nav -->
 <div class="h-20"></div>
@@ -229,6 +243,7 @@ const currentPath = Astro.url.pathname;
     const icon = document.getElementById('hamburger-icon');
     const links = Array.from(document.querySelectorAll<HTMLElement>('[data-mobile-link]'));
     const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const closeBtn = document.getElementById('mobile-menu-close');
     const allMobileAnimated = [...links, ...(mobileThemeToggle ? [mobileThemeToggle] : [])];
     let isOpen = false;
     let lastFocusedEl: HTMLElement | null = null;
@@ -239,6 +254,12 @@ const currentPath = Astro.url.pathname;
       if (isOpen) {
         if (document.activeElement instanceof HTMLElement) {
           lastFocusedEl = document.activeElement;
+        }
+
+        // Force nav visible when menu is open
+        if (nav) {
+          nav.style.transform = '';
+          navHidden = false;
         }
 
         menu?.classList.remove('pointer-events-none', 'opacity-0');
@@ -298,14 +319,14 @@ const currentPath = Astro.url.pathname;
     };
 
     const handleScroll = () => {
-      if (!nav) return;
+      if (!nav || isOpen) return;
       const currentY = window.scrollY;
       const delta = currentY - lastScrollY;
 
       // Near the top — always visible, no frost
       if (currentY <= 60) {
         if (navHidden) {
-          nav.style.transform = 'translateY(0)';
+          nav.style.transform = '';
           navHidden = false;
         }
         applyFrost(false);
@@ -318,7 +339,7 @@ const currentPath = Astro.url.pathname;
       // Scrolling up — show with frost
       else if (delta < 0 && navHidden) {
         applyFrost(true);
-        nav.style.transform = 'translateY(0)';
+        nav.style.transform = '';
         navHidden = false;
       }
 
@@ -335,6 +356,14 @@ const currentPath = Astro.url.pathname;
     };
 
     btn?.addEventListener('click', handleToggle);
+
+    // Close button in mobile menu overlay
+    const closeMenu = () => {
+      if (!isOpen) return;
+      isOpen = false;
+      applyMenuState();
+    };
+    closeBtn?.addEventListener('click', closeMenu);
 
     // Close on link click
     const handleLinkClick = () => {
@@ -356,7 +385,7 @@ const currentPath = Astro.url.pathname;
 
       if (event.key !== 'Tab') return;
 
-      const focusableEls = [btn, ...links, ...(mobileThemeToggle ? [mobileThemeToggle] : [])].filter((el): el is HTMLElement => Boolean(el));
+      const focusableEls = [closeBtn, ...links, ...(mobileThemeToggle ? [mobileThemeToggle] : [])].filter((el): el is HTMLElement => Boolean(el));
       const firstEl = focusableEls[0];
       const lastEl = focusableEls[focusableEls.length - 1];
       const activeEl = document.activeElement as HTMLElement | null;
@@ -406,13 +435,21 @@ const currentPath = Astro.url.pathname;
       updateMobileThemeLabel();
     };
     themeBtn?.addEventListener('click', handleThemeToggle);
-    mobileThemeBtn?.addEventListener('click', handleThemeToggle);
+    const handleMobileThemeToggle = () => {
+      handleThemeToggle();
+      if (isOpen) {
+        isOpen = false;
+        applyMenuState();
+      }
+    };
+    mobileThemeBtn?.addEventListener('click', handleMobileThemeToggle);
 
     navWindow.__fuyuhaneNavCleanup = () => {
       window.removeEventListener('scroll', handleScroll);
       btn?.removeEventListener('click', handleToggle);
+      closeBtn?.removeEventListener('click', closeMenu);
       themeBtn?.removeEventListener('click', handleThemeToggle);
-      mobileThemeBtn?.removeEventListener('click', handleThemeToggle);
+      mobileThemeBtn?.removeEventListener('click', handleMobileThemeToggle);
       links.forEach((link) => {
         link.removeEventListener('click', handleLinkClick);
       });
