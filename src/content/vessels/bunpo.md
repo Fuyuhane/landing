@@ -7,8 +7,8 @@ description: "Like a hive in spring, one gift of blood moves outward and becomes
 longDescription: "A blood donation coordination platform connecting donors and healthcare facilities. Donors track their history and receive impact notifications, while facilities broadcast needs and mobilize donors during emergencies. The system emphasizes privacy, regional awareness, and a human connection to the life-saving impact of every donation, with global expansion readiness built in."
 accent: "mint"
 status: "active"
-techStack: ["Go", "Chi", "PostgreSQL", "sqlc", "SvelteKit", "RabbitMQ", "Dragonfly"]
-tags: ["healthcare", "coordination", "donation", "global", "go"]
+techStack: ["Rust", "Axum", "SQLx", "Tokio", "SvelteKit", "RabbitMQ", "Dragonfly"]
+tags: ["healthcare", "coordination", "donation", "global", "rust"]
 links: {}
 order: 4
 ---
