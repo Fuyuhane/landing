@@ -34,9 +34,11 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
 
   <!-- Architectural kanji — massive structural element -->
   <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] kanji-architectural text-[40vw] md:text-[35vw] leading-none select-none pointer-events-none z-0"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] kanji-architectural inline-flex flex-nowrap items-center gap-[0.08em] w-max text-[24vw] md:text-[20vw] leading-none select-none pointer-events-none z-0"
+    aria-hidden="true"
+    style="writing-mode: horizontal-tb; text-orientation: mixed;"
   >
-    冬羽
+    <span>冬</span><span>羽</span>
   </div>
 
   <!-- Atmospheric particles -->
@@ -51,8 +53,10 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
         alt="Fuyuhane"
         width={220}
         height={220}
-        class="hero-logo"
-        style="filter: var(--hero-logo-filter); opacity: var(--hero-logo-opacity);"
+        loading="eager"
+        fetchpriority="high"
+        class="hero-logo w-[220px] h-auto"
+        style="filter: var(--brand-logo-filter); opacity: var(--hero-logo-opacity);"
       />
       <!-- Logo glow ring -->
       <div

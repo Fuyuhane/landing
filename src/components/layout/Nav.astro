@@ -30,6 +30,8 @@ const currentPath = Astro.url.pathname;
               alt="Fuyuhane ptarmigan emblem"
               width={44}
               height={44}
+              loading="eager"
+              fetchpriority="high"
               class="w-full h-full object-cover"
             />
           </div>
@@ -227,243 +229,190 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  const navWindow = window as Window & {
-    __fuyuhaneNavCleanup?: () => void;
-    __fuyuhaneNavPageLoadBound?: boolean;
-  };
+  const nav = document.getElementById('site-nav');
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('hamburger-icon');
+  const links = Array.from(document.querySelectorAll<HTMLElement>('[data-mobile-link]'));
+  const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const themeBtn = document.getElementById('theme-toggle');
+  const mobileThemeLabel = document.getElementById('mobile-theme-label');
+  const allMobileAnimated = [...links, ...(mobileThemeBtn ? [mobileThemeBtn] : [])];
 
-  function initNav() {
-    if (typeof navWindow.__fuyuhaneNavCleanup === 'function') {
-      navWindow.__fuyuhaneNavCleanup();
+  let isOpen = false;
+  let lastFocusedEl: HTMLElement | null = null;
+  let lastScrollY = window.scrollY;
+  let navHidden = false;
+
+  const applyFrost = (scrolled: boolean) => {
+    if (!nav) return;
+
+    if (scrolled) {
+      nav.classList.add('frost-glass');
+      nav.style.borderBottom = '1px solid var(--frost-border)';
+      return;
     }
 
-    const nav = document.getElementById('site-nav');
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    const icon = document.getElementById('hamburger-icon');
-    const links = Array.from(document.querySelectorAll<HTMLElement>('[data-mobile-link]'));
-    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
-    const closeBtn = document.getElementById('mobile-menu-close');
-    const allMobileAnimated = [...links, ...(mobileThemeToggle ? [mobileThemeToggle] : [])];
-    let isOpen = false;
-    let lastFocusedEl: HTMLElement | null = null;
+    nav.classList.remove('frost-glass');
+    nav.style.borderBottom = '1px solid transparent';
+  };
 
-    const applyMenuState = () => {
-      menu?.setAttribute('aria-hidden', String(!isOpen));
+  const applyMenuState = () => {
+    menu?.setAttribute('aria-hidden', String(!isOpen));
+    btn?.setAttribute('aria-expanded', String(isOpen));
 
-      if (isOpen) {
-        if (document.activeElement instanceof HTMLElement) {
-          lastFocusedEl = document.activeElement;
-        }
-
-        // Force nav visible when menu is open
-        if (nav) {
-          nav.style.transform = '';
-          navHidden = false;
-        }
-
-        menu?.classList.remove('pointer-events-none', 'opacity-0');
-        menu?.classList.add('pointer-events-auto', 'opacity-100');
-        document.body.style.overflow = 'hidden';
-        allMobileAnimated.forEach((el) => {
-          el.classList.remove('opacity-0', 'translate-y-8', 'translate-y-4');
-          el.classList.add('opacity-100', 'translate-y-0');
-        });
-        if (icon) {
-          icon.children[0]?.classList.add('rotate-45', 'translate-y-[4px]');
-          icon.children[1]?.classList.add('opacity-0', '-rotate-45', 'w-5');
-        }
-
-        links[0]?.focus();
-      } else {
-        menu?.classList.add('pointer-events-none', 'opacity-0');
-        menu?.classList.remove('pointer-events-auto', 'opacity-100');
-        document.body.style.overflow = '';
-        links.forEach((link) => {
-          link.classList.add('opacity-0', 'translate-y-8');
-          link.classList.remove('opacity-100', 'translate-y-0');
-        });
-        if (mobileThemeToggle) {
-          mobileThemeToggle.classList.add('opacity-0', 'translate-y-4');
-          mobileThemeToggle.classList.remove('opacity-100', 'translate-y-0');
-        }
-        if (icon) {
-          icon.children[0]?.classList.remove('rotate-45', 'translate-y-[4px]');
-          icon.children[1]?.classList.remove('opacity-0', '-rotate-45', 'w-5');
-        }
-
-        if (lastFocusedEl && document.contains(lastFocusedEl)) {
-          lastFocusedEl.focus();
-        }
-        lastFocusedEl = null;
+    if (isOpen) {
+      if (document.activeElement instanceof HTMLElement) {
+        lastFocusedEl = document.activeElement;
       }
 
-      btn?.setAttribute('aria-expanded', String(isOpen));
-    };
-
-    // Scroll-based nav: hide on scroll-down, reveal on scroll-up.
-    // Frost-glass is only applied when the nav is visible AND past the threshold,
-    // never during a hide, so there is no background flash.
-    let lastScrollY = window.scrollY;
-    let navHidden = false;
-
-    const applyFrost = (scrolled: boolean) => {
-      if (!nav) return;
-      if (scrolled) {
-        nav.classList.add('frost-glass');
-        nav.style.borderBottom = '1px solid var(--frost-border)';
-      } else {
-        nav.classList.remove('frost-glass');
-        nav.style.borderBottom = '1px solid transparent';
-      }
-    };
-
-    const handleScroll = () => {
-      if (!nav || isOpen) return;
-      const currentY = window.scrollY;
-      const delta = currentY - lastScrollY;
-
-      // Near the top — always visible, no frost
-      if (currentY <= 60) {
-        if (navHidden) {
-          nav.style.transform = '';
-          navHidden = false;
-        }
-        applyFrost(false);
-      }
-      // Scrolling down — hide, don't touch frost (avoids flash)
-      else if (delta > 0 && !navHidden) {
-        nav.style.transform = 'translateY(-100%)';
-        navHidden = true;
-      }
-      // Scrolling up — show with frost
-      else if (delta < 0 && navHidden) {
-        applyFrost(true);
+      if (nav) {
         nav.style.transform = '';
         navHidden = false;
       }
 
-      lastScrollY = currentY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    // Mobile toggle
-    const handleToggle = () => {
-      isOpen = !isOpen;
-      applyMenuState();
-    };
-
-    btn?.addEventListener('click', handleToggle);
-
-    // Close button in mobile menu overlay
-    const closeMenu = () => {
-      if (!isOpen) return;
-      isOpen = false;
-      applyMenuState();
-    };
-    closeBtn?.addEventListener('click', closeMenu);
-
-    // Close on link click
-    const handleLinkClick = () => {
-      if (!isOpen) return;
-      lastFocusedEl = null;
-      isOpen = false;
-      applyMenuState();
-    };
-
-    const handleKeydown = (event: KeyboardEvent) => {
-      if (!isOpen) return;
-
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        isOpen = false;
-        applyMenuState();
-        return;
+      menu?.classList.remove('pointer-events-none', 'opacity-0');
+      menu?.classList.add('pointer-events-auto', 'opacity-100');
+      document.body.style.overflow = 'hidden';
+      allMobileAnimated.forEach((el) => {
+        el.classList.remove('opacity-0', 'translate-y-8', 'translate-y-4');
+        el.classList.add('opacity-100', 'translate-y-0');
+      });
+      if (icon) {
+        icon.children[0]?.classList.add('rotate-45', 'translate-y-[4px]');
+        icon.children[1]?.classList.add('opacity-0', '-rotate-45', 'w-5');
       }
 
-      if (event.key !== 'Tab') return;
+      links[0]?.focus();
+      return;
+    }
 
-      const focusableEls = [closeBtn, ...links, ...(mobileThemeToggle ? [mobileThemeToggle] : [])].filter((el): el is HTMLElement => Boolean(el));
-      const firstEl = focusableEls[0];
-      const lastEl = focusableEls[focusableEls.length - 1];
-      const activeEl = document.activeElement as HTMLElement | null;
-
-      if (!firstEl || !lastEl) return;
-
-      if (event.shiftKey) {
-        if (activeEl === firstEl || !activeEl) {
-          event.preventDefault();
-          lastEl.focus();
-        }
-      } else if (activeEl === lastEl) {
-        event.preventDefault();
-        firstEl.focus();
-      }
-    };
-
+    menu?.classList.add('pointer-events-none', 'opacity-0');
+    menu?.classList.remove('pointer-events-auto', 'opacity-100');
+    document.body.style.overflow = '';
     links.forEach((link) => {
-      link.addEventListener('click', handleLinkClick);
+      link.classList.add('opacity-0', 'translate-y-8');
+      link.classList.remove('opacity-100', 'translate-y-0');
     });
-    document.addEventListener('keydown', handleKeydown);
+    if (mobileThemeBtn) {
+      mobileThemeBtn.classList.add('opacity-0', 'translate-y-4');
+      mobileThemeBtn.classList.remove('opacity-100', 'translate-y-0');
+    }
+    if (icon) {
+      icon.children[0]?.classList.remove('rotate-45', 'translate-y-[4px]');
+      icon.children[1]?.classList.remove('opacity-0', '-rotate-45', 'w-5');
+    }
 
-    // Theme toggle
-    const themeBtn = document.getElementById('theme-toggle');
-    const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
-    const mobileThemeLabel = document.getElementById('mobile-theme-label');
+    if (lastFocusedEl && document.contains(lastFocusedEl)) {
+      lastFocusedEl.focus();
+    }
+    lastFocusedEl = null;
+  };
 
-    const updateMobileThemeLabel = () => {
-      if (mobileThemeLabel) {
-        const isLight = document.documentElement.classList.contains('theme-light');
-        mobileThemeLabel.textContent = isLight ? 'Dark mode' : 'Light mode';
+  const handleScroll = () => {
+    if (!nav || isOpen) return;
+
+    const currentY = window.scrollY;
+    const delta = currentY - lastScrollY;
+
+    if (currentY <= 60) {
+      if (navHidden) {
+        nav.style.transform = '';
+        navHidden = false;
       }
-    };
+      applyFrost(false);
+    } else if (delta > 0 && !navHidden) {
+      nav.style.transform = 'translateY(-100%)';
+      navHidden = true;
+    } else if (delta < 0 && navHidden) {
+      applyFrost(true);
+      nav.style.transform = '';
+      navHidden = false;
+    }
+
+    lastScrollY = currentY;
+  };
+
+  const closeMenu = () => {
+    if (!isOpen) return;
+    isOpen = false;
+    applyMenuState();
+  };
+
+  const updateMobileThemeLabel = () => {
+    if (!mobileThemeLabel) return;
+
+    const isLight = document.documentElement.classList.contains('theme-light');
+    mobileThemeLabel.textContent = isLight ? 'Dark mode' : 'Light mode';
+  };
+
+  const handleThemeToggle = () => {
+    const html = document.documentElement;
+    const isLight = html.classList.contains('theme-light');
+
+    if (isLight) {
+      html.classList.remove('theme-light');
+      localStorage.setItem('fuyuhane-theme', 'dark');
+    } else {
+      html.classList.add('theme-light');
+      localStorage.setItem('fuyuhane-theme', 'light');
+    }
 
     updateMobileThemeLabel();
+  };
 
-    const handleThemeToggle = () => {
-      const html = document.documentElement;
-      const isLight = html.classList.contains('theme-light');
-      if (isLight) {
-        html.classList.remove('theme-light');
-        localStorage.setItem('fuyuhane-theme', 'dark');
-      } else {
-        html.classList.add('theme-light');
-        localStorage.setItem('fuyuhane-theme', 'light');
-      }
-      updateMobileThemeLabel();
-    };
-    themeBtn?.addEventListener('click', handleThemeToggle);
-    const handleMobileThemeToggle = () => {
-      handleThemeToggle();
-      if (isOpen) {
-        isOpen = false;
-        applyMenuState();
-      }
-    };
-    mobileThemeBtn?.addEventListener('click', handleMobileThemeToggle);
+  btn?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    applyMenuState();
+  });
 
-    navWindow.__fuyuhaneNavCleanup = () => {
-      window.removeEventListener('scroll', handleScroll);
-      btn?.removeEventListener('click', handleToggle);
-      closeBtn?.removeEventListener('click', closeMenu);
-      themeBtn?.removeEventListener('click', handleThemeToggle);
-      mobileThemeBtn?.removeEventListener('click', handleMobileThemeToggle);
-      links.forEach((link) => {
-        link.removeEventListener('click', handleLinkClick);
-      });
-      document.removeEventListener('keydown', handleKeydown);
+  closeBtn?.addEventListener('click', closeMenu);
+  links.forEach((link) => {
+    link.addEventListener('click', () => {
       lastFocusedEl = null;
-      isOpen = false;
-      applyMenuState();
-    };
-  }
+      closeMenu();
+    });
+  });
 
-  initNav();
+  document.addEventListener('keydown', (event) => {
+    if (!isOpen) return;
 
-  if (!navWindow.__fuyuhaneNavPageLoadBound) {
-    document.addEventListener('astro:page-load', initNav);
-    navWindow.__fuyuhaneNavPageLoadBound = true;
-  }
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusableEls = [closeBtn, ...links, ...(mobileThemeBtn ? [mobileThemeBtn] : [])].filter(
+      (el): el is HTMLElement => Boolean(el)
+    );
+    const firstEl = focusableEls[0];
+    const lastEl = focusableEls[focusableEls.length - 1];
+    const activeEl = document.activeElement as HTMLElement | null;
+
+    if (!firstEl || !lastEl) return;
+
+    if (event.shiftKey) {
+      if (activeEl === firstEl || !activeEl) {
+        event.preventDefault();
+        lastEl.focus();
+      }
+    } else if (activeEl === lastEl) {
+      event.preventDefault();
+      firstEl.focus();
+    }
+  });
+
+  themeBtn?.addEventListener('click', handleThemeToggle);
+  mobileThemeBtn?.addEventListener('click', () => {
+    handleThemeToggle();
+    closeMenu();
+  });
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  updateMobileThemeLabel();
+  handleScroll();
 </script>

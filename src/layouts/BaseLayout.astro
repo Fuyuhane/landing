@@ -1,12 +1,7 @@
 ---
-import { ClientRouter } from 'astro:transitions';
 import '@fontsource/cormorant-garamond/300.css';
-import '@fontsource/cormorant-garamond/300-italic.css';
-import '@fontsource/cormorant-garamond/400.css';
-import '@fontsource/cormorant-garamond/400-italic.css';
 import '@fontsource/dm-sans/300.css';
 import '@fontsource/dm-sans/400.css';
-import '@fontsource/dm-sans/500.css';
 import '@fontsource/noto-serif-jp/400.css';
 import '@fontsource/noto-serif-jp/900.css';
 import '@/styles/global.css';
@@ -62,36 +57,14 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
 
     <script is:inline>
       document.documentElement.classList.add('js');
-      // Resolve theme: localStorage override > system preference > dark default
-      function __fuyuhaneResolveTheme() {
-        var stored = localStorage.getItem('fuyuhane-theme');
-        if (stored === 'light' || stored === 'dark') return stored;
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
-        return 'dark';
-      }
-      // Apply theme before paint to prevent flash
-      (function() {
-        if (__fuyuhaneResolveTheme() === 'light') {
-          document.documentElement.classList.add('theme-light');
-        }
-      })();
-      // Preserve theme across Astro view transitions (guard against duplicate listeners)
-      if (!window.__fuyuhaneSwapBound) {
-        window.__fuyuhaneSwapBound = true;
-        document.addEventListener('astro:before-swap', function(e) {
-          var newDoc = e.newDocument;
-          newDoc.documentElement.classList.add('js');
-          if (__fuyuhaneResolveTheme() === 'light') {
-            newDoc.documentElement.classList.add('theme-light');
-          } else {
-            newDoc.documentElement.classList.remove('theme-light');
-          }
-        });
+      var storedTheme = localStorage.getItem('fuyuhane-theme');
+      var prefersLight =
+        window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+
+      if (storedTheme === 'light' || (!storedTheme && prefersLight)) {
+        document.documentElement.classList.add('theme-light');
       }
     </script>
-
-    <!-- View Transitions -->
-    <ClientRouter />
   </head>
   <body class="min-h-screen flex flex-col">
     <Nav />
@@ -102,8 +75,7 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
 
     <!-- Scroll Reveal Observer -->
     <script>
-      const revealElements = () =>
-        document.querySelectorAll('.reveal');
+      const revealElements = () => document.querySelectorAll('.reveal');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (prefersReducedMotion || !('IntersectionObserver' in window)) {
@@ -129,22 +101,13 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
           { threshold: 0.06, rootMargin: '0px 0px -8% 0px' }
         );
 
-        const observeReveals = (reset = false) => {
+        const observeReveals = () => {
           revealElements().forEach((el) => {
-            if (reset) {
-              el.classList.remove('visible');
-            }
-
             observer.observe(el);
           });
         };
 
         observeReveals();
-
-        // Re-run on view transitions and reset reveal state.
-        document.addEventListener('astro:page-load', () => {
-          requestAnimationFrame(() => observeReveals(true));
-        });
       }
     </script>
   </body>

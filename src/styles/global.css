@@ -67,7 +67,7 @@
 
   /* Typography */
   --font-display: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
-  --font-body: 'DM Sans', 'Noto Sans JP', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
   --font-kanji: 'Noto Serif JP', serif;
 
   /* Transitions */
@@ -78,7 +78,7 @@
   --duration-fast: 0.3s;
 
   /* Hero logo treatment */
-  --hero-logo-filter: invert(1);
+  --brand-logo-filter: invert(1);
   --hero-logo-opacity: 0.9;
 
   /* Noise blend */
@@ -88,6 +88,10 @@
   /* Footer logo opacity */
   --footer-logo-opacity: 0.7;
   --footer-logo-hover-opacity: 1;
+
+  /* Vessels page watermark opacity */
+  --vessel-card-watermark-opacity: 0.035;
+  --vessel-card-watermark-hover-opacity: 0.055;
 }
 
 /* ─── Light Theme ─── */
@@ -154,7 +158,7 @@
   --scroll-indicator-bg: rgba(0, 0, 0, 0.08);
 
   /* Hero logo: no invert in light mode, full opacity */
-  --hero-logo-filter: none;
+  --brand-logo-filter: none;
   --hero-logo-opacity: 1;
 
   /* Noise */
@@ -164,6 +168,10 @@
   /* Footer logo */
   --footer-logo-opacity: 1;
   --footer-logo-hover-opacity: 1;
+
+  /* Vessels page watermark */
+  --vessel-card-watermark-opacity: 0.07;
+  --vessel-card-watermark-hover-opacity: 0.1;
 }
 
 /* ─── Base Reset & Typography ─── */
@@ -398,17 +406,6 @@ body::before {
   to { opacity: 1; }
 }
 
-@keyframes slideInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-16px); }
@@ -417,16 +414,6 @@ body::before {
 @keyframes glowPulse {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.8; }
-}
-
-@keyframes lineGrow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
 }
 
 /* ─── Reduced Motion ─── */

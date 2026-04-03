@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import footerLogoWhite from '@assets/logos/fuyuhane - logo white-01.png';
-import footerLogoBlack from '@assets/logos/fuyuhane - logo black-01.png';
+import footerLogo from '@assets/logos/fuyuhane - logo black-01.png';
 
 const currentYear = new Date().getFullYear();
 
@@ -26,23 +25,13 @@ const socialLinks = [
     <div class="flex flex-col md:flex-row items-start justify-between gap-16 mb-20">
       <div class="flex-1">
         <a href="/" class="inline-block group">
-          <!-- White logo for dark theme -->
           <Image
-            src={footerLogoWhite}
+            src={footerLogo}
             alt="Fuyuhane"
             width={240}
             height={120}
-            class="footer-logo-dark transition-opacity duration-500"
-            style="opacity: var(--footer-logo-opacity);"
-          />
-          <!-- Black logo for light theme -->
-          <Image
-            src={footerLogoBlack}
-            alt="Fuyuhane"
-            width={240}
-            height={120}
-            class="footer-logo-light transition-opacity duration-500"
-            style="opacity: var(--footer-logo-opacity);"
+            class="footer-logo transition-opacity duration-500"
+            style="opacity: var(--footer-logo-opacity); filter: var(--brand-logo-filter);"
           />
         </a>
         <p
@@ -151,17 +140,8 @@ const socialLinks = [
 </footer>
 
 <style>
-  /* Dark theme: show white logo, hide black */
-  .footer-logo-dark { display: block; }
-  .footer-logo-light { display: none; }
-
-  /* Light theme: show black logo, hide white */
-  :global(.theme-light) .footer-logo-dark { display: none; }
-  :global(.theme-light) .footer-logo-light { display: block; }
-
   /* Hover opacity uses token */
-  .group:hover .footer-logo-dark,
-  .group:hover .footer-logo-light {
+  .group:hover .footer-logo {
     opacity: var(--footer-logo-hover-opacity) !important;
   }
 </style>

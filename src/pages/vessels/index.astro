@@ -100,7 +100,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
 
               <!-- Decorative kanji -->
               <div
-                class="absolute -right-6 -bottom-6 kanji-architectural text-[14rem] leading-none opacity-[0.02] transition-opacity duration-700 group-hover:opacity-[0.04]"
+                class="absolute right-6 bottom-8 kanji-architectural vessel-card-watermark text-[8rem] md:text-[9rem] leading-none transition-opacity duration-700"
               >
                 {vessel.data.kanji}
               </div>
@@ -175,3 +175,13 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .vessel-card-watermark {
+    opacity: var(--vessel-card-watermark-opacity);
+  }
+
+  .group:hover .vessel-card-watermark {
+    opacity: var(--vessel-card-watermark-hover-opacity);
+  }
+</style>
