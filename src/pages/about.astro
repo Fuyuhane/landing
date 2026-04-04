@@ -6,21 +6,19 @@ import katsutoPhoto from '@assets/logos/katsuto.jpg';
 
 const team = [
   {
-    name: 'Vincent "Katsuto"',
-    nameJp: 'カツト',
+    name: 'Vincent "Nugget"',
     role: 'Kiln Tender',
     bio: 'Building vessels from code and curiosity. Systems thinker, swamp master.',
     photo: katsutoPhoto,
     socials: {
-      github: 'https://github.com/katsutoo',
-      x: 'https://x.com/katsutowo',
-      email: 'katsuto@fuyuhane.com',
+      github: 'https://github.com/nuggocto',
+      x: 'https://x.com/nuggocto',
+      email: 'nuggocto@fuyuhane.com',
     },
     accent: 'mint',
   },
   {
     name: 'The Best Designer',
-    nameJp: '',
     role: 'Designer',
     bio: 'The hand behind the Ptarmigan. Shaping the visual language of Fuyuhane — from logo to palette to the feeling between the pixels.',
     socials: {},
@@ -206,7 +204,7 @@ const team = [
                       class="w-full h-full object-cover"
                     />
                   ) : (
-                    member.nameJp ? member.nameJp.charAt(0) : member.name.charAt(0)
+                    member.name.charAt(0)
                   )}
                 </div>
                 <div>
@@ -215,14 +213,6 @@ const team = [
                     style="font-family: var(--font-display); font-weight: 300; color: var(--paper);"
                   >
                     {member.name}
-                    {member.nameJp && (
-                      <span
-                        class="ml-2 text-xs"
-                        style="font-family: var(--font-kanji); color: var(--mist);"
-                      >
-                        {member.nameJp}
-                      </span>
-                    )}
                   </h3>
                   <span
                     class="text-[10px] tracking-[0.2em] uppercase font-400"
