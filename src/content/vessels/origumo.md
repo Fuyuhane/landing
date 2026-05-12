@@ -4,10 +4,10 @@ kanji: "織蛛"
 romaji: "Origumo"
 meaning: "The Weaving Spider"
 description: "Like a weaving spider in moonlight, each keystroke lays a thread, and thread by thread, speed becomes craft."
-longDescription: "Join a room, race others typing the same text, see everyone's progress live. Fastest fingers win. Track your ghost, climb the ladder, customize everything. Built with Rust, Axum, Tokio, SQLx, SvelteKit, and the satisfying sound of mechanical keyboards."
+longDescription: "Join a room, race others typing the same text, see everyone's progress live. Fastest fingers win. Track your ghost, climb the ladder, customize everything. Built with Rust, Axum, Tokio, SQLx, SolidJS, and the satisfying sound of mechanical keyboards."
 accent: "lavender"
 status: "active"
-techStack: ["Rust", "Axum", "SQLx", "Tokio", "SvelteKit", "Dragonfly"]
+techStack: ["Rust", "Axum", "SQLx", "Tokio", "SolidJS", "Dragonfly"]
 tags: ["multiplayer", "real-time", "typing", "competitive", "rust"]
 links: {}
 order: 2
@@ -15,7 +15,7 @@ order: 2
 
 ## The Vessel
 
-A competitive typing race where speed meets craft. Real-time multiplayer, ELO-based ranked matchmaking, ghost racers, and deep customization — all built on a Rust + SvelteKit stack tuned for low-latency play.
+A competitive typing race where speed meets craft. Real-time multiplayer, ELO-based ranked matchmaking, ghost racers, and deep customization — all built on a Rust + SolidJS stack tuned for low-latency play.
 
 ## Core Features
 
@@ -32,7 +32,7 @@ A competitive typing race where speed meets craft. Real-time multiplayer, ELO-ba
 |------------|--------|
 | Real-time rooms | Axum WebSocket room actors with Tokio broadcast fanout |
 | Race orchestration | Tokio task-per-race loops with typed message channels |
-| Low-latency updates | SvelteKit client + WebSocket keystroke streams |
+| Low-latency updates | SolidJS client + WebSocket keystroke streams |
 | Leaderboards + ranks | Postgres-backed ELO ladder + seasonal tiers |
 | Background jobs | Worker pipelines for scoring, rewards, and cleanup |
 | Always-on state | Dragonfly-backed sessions, cache, and rate limits |
