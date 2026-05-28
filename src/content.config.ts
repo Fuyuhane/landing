@@ -1,7 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const vessels = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     kanji: z.string(),
@@ -9,14 +9,16 @@ const vessels = defineCollection({
     meaning: z.string(),
     description: z.string(),
     longDescription: z.string(),
-    accent: z.enum(['mint', 'lavender']).optional(),
-    status: z.enum(['active', 'resting', 'coming-soon']),
+    accent: z.enum(["mint", "lavender"]).optional(),
+    status: z.enum(["active", "resting", "coming-soon"]),
     techStack: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
-    links: z.object({
-      github: z.string().url().optional(),
-      live: z.string().url().optional(),
-    }).default({}),
+    links: z
+      .object({
+        codeberg: z.string().url().optional(),
+        live: z.string().url().optional(),
+      })
+      .default({}),
     order: z.number().default(0),
   }),
 });
