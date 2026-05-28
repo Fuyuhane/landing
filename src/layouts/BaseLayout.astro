@@ -18,7 +18,7 @@ interface Props {
 const {
   title,
   description = 'Fuyuhane (冬羽) — A craft atelier anchored in winter. We throw vessels — named works that emerge from the same clay but serve different intimacies.',
-  ogImage = '/og-image.svg',
+  ogImage = '/og-image.jpg',
 } = Astro.props;
 
 const metadataBase = Astro.site ?? Astro.url;
@@ -44,6 +44,10 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
     <meta property="og:title" content={`${title} | Fuyuhane`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Fuyuhane — a craft atelier anchored in winter" />
     <meta property="og:site_name" content="Fuyuhane" />
 
     <!-- Twitter -->
@@ -53,7 +57,13 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
     <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Web App Manifest (Android / Chrome) -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0E0E0E" />
 
     <script is:inline>
       document.documentElement.classList.add('js');
@@ -84,30 +94,16 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                return;
-              }
-
-              const hasFullyLeftViewport =
-                entry.boundingClientRect.bottom <= 0 ||
-                entry.boundingClientRect.top >= window.innerHeight;
-
-              if (hasFullyLeftViewport) {
-                entry.target.classList.remove('visible');
-              }
+              if (!entry.isIntersecting) return;
+              // Reveal once, then stop tracking — keeps the page calm on scroll-back.
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
             });
           },
           { threshold: 0.06, rootMargin: '0px 0px -8% 0px' }
         );
 
-        const observeReveals = () => {
-          revealElements().forEach((el) => {
-            observer.observe(el);
-          });
-        };
-
-        observeReveals();
+        revealElements().forEach((el) => observer.observe(el));
       }
     </script>
   </body>

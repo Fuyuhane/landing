@@ -25,14 +25,14 @@ const vessels = (await getCollection('vessels'))
         </span>
         <h2
           class="text-3xl md:text-5xl"
-          style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.03em;"
+          style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
         >
           Currently on the wheel
         </h2>
       </div>
       <div class="md:col-span-4 reveal reveal-delay-1">
         <p
-          class="text-sm leading-[1.9] font-300 md:text-right"
+          class="text-sm leading-[1.9] font-light md:text-right"
           style="color: var(--mist);"
         >
           Like a potter's kiln, we fire one at a time.<br class="hidden md:block" />
@@ -59,13 +59,21 @@ const vessels = (await getCollection('vessels'))
           class={`group reveal reveal-delay-${i + 1}`}
         >
           <article
-            class="relative p-8 md:p-10 rounded-xl border transition-all duration-700 overflow-hidden h-full surface-card surface-card-hover"
+            class="relative p-8 md:p-10 rounded-xl border transition-all duration-700 overflow-hidden h-full surface-card surface-card-hover group-hover:-translate-y-1"
           >
             <!-- Hover glow -->
             <div
               class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-xl"
               style={`background: radial-gradient(ellipse at 20% 0%, ${accentGlow} 0%, transparent 60%);`}
             ></div>
+
+            <!-- Ghosted kanji watermark -->
+            <div
+              class="absolute right-6 bottom-8 kanji-architectural vessel-card-watermark text-[7rem] md:text-[8rem] leading-none transition-opacity duration-700"
+              aria-hidden="true"
+            >
+              {vessel.data.kanji}
+            </div>
 
             <div class="relative z-10 space-y-5">
               <!-- Kanji + Name -->
@@ -78,13 +86,13 @@ const vessels = (await getCollection('vessels'))
                 </span>
                 <div>
                   <h3
-                    class="text-xl md:text-2xl font-300"
+                    class="text-xl md:text-2xl font-light"
                     style="font-family: var(--font-display); color: var(--paper);"
                   >
                     {vessel.data.title}
                   </h3>
                   <span
-                    class="text-[10px] tracking-[0.2em] uppercase font-400"
+                    class="text-[10px] tracking-[0.2em] uppercase font-normal"
                     style={`color: ${accentDeep};`}
                   >
                     {vessel.data.meaning}
@@ -94,7 +102,7 @@ const vessels = (await getCollection('vessels'))
 
               <!-- Description -->
               <p
-                class="text-sm leading-[1.8] font-300"
+                class="text-sm leading-[1.8] font-light"
                 style="color: var(--silver);"
               >
                 {vessel.data.description}
@@ -103,7 +111,7 @@ const vessels = (await getCollection('vessels'))
               <!-- Status badge + Tech tags -->
               <div class="flex flex-wrap items-center gap-2 pt-1">
                 <span
-                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] tracking-[0.15em] uppercase font-400"
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] tracking-[0.15em] uppercase font-normal"
                   style={`background: ${accent === 'mint' ? 'var(--mint-badge-bg)' : 'var(--lavender-badge-bg)'}; color: ${accentDeep};`}
                 >
                   <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accentColor};`}></span>
@@ -111,7 +119,7 @@ const vessels = (await getCollection('vessels'))
                 </span>
                 {vessel.data.techStack.slice(0, 3).map((tech: string) => (
                   <span
-                    class="px-2.5 py-0.5 rounded text-[9px] tracking-[0.1em] uppercase font-400"
+                    class="px-2.5 py-0.5 rounded text-[9px] tracking-[0.1em] uppercase font-normal"
                     style="background: var(--surface-tag-bg); color: var(--mist); border: 1px solid var(--surface-tag-border);"
                   >
                     {tech}
@@ -122,7 +130,7 @@ const vessels = (await getCollection('vessels'))
               <!-- View vessel link -->
               <div class="pt-3 flex items-center gap-2">
                 <span
-                  class="text-[10px] tracking-[0.2em] uppercase font-400 transition-colors duration-500"
+                  class="text-[10px] tracking-[0.2em] uppercase font-normal transition-colors duration-500"
                   style={`color: ${accentDeep};`}
                 >
                   View vessel
@@ -142,3 +150,13 @@ const vessels = (await getCollection('vessels'))
     </div>
   </div>
 </section>
+
+<style>
+  .vessel-card-watermark {
+    opacity: var(--vessel-card-watermark-opacity);
+  }
+
+  .group:hover .vessel-card-watermark {
+    opacity: var(--vessel-card-watermark-hover-opacity);
+  }
+</style>

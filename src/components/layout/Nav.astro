@@ -40,13 +40,13 @@ const currentPath = Astro.url.pathname;
         </div>
         <div class="flex items-baseline gap-2 opacity-0 -translate-x-3 transition-all duration-400 group-hover:opacity-100 group-hover:translate-x-0">
           <span
-            class="text-xs tracking-[0.3em] uppercase font-400"
+            class="text-xs tracking-[0.3em] uppercase font-normal"
             style="color: var(--paper);"
           >
             fuyuhane
           </span>
           <span
-            class="text-[10px] tracking-[0.2em] font-300"
+            class="text-[10px] tracking-[0.2em] font-light"
             style="color: var(--mist); font-family: var(--font-kanji);"
           >
             冬羽
@@ -60,7 +60,7 @@ const currentPath = Astro.url.pathname;
           <a
             href={href}
             class:list={[
-              'relative text-[11px] tracking-[0.25em] uppercase transition-all duration-300 text-body font-400',
+              'relative text-[11px] tracking-[0.25em] uppercase transition-all duration-300 text-body font-normal',
               currentPath.startsWith(href)
                 ? 'text-[var(--paper)]'
                 : 'text-[var(--silver)] hover:text-[var(--paper)]',
@@ -154,7 +154,7 @@ const currentPath = Astro.url.pathname;
       <a
         href={href}
         class="text-4xl tracking-[0.15em] uppercase opacity-0 translate-y-8 transition-all duration-500"
-        style={`font-family: var(--font-display); font-weight: 200; color: var(--paper); transition-delay: ${(i + 1) * 100}ms;`}
+        style={`font-family: var(--font-display); font-weight: 300; color: var(--paper); transition-delay: ${(i + 1) * 100}ms;`}
         data-mobile-link
       >
         {label}
@@ -186,7 +186,7 @@ const currentPath = Astro.url.pathname;
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
       <span
-        class="text-[10px] tracking-[0.25em] uppercase font-400"
+        class="text-[10px] tracking-[0.25em] uppercase font-normal"
         style="color: var(--mist);"
         id="mobile-theme-label"
       >

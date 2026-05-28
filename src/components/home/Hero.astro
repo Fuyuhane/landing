@@ -34,9 +34,9 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
 
   <!-- Architectural kanji — massive structural element -->
   <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] kanji-architectural inline-flex flex-nowrap items-center gap-[0.08em] w-max text-[24vw] md:text-[20vw] leading-none select-none pointer-events-none z-0"
+    class="hero-kanji absolute top-1/2 left-1/2 kanji-architectural inline-flex items-center gap-[0.08em] w-max text-[24vw] md:text-[20vw] leading-none select-none pointer-events-none z-0"
     aria-hidden="true"
-    style="writing-mode: horizontal-tb; text-orientation: mixed;"
+    data-hero-kanji
   >
     <span>冬</span><span>羽</span>
   </div>
@@ -55,7 +55,7 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
         height={220}
         loading="eager"
         fetchpriority="high"
-        class="hero-logo w-[220px] h-auto"
+        class="w-[220px] h-auto"
         style="filter: var(--brand-logo-filter); opacity: var(--hero-logo-opacity);"
       />
       <!-- Logo glow ring -->
@@ -71,7 +71,7 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
     <!-- Tagline -->
     <div class="space-y-6 hero-fade-up">
       <p
-        class="text-[11px] md:text-xs tracking-[0.4em] uppercase text-body font-400"
+        class="text-[11px] md:text-xs tracking-[0.4em] uppercase text-body font-normal"
         style="color: var(--gold);"
       >
         冬羽 &mdash; Fuyuhane
@@ -79,14 +79,14 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
 
       <h1
         class="text-5xl md:text-7xl lg:text-8xl"
-        style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.04em; line-height: 1.05;"
+        style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; line-height: 1.05;"
       >
         A craft atelier<br />
-        <em class="font-300" style="color: var(--mint);">anchored in winter</em>
+        <em class="font-light" style="color: var(--mint);">anchored in winter</em>
       </h1>
 
       <p
-        class="max-w-md mx-auto text-sm md:text-base leading-[1.9] font-300"
+        class="max-w-md mx-auto text-sm md:text-base leading-[1.9] font-light"
         style="color: var(--silver);"
       >
         We throw vessels — named works that emerge from the same clay
@@ -97,7 +97,7 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
     <!-- Scroll indicator -->
     <div class="mt-20 flex flex-col items-center gap-3 hero-fade-delayed">
       <span
-        class="text-[9px] tracking-[0.4em] uppercase font-400"
+        class="text-[9px] tracking-[0.4em] uppercase font-normal"
         style="color: var(--smoke);"
       >
         Scroll
@@ -123,10 +123,6 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
     animation: fadeIn 2.5s var(--ease-out-expo) forwards;
   }
 
-  .hero-logo {
-    animation: float 8s ease-in-out 2s infinite;
-  }
-
   .hero-glow {
     animation: glowPulse 6s ease-in-out 1s infinite;
   }
@@ -148,14 +144,48 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
     100% { transform: translateY(350%); }
   }
 
+  /* Base centering kept here so JS scroll parallax can layer an offset via a custom prop */
+  .hero-kanji {
+    transform: translate(-50%, calc(-45% + var(--kanji-py, 0px)));
+    transition: transform 0.4s var(--ease-out-expo);
+    will-change: transform;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hero-fade,
-    .hero-logo,
     .hero-glow,
     .hero-fade-up,
     .hero-fade-delayed,
     .hero-scroll-line {
       animation: none;
     }
+
+    .hero-kanji {
+      transition: none;
+    }
   }
 </style>
+
+<script>
+  const kanji = document.querySelector<HTMLElement>('[data-hero-kanji]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (kanji && !reduceMotion) {
+    let frame = 0;
+
+    const apply = () => {
+      frame = 0;
+      // Drift slower than the page for a parallax sense of depth.
+      const offset = Math.min(window.scrollY, window.innerHeight) * 0.12;
+      kanji.style.setProperty('--kanji-py', `${offset}px`);
+    };
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!frame) frame = requestAnimationFrame(apply);
+      },
+      { passive: true }
+    );
+  }
+</script>

@@ -56,7 +56,7 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
           &larr;
         </span>
         <span
-          class="text-[10px] tracking-[0.2em] uppercase font-400 transition-colors duration-300"
+          class="text-[10px] tracking-[0.2em] uppercase font-normal transition-colors duration-300"
           style="color: var(--mist);"
         >
           All vessels
@@ -76,18 +76,18 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
         <div style="animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;">
           <h1
             class="text-4xl md:text-6xl lg:text-7xl mb-3"
-            style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.04em;"
+            style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em;"
           >
             {vessel.data.title}
           </h1>
           <p
-            class="text-[11px] tracking-[0.2em] uppercase mb-8 font-400"
+            class="text-[11px] tracking-[0.2em] uppercase mb-8 font-normal"
             style={`color: ${accentDeep};`}
           >
             {vessel.data.romaji} &mdash; {vessel.data.meaning}
           </p>
           <p
-            class="text-lg md:text-xl leading-[1.6] max-w-xl font-300"
+            class="text-lg md:text-xl leading-[1.6] max-w-xl font-light"
             style="font-family: var(--font-display); color: var(--silver);"
           >
             {vessel.data.description}
@@ -96,7 +96,7 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
           <!-- Status + Links -->
           <div class="flex flex-wrap items-center gap-4 mt-10">
             <span
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[9px] tracking-[0.15em] uppercase font-400"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[9px] tracking-[0.15em] uppercase font-normal"
               style={`background: ${accentColor === 'mint' ? 'var(--mint-badge-bg)' : 'var(--lavender-badge-bg)'}; color: ${accentDeep}; border: 1px solid ${accentColor === 'mint' ? 'var(--mint-badge-border)' : 'var(--lavender-badge-border)'};`}
             >
               <span class="w-1 h-1 rounded-full" style={`background: ${accentVar};`}></span>
@@ -108,7 +108,7 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
                 href={vessel.data.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase border transition-all duration-300 font-400"
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase border transition-all duration-300 font-normal"
                 style="border-color: var(--surface-border-hover); color: var(--cloud);"
               >
                 GitHub
@@ -120,7 +120,7 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
                 href={vessel.data.links.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase transition-all duration-300 font-400"
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase transition-all duration-300 font-normal"
                 style={`background: ${accentVar}; color: var(--void);`}
               >
                 Visit
@@ -144,7 +144,7 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
       <!-- Extended description -->
       <div class="reveal mb-20">
         <p
-          class="text-sm md:text-base leading-[1.9] font-300 max-w-3xl"
+          class="text-sm md:text-base leading-[1.9] font-light max-w-3xl"
           style="color: var(--silver);"
         >
           {vessel.data.longDescription}
@@ -165,7 +165,7 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
         <div class="flex flex-wrap gap-2">
           {vessel.data.techStack.map((tech: string) => (
             <span
-              class="px-4 py-2 rounded text-sm border transition-all duration-300 font-300"
+              class="px-4 py-2 rounded text-sm border transition-all duration-300 font-light"
               style="border-color: var(--surface-border); color: var(--cloud);"
             >
               {tech}
@@ -197,7 +197,7 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
         &larr;
       </span>
       <span
-        class="text-[11px] tracking-[0.25em] uppercase font-400 transition-colors duration-300"
+        class="text-[11px] tracking-[0.25em] uppercase font-normal transition-colors duration-300"
         style="color: var(--mist);"
       >
         Back to all vessels

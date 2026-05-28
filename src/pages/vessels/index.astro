@@ -42,13 +42,13 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
       </span>
       <h1
         class="text-4xl md:text-7xl lg:text-8xl mb-8"
-        style="font-family: var(--font-display); font-weight: 200; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
+        style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
       >
         Named works,<br />
-        <em class="font-300" style="color: var(--mint);">different intimacies</em>
+        <em class="font-light" style="color: var(--mint);">different intimacies</em>
       </h1>
       <p
-        class="max-w-lg mx-auto text-sm md:text-base leading-[1.9] font-300"
+        class="max-w-lg mx-auto text-sm md:text-base leading-[1.9] font-light"
         style="color: var(--silver); animation: fadeInUp 1.4s var(--ease-out-expo) 0.4s both;"
       >
         Each piece bears its own <em style="font-family: var(--font-kanji);">mei</em> (銘) —
@@ -116,13 +116,13 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                   </span>
                   <div class="flex-1 min-w-0">
                     <h2
-                      class="text-base md:text-lg font-300"
+                      class="text-base md:text-lg font-light"
                       style="font-family: var(--font-display); color: var(--paper);"
                     >
                       {vessel.data.title}
                     </h2>
                     <span
-                      class="text-[10px] tracking-[0.2em] uppercase font-400"
+                      class="text-[10px] tracking-[0.2em] uppercase font-normal"
                       style={`color: ${accentDeep};`}
                     >
                       {vessel.data.meaning}
@@ -133,7 +133,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <!-- Description -->
                 <div class="md:col-span-4">
                   <p
-                    class="text-sm leading-[1.8] font-300"
+                    class="text-sm leading-[1.8] font-light"
                     style="color: var(--silver);"
                   >
                     {vessel.data.description}
@@ -141,7 +141,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                   <div class="flex flex-wrap gap-1.5 mt-4">
                     {vessel.data.techStack.map((tech: string) => (
                       <span
-                        class="px-2.5 py-0.5 rounded text-[9px] tracking-[0.1em] uppercase font-400"
+                        class="px-2.5 py-0.5 rounded text-[9px] tracking-[0.1em] uppercase font-normal"
                         style="background: var(--surface-tag-bg); color: var(--mist); border: 1px solid var(--surface-tag-border);"
                       >
                         {tech}
@@ -153,7 +153,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                 <!-- Status + Arrow -->
                 <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-4">
                   <span
-                    class="inline-flex items-center gap-1.5 text-[9px] tracking-[0.15em] uppercase font-400"
+                    class="inline-flex items-center gap-1.5 text-[9px] tracking-[0.15em] uppercase font-normal"
                     style={`color: ${accentDeep};`}
                   >
                     <span class="w-1 h-1 rounded-full" style={`background: ${accentColor};`}></span>
