@@ -103,15 +103,15 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
               {vessel.data.status}
             </span>
 
-            {vessel.data.links.codeberg && (
+            {vessel.data.links.github && (
               <a
-                href={vessel.data.links.codeberg}
+                href={vessel.data.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase border transition-all duration-300 font-normal"
                 style="border-color: var(--surface-border-hover); color: var(--cloud);"
               >
-                Codeberg
+                Github
               </a>
             )}
 

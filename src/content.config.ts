@@ -15,7 +15,7 @@ const vessels = defineCollection({
     tags: z.array(z.string()).default([]),
     links: z
       .object({
-        codeberg: z.string().url().optional(),
+        github: z.string().url().optional(),
         live: z.string().url().optional(),
       })
       .default({}),
