@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-/* ─── Ink & Frost — Fuyuhane Design Tokens ─── */
+/* ─── Ink & Frost; Fuyuhane Design Tokens ─── */
 /* Dark theme (default) */
 :root {
-  /* Core palette — dark editorial */
+  /* Core palette; dark editorial */
   --void: #0A0A0A;
   --charcoal: #0E0E0E;
   --sumi: #161616;
@@ -32,7 +32,6 @@
   --lavender-ambient-strong: rgba(184, 160, 212, 0.06);
   --gold-ambient: rgba(196, 168, 108, 0.03);
   --gold-ambient-strong: rgba(196, 168, 108, 0.04);
-  --gold-glow-strong: rgba(196, 168, 108, 0.08);
 
   /* Snowflake particle tokens */
   --snowflake-color: #F2EFE8;
@@ -101,7 +100,7 @@
   --cloud: #3A3835;
   --paper: #1A1815;
 
-  /* Accents — slightly deepened for light bg legibility */
+  /* Accents; slightly deepened for light bg legibility */
   --mint: #4BAA8E;
   --mint-deep: #3A9478;
   --mint-glow: rgba(75, 170, 142, 0.1);
@@ -111,7 +110,7 @@
   --gold: #96792E;
   --gold-glow: rgba(150, 121, 46, 0.06);
 
-  /* Ambient glow backgrounds — stronger for light bg contrast */
+  /* Ambient glow backgrounds; stronger for light bg contrast */
   --mint-ambient-soft: rgba(75, 170, 142, 0.06);
   --mint-ambient: rgba(75, 170, 142, 0.10);
   --mint-ambient-strong: rgba(75, 170, 142, 0.14);
@@ -119,9 +118,8 @@
   --lavender-ambient-strong: rgba(142, 111, 184, 0.12);
   --gold-ambient: rgba(150, 121, 46, 0.06);
   --gold-ambient-strong: rgba(150, 121, 46, 0.10);
-  --gold-glow-strong: rgba(150, 121, 46, 0.14);
 
-  /* Snowflake particle tokens — boosted for light bg visibility */
+  /* Snowflake particle tokens; boosted for light bg visibility */
   --snowflake-color: #5A5750;
   --snowflake-opacity-boost: 5;
   --snowflake-size-boost: 1px;
@@ -350,7 +348,7 @@ body::before {
   pointer-events: none;
 }
 
-/* ─── Architectural Kanji — large structural elements ─── */
+/* ─── Architectural Kanji; large structural elements ─── */
 .kanji-architectural {
   font-family: var(--font-kanji);
   font-weight: 900;
@@ -385,11 +383,6 @@ body::before {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-16px); }
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
 }
 
 /* ─── Reduced Motion ─── */

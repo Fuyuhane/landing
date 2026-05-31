@@ -20,7 +20,7 @@ const team = [
   {
     name: 'The Best Designer',
     role: 'Designer',
-    bio: 'The hand behind the Ptarmigan. Shaping the visual language of Fuyuhane — from logo to palette to the feeling between the pixels.',
+    bio: 'The hand behind the Ptarmigan. Shaping the visual language of Fuyuhane; from logo to palette to the feeling between the pixels.',
     socials: {},
     accent: 'lavender',
   },
@@ -29,7 +29,7 @@ const team = [
 
 <BaseLayout
   title="About"
-  description="Meet the artisans behind Fuyuhane — a craft atelier anchored in winter."
+  description="Meet the artisans behind Fuyuhane, a craft atelier anchored in winter."
 >
   <!-- Hero -->
   <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
@@ -117,8 +117,8 @@ const team = [
               class="text-sm md:text-base leading-[1.9] font-light"
               style="color: var(--silver);"
             >
-              Fuyuhane is a <em>k&#333;b&#333;</em> — a craft atelier anchored in winter.
-              We do not build products. We throw vessels — named works that emerge
+              Fuyuhane is a <em>k&#333;b&#333;</em>, a craft atelier anchored in winter.
+              We do not build products. We throw vessels, named works that emerge
               from the same clay but serve different intimacies.
             </p>
           </div>
@@ -129,7 +129,7 @@ const team = [
               style="color: var(--silver);"
             >
               The name <strong class="font-normal" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> (Fuyuhane) means
-              "winter wings" — inspired by the Ptarmigan, a bird that changes its plumage
+              winter wings, inspired by the Ptarmigan, a bird that changes its plumage
               with the seasons yet remains the same creature beneath. Our logo is that bird:
               hand-drawn, imperfect, alive.
             </p>
@@ -140,7 +140,7 @@ const team = [
               class="text-sm md:text-base leading-[1.9] font-light"
               style="color: var(--silver);"
             >
-              Each vessel we create carries the <strong class="font-normal" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> seal —
+              Each vessel we create carries the <strong class="font-normal" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> seal,
               a guarantee that it was made by hands that understand slowness as a feature,
               not a flaw. From distributed systems to typing races, every project shares
               the same DNA: quiet precision, honest craft, and winter's patience.
@@ -177,17 +177,10 @@ const team = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {team.map((member, i) => {
           const accentDeep = member.accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
-          const accentGlow = member.accent === 'mint' ? 'var(--mint-glow)' : 'var(--lavender-glow)';
           return (
           <article
             class={`reveal reveal-delay-${i + 1} group relative p-8 md:p-10 rounded-xl border transition-all duration-700 overflow-hidden surface-card surface-card-hover`}
           >
-            <!-- Hover glow -->
-            <div
-              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-xl"
-              style={`background: radial-gradient(ellipse at 0% 0%, ${accentGlow} 0%, transparent 50%);`}
-            ></div>
-
             <div class="relative z-10 space-y-6">
               <!-- Avatar + Name -->
               <div class="flex items-center gap-5">

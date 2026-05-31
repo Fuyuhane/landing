@@ -15,16 +15,16 @@ order: 2
 
 ## The Vessel
 
-A competitive typing race where speed meets craft. Real-time multiplayer, ELO-based ranked matchmaking, ghost racers, and deep customization — all built on a Rust + SolidJS stack tuned for low-latency play.
+A competitive typing race where speed meets craft. Real-time multiplayer, ELO-based ranked matchmaking, ghost racers, and deep customization, all built on a Rust + SolidJS stack tuned for low-latency play.
 
 ## Core Features
 
-- **Real-time competition** — see opponents' cursors advancing as they type
-- **Ghost Racer** — race against your past self, beat your personal best
-- **Ranked Matchmaking** — ELO-based ladder with animal ranks from Snail to Phoenix
-- **Code Mode** — type real code snippets with syntax highlighting
-- **Custom Themes** — fully customizable UI via TOML theme files
-- **Daily Challenge** — same text globally for 24h, compete for the top
+- **Real-time competition**; see opponents' cursors advancing as they type
+- **Ghost Racer**; race against your past self, beat your personal best
+- **Ranked Matchmaking**; ELO-based ladder with animal ranks from Snail to Phoenix
+- **Code Mode**; type real code snippets with syntax highlighting
+- **Custom Themes**; fully customizable UI via TOML theme files
+- **Daily Challenge**; same text globally for 24h, compete for the top
 
 ## Operational Capabilities
 

@@ -17,7 +17,7 @@ interface Props {
 
 const {
   title,
-  description = 'Fuyuhane (冬羽) — A craft atelier anchored in winter. We throw vessels — named works that emerge from the same clay but serve different intimacies.',
+  description = 'Fuyuhane (冬羽), a craft atelier anchored in winter. We throw vessels, named works that emerge from the same clay but serve different intimacies.',
   ogImage = '/og-image.jpg',
 } = Astro.props;
 
@@ -47,7 +47,7 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Fuyuhane — a craft atelier anchored in winter" />
+    <meta property="og:image:alt" content="Fuyuhane, a craft atelier anchored in winter" />
     <meta property="og:site_name" content="Fuyuhane" />
 
     <!-- Twitter -->
@@ -95,7 +95,7 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
           (entries) => {
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
-              // Reveal once, then stop tracking — keeps the page calm on scroll-back.
+              // Reveal once, then stop tracking; keeps the page calm on scroll-back.
               entry.target.classList.add('visible');
               observer.unobserve(entry.target);
             });

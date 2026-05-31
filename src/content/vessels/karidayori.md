@@ -15,16 +15,16 @@ order: 3
 
 ## The Vessel
 
-Karidayori is a global letter-writing directory. It lets anyone browse by country, discover thoughtful profiles, and send text-only letters through a consent-first mailbox — an exchange shaped by care, not speed.
+Karidayori is a global letter-writing directory. It lets anyone browse by country, discover thoughtful profiles, and send text-only letters through a consent-first mailbox, an exchange shaped by care rather than speed.
 
 ## Core Principles
 
-- **All countries welcome** — no geo gates, no cultural bias
-- **Text-only letters** — writing first, no attachments
-- **Optional photos** — profiles can be anonymous or expressive
-- **Directory model** — discover by country, scan, and choose
-- **Mailbox consent** — receive from anyone, reply if interested
-- **Safety-first** — age tiers, moderation, and reporting baked in
+- **All countries welcome**; no geo gates, no cultural bias
+- **Text-only letters**; writing first, no attachments
+- **Optional photos**; profiles can be anonymous or expressive
+- **Directory model**; discover by country, scan, and choose
+- **Mailbox consent**; receive from anyone, reply if interested
+- **Safety-first**; age tiers, moderation, and reporting baked in
 
 ## Operational Capabilities
 

@@ -10,7 +10,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
 
 <BaseLayout
   title="Vessels"
-  description="Each vessel bears its own mei (銘) — a name that carries the spirit of its purpose."
+  description="Each vessel bears its own mei (銘), a name that carries the spirit of its purpose."
 >
   <!-- Hero -->
   <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
@@ -51,7 +51,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
         class="max-w-lg mx-auto text-sm md:text-base leading-[1.9] font-light"
         style="color: var(--silver); animation: fadeInUp 1.4s var(--ease-out-expo) 0.4s both;"
       >
-        Each piece bears its own <em style="font-family: var(--font-kanji);">mei</em> (銘) —
+        Each piece bears its own <em style="font-family: var(--font-kanji);">mei</em> (銘),
         a name that carries the spirit of its purpose.
       </p>
     </div>
@@ -83,7 +83,6 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
           const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
           const accentColor = accent === 'mint' ? 'var(--mint)' : 'var(--lavender)';
           const accentDeep = accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
-          const accentGlow = accent === 'mint' ? 'var(--mint-glow)' : 'var(--lavender-glow)';
           return (
           <a
             href={`/vessels/${vessel.id.replace(/\.md$/, '')}`}
@@ -92,12 +91,6 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
             <article
               class="relative p-8 md:p-12 rounded-xl border transition-all duration-700 overflow-hidden surface-card surface-card-hover"
             >
-              <!-- Hover glow -->
-              <div
-                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-xl"
-                style={`background: radial-gradient(ellipse at 0% 50%, ${accentGlow} 0%, transparent 50%);`}
-              ></div>
-
               <!-- Decorative kanji -->
               <div
                 class="absolute right-6 bottom-8 kanji-architectural vessel-card-watermark text-[8rem] md:text-[9rem] leading-none transition-opacity duration-700"

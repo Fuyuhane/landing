@@ -15,15 +15,15 @@ order: 4
 
 ## The Vessel
 
-Bunpō connects the act of giving with the moment it matters. Donors see where their blood is needed, receive meaningful impact notifications, and respond to urgent calls — while facilities gain a coordinated, privacy-first network for managing supply and demand.
+Bunpō connects the act of giving with the moment it matters. Donors see where their blood is needed, receive meaningful impact notifications, and respond to urgent calls, while facilities gain a coordinated, privacy-first network for managing supply and demand.
 
 ## Core Principles
 
-- **Privacy first** — health data minimized, consented, and audited
-- **Impact connection** — donors feel the real-world outcome
-- **Graceful scope** — value at every integration level
-- **Medical boundaries** — coordination, not clinical decisioning
-- **Start local, design global** — built for multilingual, multi-region growth
+- **Privacy first**; health data minimized, consented, and audited
+- **Impact connection**; donors feel the real-world outcome
+- **Graceful scope**; value at every integration level
+- **Medical boundaries**; coordination, not clinical decisioning
+- **Start local, design global**; built for multilingual, multi-region growth
 
 ## Operational Capabilities
 

@@ -36,7 +36,7 @@ const vessels = (await getCollection('vessels'))
           style="color: var(--mist);"
         >
           Like a potter's kiln, we fire one at a time.<br class="hidden md:block" />
-          The others rest, breathing — waiting.
+          The others rest, breathing, waiting.
         </p>
       </div>
     </div>
@@ -45,14 +45,13 @@ const vessels = (await getCollection('vessels'))
     <div class="mt-12 rule-gold"></div>
   </div>
 
-  <!-- Vessel cards — 2-column grid -->
+  <!-- Vessel cards; 2-column grid -->
   <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
       {vessels.map((vessel, i) => {
         const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
         const accentColor = accent === 'mint' ? 'var(--mint)' : 'var(--lavender)';
         const accentDeep = accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
-        const accentGlow = accent === 'mint' ? 'var(--mint-glow)' : 'var(--lavender-glow)';
         return (
         <a
           href={`/vessels/${vessel.id.replace(/\.md$/, '')}`}
@@ -61,12 +60,6 @@ const vessels = (await getCollection('vessels'))
           <article
             class="relative p-8 md:p-10 rounded-xl border transition-all duration-700 overflow-hidden h-full surface-card surface-card-hover group-hover:-translate-y-1"
           >
-            <!-- Hover glow -->
-            <div
-              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-xl"
-              style={`background: radial-gradient(ellipse at 20% 0%, ${accentGlow} 0%, transparent 60%);`}
-            ></div>
-
             <!-- Ghosted kanji watermark -->
             <div
               class="absolute right-6 bottom-8 kanji-architectural vessel-card-watermark text-[7rem] md:text-[8rem] leading-none transition-opacity duration-700"
