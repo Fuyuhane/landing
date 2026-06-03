@@ -143,15 +143,8 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                   </div>
                 </div>
 
-                <!-- Status + Arrow -->
-                <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-4">
-                  <span
-                    class="inline-flex items-center gap-1.5 text-[9px] tracking-[0.15em] uppercase font-normal"
-                    style={`color: ${accentDeep};`}
-                  >
-                    <span class="w-1 h-1 rounded-full" style={`background: ${accentColor};`}></span>
-                    Active
-                  </span>
+                <!-- Arrow -->
+                <div class="md:col-span-3 flex items-center justify-end gap-4">
                   <span
                     class="text-xl transition-all duration-500 group-hover:translate-x-2 opacity-30 group-hover:opacity-80"
                     style={`color: ${accentColor};`}

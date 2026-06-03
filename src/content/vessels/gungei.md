@@ -9,7 +9,7 @@ accent: "mint"
 status: "active"
 techStack: ["Zig", "SQLite", "Raylib", "LoRa", "Raft"]
 tags: ["distributed-systems", "p2p", "mesh-networking", "zig"]
-links: {}
+links: { github: "https://github.com/Fuyuhane/gungei" }
 order: 1
 ---
 ## The Vessel

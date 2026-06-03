@@ -101,15 +101,8 @@ const vessels = (await getCollection('vessels'))
                 {vessel.data.description}
               </p>
 
-              <!-- Status badge + Tech tags -->
+              <!-- Tech tags -->
               <div class="flex flex-wrap items-center gap-2 pt-1">
-                <span
-                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] tracking-[0.15em] uppercase font-normal"
-                  style={`background: ${accent === 'mint' ? 'var(--mint-badge-bg)' : 'var(--lavender-badge-bg)'}; color: ${accentDeep};`}
-                >
-                  <span class="w-1.5 h-1.5 rounded-full" style={`background: ${accentColor};`}></span>
-                  Active
-                </span>
                 {vessel.data.techStack.slice(0, 3).map((tech: string) => (
                   <span
                     class="px-2.5 py-0.5 rounded text-[9px] tracking-[0.1em] uppercase font-normal"

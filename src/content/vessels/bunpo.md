@@ -9,7 +9,7 @@ accent: "mint"
 status: "active"
 techStack: ["Rust", "Axum", "SQLx", "Tokio", "Datastar", "RabbitMQ", "Dragonfly"]
 tags: ["healthcare", "coordination", "donation", "global", "rust"]
-links: {}
+links: { github: "https://github.com/Fuyuhane/bunpo" }
 order: 4
 ---
 

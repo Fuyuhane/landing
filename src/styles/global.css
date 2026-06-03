@@ -38,11 +38,7 @@
   --snowflake-opacity-boost: 1.4;
   --snowflake-size-boost: 0px;
 
-  /* Badge / avatar accent backgrounds */
-  --mint-badge-bg: rgba(127, 203, 180, 0.12);
-  --mint-badge-border: rgba(127, 203, 180, 0.15);
-  --lavender-badge-bg: rgba(184, 160, 212, 0.12);
-  --lavender-badge-border: rgba(184, 160, 212, 0.15);
+  /* Avatar accent backgrounds */
   --mint-avatar-bg: rgba(127, 203, 180, 0.1);
   --lavender-avatar-bg: rgba(184, 160, 212, 0.1);
 
@@ -124,11 +120,7 @@
   --snowflake-opacity-boost: 5;
   --snowflake-size-boost: 1px;
 
-  /* Badge / avatar accent backgrounds */
-  --mint-badge-bg: rgba(75, 170, 142, 0.12);
-  --mint-badge-border: rgba(75, 170, 142, 0.15);
-  --lavender-badge-bg: rgba(142, 111, 184, 0.12);
-  --lavender-badge-border: rgba(142, 111, 184, 0.15);
+  /* Avatar accent backgrounds */
   --mint-avatar-bg: rgba(75, 170, 142, 0.1);
   --lavender-avatar-bg: rgba(142, 111, 184, 0.1);
 

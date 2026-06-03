@@ -9,7 +9,7 @@ accent: "lavender"
 status: "active"
 techStack: ["Rust", "Axum", "SQLx", "Tokio", "SolidJS", "Dragonfly"]
 tags: ["multiplayer", "real-time", "typing", "competitive", "rust"]
-links: {}
+links: { github: "https://github.com/Fuyuhane/origumo" }
 order: 2
 ---
 

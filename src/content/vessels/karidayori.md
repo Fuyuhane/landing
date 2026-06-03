@@ -9,7 +9,7 @@ accent: "lavender"
 status: "active"
 techStack: ["Rust", "Axum", "SQLx", "Tokio", "Datastar", "Dragonfly", "Cloudflare R2"]
 tags: ["penpals", "directory", "safety", "global", "rust"]
-links: {}
+links: { github: "https://github.com/Fuyuhane/karidayori" }
 order: 3
 ---
 

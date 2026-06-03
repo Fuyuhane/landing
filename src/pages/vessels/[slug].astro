@@ -93,16 +93,8 @@ const accentGlow = accentColor === 'mint' ? 'var(--mint-glow)' : 'var(--lavender
             {vessel.data.description}
           </p>
 
-          <!-- Status + Links -->
+          <!-- Links -->
           <div class="flex flex-wrap items-center gap-4 mt-10">
-            <span
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[9px] tracking-[0.15em] uppercase font-normal"
-              style={`background: ${accentColor === 'mint' ? 'var(--mint-badge-bg)' : 'var(--lavender-badge-bg)'}; color: ${accentDeep}; border: 1px solid ${accentColor === 'mint' ? 'var(--mint-badge-border)' : 'var(--lavender-badge-border)'};`}
-            >
-              <span class="w-1 h-1 rounded-full" style={`background: ${accentVar};`}></span>
-              {vessel.data.status}
-            </span>
-
             {vessel.data.links.github && (
               <a
                 href={vessel.data.links.github}
