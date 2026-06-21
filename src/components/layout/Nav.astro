@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import navLogo from '@assets/logos/fuyuhane-02.jpg';
+import emblemWhite from '@assets/logos/emblem-white.png';
+import emblemBlack from '@assets/logos/emblem-black.png';
 
 const navLinks = [
   { href: '/vessels', label: 'Vessels' },
@@ -23,20 +24,24 @@ const currentPath = Astro.url.pathname;
         class="group flex items-center gap-4 relative z-10"
         aria-label="Fuyuhane, Home"
       >
-        <div class="relative">
-          <div class="w-10 h-10 rounded-full overflow-hidden transition-all duration-500 ease-out group-hover:scale-110 ring-1" style="--tw-ring-color: var(--surface-border-hover);">
-            <Image
-              src={navLogo}
-              alt="Fuyuhane ptarmigan emblem"
-              width={44}
-              height={44}
-              loading="eager"
-              fetchpriority="high"
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <!-- Subtle glow on hover -->
-          <div class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md" style="background: var(--mint-glow);"></div>
+        <div class="relative w-10 h-10 transition-all duration-500 ease-out group-hover:scale-110">
+          <Image
+            src={emblemWhite}
+            alt=""
+            width={80}
+            height={80}
+            loading="eager"
+            fetchpriority="high"
+            class="nav-emblem nav-emblem-dark absolute inset-0 w-full h-full object-contain"
+          />
+          <Image
+            src={emblemBlack}
+            alt=""
+            width={80}
+            height={80}
+            loading="eager"
+            class="nav-emblem nav-emblem-light absolute inset-0 w-full h-full object-contain"
+          />
         </div>
         <div class="flex items-baseline gap-2 opacity-0 -translate-x-3 transition-all duration-400 group-hover:opacity-100 group-hover:translate-x-0">
           <span
@@ -209,6 +214,22 @@ const currentPath = Astro.url.pathname;
       border-color 0.3s ease;
   }
 
+  /* Theme-adaptive logo emblem: white on dark theme, black on light theme.
+     .theme-light lives on <html> (outside this component), so it must stay
+     unscoped via :global() or Astro hashes it and the rule never matches. */
+  .nav-emblem {
+    transition: opacity 0.3s ease;
+  }
+  .nav-emblem-light {
+    opacity: 0;
+  }
+  :global(.theme-light) .nav-emblem-dark {
+    opacity: 0;
+  }
+  :global(.theme-light) .nav-emblem-light {
+    opacity: 1;
+  }
+
   /* Theme icon visibility */
   .theme-icon-moon {
     opacity: 0;
@@ -218,11 +239,11 @@ const currentPath = Astro.url.pathname;
     opacity: 1;
     transform: rotate(0deg) scale(1);
   }
-  .theme-light .theme-icon-moon {
+  :global(.theme-light) .theme-icon-moon {
     opacity: 1;
     transform: rotate(0deg) scale(1);
   }
-  .theme-light .theme-icon-sun {
+  :global(.theme-light) .theme-icon-sun {
     opacity: 0;
     transform: rotate(90deg) scale(0.5);
   }

@@ -15,16 +15,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
   <!-- Hero -->
   <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
     <!-- Atmospheric gradient -->
-    <div
-      class="absolute inset-0"
-      style="background: radial-gradient(ellipse 80% 80% at 50% 40%, var(--sumi) 0%, var(--void) 100%);"
-    ></div>
-
-    <!-- Mint glow -->
-    <div
-      class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[50vw] h-[40vh]"
-      style="background: radial-gradient(ellipse, var(--mint-ambient) 0%, transparent 60%); filter: blur(80px);"
-    ></div>
+    <div class="bg-atmosphere"></div>
 
     <!-- Kanji -->
     <div

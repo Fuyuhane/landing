@@ -17,21 +17,9 @@
   /* Accent palette */
   --mint: #7FCBB4;
   --mint-deep: #5CB899;
-  --mint-glow: rgba(127, 203, 180, 0.15);
   --lavender: #B8A0D4;
   --lavender-deep: #9B7FC0;
-  --lavender-glow: rgba(184, 160, 212, 0.15);
   --gold: #C4A86C;
-  --gold-glow: rgba(196, 168, 108, 0.08);
-
-  /* Ambient glow backgrounds (radial-gradient washes) */
-  --mint-ambient-soft: rgba(127, 203, 180, 0.03);
-  --mint-ambient: rgba(127, 203, 180, 0.05);
-  --mint-ambient-strong: rgba(127, 203, 180, 0.06);
-  --lavender-ambient: rgba(184, 160, 212, 0.04);
-  --lavender-ambient-strong: rgba(184, 160, 212, 0.06);
-  --gold-ambient: rgba(196, 168, 108, 0.03);
-  --gold-ambient-strong: rgba(196, 168, 108, 0.04);
 
   /* Snowflake particle tokens */
   --snowflake-color: #F2EFE8;
@@ -53,7 +41,6 @@
   --frost-border: rgba(255, 255, 255, 0.04);
   --divider: rgba(255, 255, 255, 0.04);
   --vert-line: rgba(255, 255, 255, 0.06);
-  --scroll-indicator-bg: rgba(255, 255, 255, 0.06);
 
   /* Typography */
   --font-display: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
@@ -99,21 +86,9 @@
   /* Accents; slightly deepened for light bg legibility */
   --mint: #4BAA8E;
   --mint-deep: #3A9478;
-  --mint-glow: rgba(75, 170, 142, 0.1);
   --lavender: #8E6FB8;
   --lavender-deep: #7558A0;
-  --lavender-glow: rgba(142, 111, 184, 0.1);
   --gold: #96792E;
-  --gold-glow: rgba(150, 121, 46, 0.06);
-
-  /* Ambient glow backgrounds; stronger for light bg contrast */
-  --mint-ambient-soft: rgba(75, 170, 142, 0.06);
-  --mint-ambient: rgba(75, 170, 142, 0.10);
-  --mint-ambient-strong: rgba(75, 170, 142, 0.14);
-  --lavender-ambient: rgba(142, 111, 184, 0.08);
-  --lavender-ambient-strong: rgba(142, 111, 184, 0.12);
-  --gold-ambient: rgba(150, 121, 46, 0.06);
-  --gold-ambient-strong: rgba(150, 121, 46, 0.10);
 
   /* Snowflake particle tokens; boosted for light bg visibility */
   --snowflake-color: #5A5750;
@@ -135,7 +110,6 @@
   --frost-border: rgba(0, 0, 0, 0.06);
   --divider: rgba(0, 0, 0, 0.06);
   --vert-line: rgba(0, 0, 0, 0.06);
-  --scroll-indicator-bg: rgba(0, 0, 0, 0.08);
 
   /* Hero logo: no invert in light mode, full opacity */
   --brand-logo-filter: none;
@@ -306,6 +280,14 @@ body::before {
 .theme-light .rule-gold { opacity: 0.4; }
 .theme-light .rule-mint { opacity: 0.35; }
 .theme-light .rule-lavender { opacity: 0.35; }
+
+/* ─── Atmospheric Background ─── */
+/* Shared deep void-to-charcoal wash used behind every page hero. */
+.bg-atmosphere {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 40%, var(--sumi) 0%, var(--void) 100%);
+}
 
 /* ─── Scroll Reveal ─── */
 .reveal {

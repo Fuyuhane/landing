@@ -5,26 +5,8 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
 ---
 
 <section class="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
-  <!-- Deep atmospheric gradient layers -->
-  <div class="absolute inset-0 z-0">
-    <!-- Base: void to charcoal -->
-    <div
-      class="absolute inset-0"
-      style="background: radial-gradient(ellipse 80% 80% at 50% 40%, var(--sumi) 0%, var(--void) 100%);"
-    ></div>
-
-    <!-- Lavender glow; upper right -->
-    <div
-      class="absolute top-0 right-0 w-[50vw] h-[50vh]"
-      style="background: radial-gradient(ellipse at 80% 20%, var(--lavender-ambient) 0%, transparent 60%); filter: blur(80px);"
-    ></div>
-
-    <!-- Gold accent; center -->
-    <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]"
-      style="background: radial-gradient(circle, var(--gold-ambient-strong) 0%, transparent 50%); filter: blur(60px);"
-    ></div>
-  </div>
+  <!-- Base atmospheric gradient: void to charcoal -->
+  <div class="bg-atmosphere z-0"></div>
 
   <!-- Architectural kanji; massive structural element -->
   <div
@@ -83,19 +65,30 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
       </p>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="mt-20 flex flex-col items-center gap-3 hero-fade-delayed">
+    <!-- Scroll indicator: a winter feather (冬羽) drifting down -->
+    <div class="mt-20 flex flex-col items-center gap-4 hero-fade-delayed">
       <span
         class="text-[9px] tracking-[0.4em] uppercase font-normal"
         style="color: var(--smoke);"
       >
         Scroll
       </span>
-      <div class="w-px h-12 relative overflow-hidden" style="background: var(--scroll-indicator-bg);">
-        <div
-          class="w-full h-5 absolute top-0 hero-scroll-line"
-          style="background: linear-gradient(180deg, var(--gold), transparent);"
-        ></div>
+      <div class="scroll-feather relative w-10 h-16" aria-hidden="true">
+        <svg
+          class="feather-glyph absolute left-1/2 top-0"
+          width="16"
+          height="37"
+          viewBox="0 0 28 64"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M14 4 C 13.4 24, 13.3 42, 14 51 L 13.5 61" />
+          <path d="M14 5 C 6.5 15, 5.5 33, 9.5 47" />
+          <path d="M14 5 C 21.5 15, 22.5 33, 18.5 47" />
+        </svg>
       </div>
     </div>
   </div>
@@ -120,13 +113,26 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
     animation: fadeIn 1.5s var(--ease-out-expo) 1.8s both;
   }
 
-  .hero-scroll-line {
-    animation: scrollLine 2.5s ease-in-out infinite;
+  /* Scroll feather: drifts down with a gentle sway and rotation, then fades,
+     like a feather settling in still winter air. */
+  .scroll-feather {
+    color: var(--gold);
   }
 
-  @keyframes scrollLine {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(350%); }
+  .feather-glyph {
+    margin-left: -8px; /* centre the 16px-wide glyph on left: 50% */
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: featherFall 4s var(--ease-out-expo) infinite;
+  }
+
+  @keyframes featherFall {
+    0%   { transform: translate(-7px, -6px) rotate(-14deg); opacity: 0; }
+    18%  { opacity: 0.85; }
+    32%  { transform: translate(7px, 12px) rotate(11deg); }
+    55%  { transform: translate(-6px, 28px) rotate(-9deg); opacity: 0.8; }
+    80%  { transform: translate(5px, 43px) rotate(9deg); opacity: 0.5; }
+    100% { transform: translate(-2px, 56px) rotate(-5deg); opacity: 0; }
   }
 
   /* Base centering kept here so JS scroll parallax can layer an offset via a custom prop */
@@ -139,9 +145,14 @@ import heroLogo from '@assets/logos/fuyuhane - logo black-01.png';
   @media (prefers-reduced-motion: reduce) {
     .hero-fade,
     .hero-fade-up,
-    .hero-fade-delayed,
-    .hero-scroll-line {
+    .hero-fade-delayed {
       animation: none;
+    }
+
+    .feather-glyph {
+      animation: none;
+      opacity: 0.55;
+      transform: translate(-1px, 14px) rotate(-4deg);
     }
 
     .hero-kanji {
