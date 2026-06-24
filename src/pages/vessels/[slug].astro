@@ -23,12 +23,12 @@ const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender
   description={vessel.data.description}
 >
   <!-- Hero -->
-  <section class="relative py-32 md:py-44 overflow-hidden">
+  <section class="relative py-32 sm:py-44 overflow-hidden">
     <div class="bg-atmosphere"></div>
 
     <!-- Large kanji -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[45vw] md:text-[35vw] leading-none opacity-[0.02]"
+       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[clamp(11rem,38vw,30rem)] leading-none opacity-[0.02]"
     >
       {vessel.data.kanji}
     </div>
@@ -53,10 +53,10 @@ const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender
         </span>
       </a>
 
-      <div class="flex flex-col md:flex-row items-start gap-10">
+      <div class="flex flex-col sm:flex-row items-start gap-10">
         <!-- Kanji -->
         <span
-          class="text-7xl md:text-9xl shrink-0"
+          class="text-[clamp(4.5rem,8vw,8rem)] shrink-0"
           style={`font-family: var(--font-kanji); font-weight: 400; color: var(--paper); opacity: 0.9; animation: fadeIn 1s var(--ease-out-expo) both;`}
         >
           {vessel.data.kanji}
@@ -65,7 +65,7 @@ const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender
         <!-- Info -->
         <div style="animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;">
           <h1
-            class="text-4xl md:text-6xl lg:text-7xl mb-3"
+            class="text-[clamp(2.25rem,5vw,4.5rem)] mb-3"
             style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em;"
           >
             {vessel.data.title}
@@ -77,7 +77,7 @@ const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender
             {vessel.data.romaji} &middot; {vessel.data.meaning}
           </p>
           <p
-            class="text-lg md:text-xl leading-[1.6] max-w-xl font-light"
+            class="text-[clamp(1.125rem,1.5vw,1.25rem)] leading-[1.6] max-w-xl font-light"
             style="font-family: var(--font-display); color: var(--silver);"
           >
             {vessel.data.description}
@@ -121,12 +121,12 @@ const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender
   </section>
 
   <!-- Content -->
-  <section class="py-20 md:py-28">
+  <section class="py-20 sm:py-28">
     <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
       <!-- Extended description -->
       <div class="reveal mb-20">
         <p
-          class="text-sm md:text-base leading-[1.9] font-light max-w-3xl"
+          class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light max-w-3xl"
           style="color: var(--silver);"
         >
           {vessel.data.longDescription}

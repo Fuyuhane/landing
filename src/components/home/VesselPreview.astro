@@ -9,8 +9,8 @@ const vessels = (await getCollection('vessels'))
 <section class="relative py-36 md:py-52">
   <!-- Section header -->
   <div class="max-w-[90rem] mx-auto px-6 lg:px-12 mb-20 md:mb-28">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-      <div class="md:col-span-8 reveal">
+    <div class="grid grid-cols-1 sm:grid-cols-12 gap-8 items-end">
+      <div class="sm:col-span-8 reveal">
         <span
           class="eyebrow block mb-5"
           style="color: var(--gold); opacity: 0.7;"
@@ -18,19 +18,18 @@ const vessels = (await getCollection('vessels'))
           Active Vessels
         </span>
         <h2
-          class="text-3xl md:text-5xl"
+          class="text-[clamp(1.875rem,4vw,3rem)]"
           style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
         >
           Currently on the wheel
         </h2>
       </div>
-      <div class="md:col-span-4 reveal reveal-delay-1">
+      <div class="sm:col-span-4 reveal reveal-delay-1">
         <p
-          class="text-sm leading-[1.9] font-light md:text-right"
+          class="text-sm leading-[1.9] font-light sm:text-right"
           style="color: var(--mist);"
         >
-          Like a potter's kiln, we fire one at a time.<br class="hidden md:block" />
-          The others rest, breathing, waiting.
+          Like a potter's kiln, we fire one at a time. The others rest, breathing, waiting.
         </p>
       </div>
     </div>
@@ -41,7 +40,7 @@ const vessels = (await getCollection('vessels'))
 
   <!-- Vessel cards; 2-column grid -->
   <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
       {vessels.map((vessel, i) => {
         const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
         const accentColor = accent === 'mint' ? 'var(--mint)' : 'var(--lavender)';
@@ -52,11 +51,11 @@ const vessels = (await getCollection('vessels'))
           class={`group reveal reveal-delay-${i + 1}`}
         >
           <article
-            class="relative p-8 md:p-10 rounded-xl border transition-all duration-700 overflow-hidden h-full surface-card surface-card-hover group-hover:-translate-y-1"
+            class="relative p-8 sm:p-10 rounded-xl border transition-all duration-700 overflow-hidden h-full surface-card surface-card-hover group-hover:-translate-y-1"
           >
             <!-- Ghosted kanji watermark -->
             <div
-              class="absolute right-6 bottom-8 kanji-architectural vessel-card-watermark text-[7rem] md:text-[8rem] leading-none transition-opacity duration-700"
+              class="absolute right-0 bottom-4 kanji-architectural vessel-card-watermark text-[clamp(2.5rem,12vw,8rem)] leading-none transition-opacity duration-700 whitespace-nowrap"
               aria-hidden="true"
             >
               {vessel.data.kanji}
@@ -66,14 +65,14 @@ const vessels = (await getCollection('vessels'))
               <!-- Kanji + Name -->
               <div class="flex items-baseline gap-4">
                 <span
-                  class="text-4xl md:text-5xl text-kanji font-normal shrink-0"
+                  class="text-[clamp(2.25rem,4vw,3rem)] text-kanji font-normal shrink-0"
                   style="color: var(--paper); opacity: 0.8;"
                 >
                   {vessel.data.kanji}
                 </span>
                 <div>
                   <h3
-                    class="text-xl md:text-2xl font-light"
+                    class="text-[clamp(1.25rem,2vw,1.5rem)] font-light"
                     style="font-family: var(--font-display); color: var(--paper);"
                   >
                     {vessel.data.title}

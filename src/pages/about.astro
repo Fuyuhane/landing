@@ -37,14 +37,14 @@ const team = [
 
     <!-- Kanji -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[45vw] md:text-[30vw] leading-none opacity-[0.02]"
+       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[clamp(11rem,38vw,27rem)] leading-none opacity-[0.02]"
     >
       人
     </div>
 
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
       <h1
-        class="text-4xl md:text-7xl lg:text-8xl"
+        class="text-[clamp(2.5rem,6vw,6rem)]"
         style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
       >
         The artisans behind<br />
@@ -60,11 +60,11 @@ const team = [
   </section>
 
   <!-- The Atelier Story -->
-  <section class="py-28 md:py-40">
+  <section class="py-28 sm:py-40">
     <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-start">
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-12 xl:gap-24 items-start">
         <!-- Left: Seal -->
-        <div class="md:col-span-4 reveal">
+        <div class="sm:col-span-4 reveal">
           <div class="sticky top-28">
             <div class="inline-block">
               <Image
@@ -88,16 +88,16 @@ const team = [
         </div>
 
         <!-- Right: Story -->
-        <div class="md:col-span-8 space-y-10">
+        <div class="sm:col-span-8 space-y-10">
           <div class="reveal">
             <h2
-              class="text-3xl md:text-4xl mb-8"
+              class="text-[clamp(1.875rem,3vw,2.25rem)] mb-8"
               style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
             >
               A winter craft atelier
             </h2>
             <p
-              class="text-sm md:text-base leading-[1.9] font-light"
+              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
               style="color: var(--silver);"
             >
               Fuyuhane is a <em style="font-family: var(--font-kanji);">kobo</em> (工房), a craft atelier anchored in winter.
@@ -108,7 +108,7 @@ const team = [
 
           <div class="reveal reveal-delay-1">
             <p
-              class="text-sm md:text-base leading-[1.9] font-light"
+              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
               style="color: var(--silver);"
             >
               The name <strong class="font-normal" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> (Fuyuhane) means
@@ -120,7 +120,7 @@ const team = [
 
           <div class="reveal reveal-delay-2">
             <p
-              class="text-sm md:text-base leading-[1.9] font-light"
+              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
               style="color: var(--silver);"
             >
               Each vessel we create carries the <strong class="font-normal" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> seal,
@@ -140,9 +140,9 @@ const team = [
   </div>
 
   <!-- The Artisans -->
-  <section class="py-28 md:py-40">
+  <section class="py-28 sm:py-40">
     <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-      <div class="mb-16 md:mb-24 reveal">
+       <div class="mb-16 sm:mb-24 reveal">
         <span
           class="eyebrow block mb-5"
           style="color: var(--gold); opacity: 0.7;"
@@ -150,19 +150,19 @@ const team = [
           The Artisans
         </span>
         <h2
-          class="text-3xl md:text-4xl"
+          class="text-[clamp(1.875rem,3vw,2.25rem)]"
           style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
         >
           People behind the vessels
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {team.map((member, i) => {
           const accentDeep = member.accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
           return (
           <article
-            class={`reveal reveal-delay-${i + 1} group relative p-8 md:p-10 rounded-xl border transition-all duration-700 overflow-hidden surface-card surface-card-hover`}
+             class={`reveal reveal-delay-${i + 1} group relative p-8 sm:p-10 rounded-xl border transition-all duration-700 overflow-hidden surface-card surface-card-hover`}
           >
             <div class="relative z-10 space-y-6">
               <!-- Avatar + Name -->

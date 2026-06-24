@@ -130,6 +130,7 @@
 
 /* ─── Base Reset & Typography ─── */
 html {
+  font-size: clamp(14px, 0.8vw + 11px, 18px);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -145,6 +146,18 @@ body {
   font-weight: 300;
   text-wrap: pretty;
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Prevent grid/flex children from expanding past their track and causing
+   horizontal overflow on narrow viewports. */
+.grid > *,
+.flex > * {
+  min-width: 0;
+}
+
+/* Safety net: ensure long words break instead of overflowing their containers. */
+p, h1, h2, h3, h4, li, span, blockquote {
+  overflow-wrap: break-word;
 }
 
 /* ─── Typography Utilities ─── */
