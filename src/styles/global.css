@@ -43,9 +43,9 @@
   --vert-line: rgba(255, 255, 255, 0.06);
 
   /* Typography */
-  --font-display: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
-  --font-kanji: 'Noto Serif JP', serif;
+  --font-display: 'Fraunces Variable', 'Zen Old Mincho', Georgia, serif;
+  --font-body: 'Hanken Grotesk Variable', system-ui, sans-serif;
+  --font-kanji: 'Zen Old Mincho', serif;
 
   /* Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

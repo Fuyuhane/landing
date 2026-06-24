@@ -48,7 +48,7 @@ const vessels = (await getCollection('vessels'))
         const accentDeep = accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
         return (
         <a
-          href={`/vessels/${vessel.id.replace(/\.md$/, '')}`}
+          href={`/vessels/${vessel.id}`}
           class={`group reveal reveal-delay-${i + 1}`}
         >
           <article

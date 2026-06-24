@@ -1,7 +1,7 @@
 ---
-title: "Bunpō"
+title: "Bunpo"
 kanji: "分蜂"
-romaji: "Bunpō"
+romaji: "Bunpo"
 meaning: "The Bees Dividing the Hive"
 description: "Like a hive in spring, one gift of blood moves outward and becomes many chances to live, binding distant strangers in a quiet swarm of care."
 longDescription: "A blood donation coordination platform connecting donors and healthcare facilities. Donors track their history and receive impact notifications, while facilities broadcast needs and mobilize donors during emergencies. The system emphasizes privacy, regional awareness, and a human connection to the life-saving impact of every donation, with global expansion readiness built in."
@@ -15,7 +15,7 @@ order: 4
 
 ## The Vessel
 
-Bunpō connects the act of giving with the moment it matters. Donors see where their blood is needed, receive meaningful impact notifications, and respond to urgent calls, while facilities gain a coordinated, privacy-first network for managing supply and demand.
+Bunpo connects the act of giving with the moment it matters. Donors see where their blood is needed, receive meaningful impact notifications, and respond to urgent calls, while facilities gain a coordinated, privacy-first network for managing supply and demand.
 
 ## Core Principles
 

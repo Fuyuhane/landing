@@ -70,7 +70,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
           const accentDeep = accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
           return (
           <a
-            href={`/vessels/${vessel.id.replace(/\.md$/, '')}`}
+            href={`/vessels/${vessel.id}`}
             class={`group block reveal reveal-delay-${i + 1}`}
           >
             <article

@@ -5,7 +5,7 @@ import { getCollection, render } from 'astro:content';
 export async function getStaticPaths() {
   const vessels = await getCollection('vessels');
   return vessels.map((vessel) => ({
-    params: { slug: vessel.id.replace(/\.md$/, '') },
+    params: { slug: vessel.id },
     props: { vessel },
   }));
 }

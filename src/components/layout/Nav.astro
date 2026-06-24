@@ -209,6 +209,9 @@ const currentPath = Astro.url.pathname;
      No opacity: one clean motion, no two-phase flash.
      Background applies instantly to prevent flash on first scroll. */
   #site-nav {
+    /* Start transparent so the first border the script applies on page load
+       doesn't animate from the default currentColor (a white line flash). */
+    border-bottom: 1px solid transparent;
     transition:
       transform 0.5s var(--ease-reveal),
       border-color 0.3s ease;
