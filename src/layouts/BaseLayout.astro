@@ -74,6 +74,9 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
 
       if (storedTheme === 'light' || (!storedTheme && prefersLight)) {
         document.documentElement.classList.add('theme-light');
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute('content', '#FAFAF8');
       }
     </script>
   </head>

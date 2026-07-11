@@ -350,6 +350,15 @@ body::before {
   opacity: 0.03;
 }
 
+/* Ghosted kanji watermark on vessel cards; brightens on card hover */
+.vessel-card-watermark {
+  opacity: var(--vessel-card-watermark-opacity);
+}
+
+.group:hover .vessel-card-watermark {
+  opacity: var(--vessel-card-watermark-hover-opacity);
+}
+
 /* ─── Keyframes ─── */
 @keyframes fadeInUp {
   from {
@@ -365,11 +374,6 @@ body::before {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-16px); }
 }
 
 /* ─── Reduced Motion ─── */

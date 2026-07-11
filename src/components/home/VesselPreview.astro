@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { accentVars } from '@/lib/accents';
 
 const vessels = (await getCollection('vessels'))
   .filter((v) => v.data.status === 'active')
@@ -43,9 +44,7 @@ const vessels = (await getCollection('vessels'))
   <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
       {vessels.map((vessel, i) => {
-        const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
-        const accentColor = accent === 'mint' ? 'var(--mint)' : 'var(--lavender)';
-        const accentDeep = accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
+        const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
         return (
         <a
           href={`/vessels/${vessel.id}`}
@@ -130,13 +129,3 @@ const vessels = (await getCollection('vessels'))
     </div>
   </div>
 </section>
-
-<style>
-  .vessel-card-watermark {
-    opacity: var(--vessel-card-watermark-opacity);
-  }
-
-  .group:hover .vessel-card-watermark {
-    opacity: var(--vessel-card-watermark-hover-opacity);
-  }
-</style>

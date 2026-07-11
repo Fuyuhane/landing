@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { accentVars } from '@/lib/accents';
 
 export async function getStaticPaths() {
   const vessels = await getCollection('vessels');
@@ -13,9 +14,7 @@ export async function getStaticPaths() {
 const { vessel } = Astro.props;
 const { Content } = await render(vessel);
 
-const accentColor = vessel.data.accent ?? (vessel.data.order === 1 ? 'mint' : 'lavender');
-const accentVar = accentColor === 'mint' ? 'var(--mint)' : 'var(--lavender)';
-const accentDeep = accentColor === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
+const { color: accentVar, deep: accentDeep } = accentVars(vessel.data.accent);
 ---
 
 <BaseLayout

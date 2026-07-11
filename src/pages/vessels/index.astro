@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { accentVars } from '@/lib/accents';
 
 const vessels = (await getCollection('vessels'))
   .sort((a, b) => a.data.order - b.data.order);
@@ -58,9 +59,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
 
       <div class="space-y-4">
         {activeVessels.map((vessel, i) => {
-          const accent = vessel.data.accent ?? (i === 0 ? 'mint' : 'lavender');
-          const accentColor = accent === 'mint' ? 'var(--mint)' : 'var(--lavender)';
-          const accentDeep = accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
+          const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
           return (
           <a
             href={`/vessels/${vessel.id}`}
@@ -139,13 +138,3 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .vessel-card-watermark {
-    opacity: var(--vessel-card-watermark-opacity);
-  }
-
-  .group:hover .vessel-card-watermark {
-    opacity: var(--vessel-card-watermark-hover-opacity);
-  }
-</style>

@@ -11,7 +11,7 @@ const vessels = defineCollection({
     meaning: z.string(),
     description: z.string(),
     longDescription: z.string(),
-    accent: z.enum(["mint", "lavender"]).optional(),
+    accent: z.enum(["mint", "lavender"]),
     status: z.enum(["active", "resting", "coming-soon"]),
     techStack: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),

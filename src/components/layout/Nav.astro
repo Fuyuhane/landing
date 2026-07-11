@@ -353,6 +353,10 @@ const currentPath = Astro.url.pathname;
       applyFrost(true);
       nav.style.transform = '';
       navHidden = false;
+    } else if (!navHidden) {
+      // Covers loading the page already scrolled past 60px (reload, anchor
+      // link): the nav is visible over content, so it needs its frost.
+      applyFrost(true);
     }
 
     lastScrollY = currentY;
@@ -382,6 +386,11 @@ const currentPath = Astro.url.pathname;
       html.classList.add('theme-light');
       localStorage.setItem('fuyuhane-theme', 'light');
     }
+
+    // Keep the browser chrome color in step with the page background.
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', isLight ? '#0E0E0E' : '#FAFAF8');
 
     updateMobileThemeLabel();
   };
