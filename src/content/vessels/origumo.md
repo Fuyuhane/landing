@@ -7,7 +7,7 @@ description: "Like a weaving spider in moonlight, each keystroke lays a thread, 
 longDescription: "A native-first typing race platform. Play in the Rust + Raylib desktop client; use the Phoenix LiveView web platform for profiles, leaderboards, account management, text packs, downloads, and moderation. Rooms, chat, racing, ghosts, ranked ELO, practice, and code mode run through an Elixir/Phoenix server with OTP processes, Postgres, and a dedicated race WebSocket."
 accent: "lavender"
 status: "active"
-techStack: ["Elixir", "Phoenix LiveView", "PostgreSQL", "Rust", "Raylib", "SQLite"]
+techStack: ["Elixir", "Phoenix LiveView", "Rust", "PostgreSQL", "Raylib", "SQLite"]
 tags: ["multiplayer", "real-time", "typing", "competitive", "elixir", "rust"]
 links: { github: "https://github.com/Fuyuhane/origumo" }
 order: 2
