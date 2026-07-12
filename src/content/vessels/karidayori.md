@@ -7,7 +7,7 @@ description: "Like geese returning with the season, words arrive from far horizo
 longDescription: "A worldwide penpal platform for text-only letters. Browse by country, discover thoughtful profiles, and write through a safety-first mailbox shaped around 13+ age-tier isolation, optional moderated photos, contact-info scanning, reports, and letters that naturally expire. Built as a Rust + Datastar + Maud web app, open to all countries but careful with every border between people."
 accent: "lavender"
 status: "active"
-techStack: ["Rust", "Axum", "SQLx", "Tokio", "Datastar", "Maud", "Dragonfly", "Cloudflare R2"]
+techStack: ["Rust", "Axum", "SQLx", "Tokio", "Datastar", "Maud", "PostgreSQL", "Cloudflare R2"]
 tags: ["penpals", "directory", "safety", "global", "rust"]
 links: { github: "https://github.com/Fuyuhane/karidayori" }
 order: 3
@@ -33,6 +33,7 @@ Karidayori is a global letter-writing directory. It lets people browse by countr
 | Global discovery | Country pages, profile filters, and age-tiered search |
 | Timezone-aware presence | IANA timezone activity with reduced precision for minors |
 | Safe correspondence | Server-side age policy + text-only letter composer |
+| Guardian consent | Minor accounts activate only after a verified adult signs consent |
 | Profile depth | Bios, hobbies, city-level location, optional moderated photos |
 | Moderation flow | Contact-info scanner, reports, auto-suspension, audit log |
 | Letter lifecycle | Inbox, archive, thread, report, and 12-month expiry |

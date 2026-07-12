@@ -31,9 +31,10 @@ A native-first competitive typing race where speed meets craft. The Rust + Rayli
 
 | Capability | Engine |
 |------------|--------|
-| Real-time rooms | Phoenix Channels + supervised RoomServer GenServers |
+| Real-time rooms | Phoenix Channels + supervised RoomServer GenServers, with chat and spectators |
 | Race orchestration | RaceServer processes with a dedicated binary race WebSocket |
 | Low-latency play | Rust + Raylib native client with compact keystroke streams |
 | Leaderboards + ranks | Ecto/Postgres-backed results, ghosts, and ELO history |
+| Fair play | Keystroke replays in R2, statistical timing checks, server-side validation |
 | Offline practice | Local SQLite results, text packs, ghosts, and sync queue |
 | Background jobs | Oban for replay checks, daily challenges, exports, and deletion |

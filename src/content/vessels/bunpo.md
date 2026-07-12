@@ -7,8 +7,8 @@ description: "Like a hive in spring, one gift of blood moves outward and becomes
 longDescription: "A France-first blood donation coordination platform. Donors track donations and eligibility, see regional blood-need signals, and later receive anonymized impact notes as facility and EFS-style partnerships deepen. The system keeps medical boundaries clear: coordination, not clinical decisioning, with GDPR Article 9 consent, HDS/CNIL posture, encrypted sensitive fields, and regional sovereign deployment cells."
 accent: "mint"
 status: "active"
-techStack: ["Rust", "Axum", "SQLx", "Tokio", "Datastar", "Maud", "GDPR/HDS/CNIL"]
-tags: ["healthcare", "coordination", "donation", "global", "rust"]
+techStack: ["Rust", "Axum", "SQLx", "Tokio", "Datastar", "Maud", "PostgreSQL"]
+tags: ["healthcare", "coordination", "donation", "france-first", "rust"]
 links: { github: "https://github.com/Fuyuhane/bunpo" }
 order: 4
 ---
