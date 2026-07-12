@@ -33,5 +33,6 @@ Ships form a self-organizing mesh across cold water. They discover each other, s
 | Gossip + healing | Fan-out broadcast with anti-entropy missing-event sync |
 | Distress relay | Priority propagation, deduplication, hop-count guards, acknowledgments |
 | Event sourcing | SQLite append-only event log; Ground Station PostgreSQL optional |
+| Convoy coordination | Custom Raft consensus, scoped to Ground Station and convoy clusters, never the open mesh |
 | Observer surfaces | ratatui TUI, WebSocket observer protocol, SvelteKit topology view |
 | Field product path | LoRa coordination radio (beacons and distress only), Raspberry Pi adapters, Raylib tactical display, CE/Giteki gates |
