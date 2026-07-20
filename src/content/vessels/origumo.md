@@ -15,14 +15,14 @@ order: 2
 
 ## The Vessel
 
-Origumo begins where fingers meet keys: a Rust + Raylib client where each strike pulls the web tighter through practice, rooms, races, ghosts, ranked play, and code. Behind it, Gleam actors keep watch over every living thread, while Lustre opens the wider web to profiles, leaderboards, text packs, accounts, and moderation.
+Origumo turns a solitary measure of speed into a shared craft. Typists learn the rhythm alone, meet rivals across the web, chase the ghosts of who they were, and climb from Snail to Origumo one careful line at a time. The quickest fingers may reach the finish first, but precision is what keeps the weave from breaking.
 
 ## Core Features
 
 - **Native racing**; race from the Rust + Raylib desktop client
 - **Real-time competition**; see opponents' cursors advancing as they type
 - **Ghost Racer**; race against your past self, beat your personal best
-- **Ranked Matchmaking**; ELO-based ladder with animal ranks from Snail to Phoenix
+- **Ranked Matchmaking**; ELO-based ladder rising from Snail to Origumo
 - **Code Mode**; type real code snippets with syntax highlighting
 - **Practice Mode**; timed tests, custom text, offline results, and sync
 - **Custom Themes**; JSON themes with a full editor for everyone
