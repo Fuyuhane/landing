@@ -4,18 +4,18 @@ kanji: "織蛛"
 romaji: "Origumo"
 meaning: "The Weaving Spider"
 description: "Like a weaving spider in moonlight, each keystroke lays a thread, and thread by thread, speed becomes craft."
-longDescription: "A native-first typing race platform. Play in the Rust + Raylib desktop client; use the Phoenix LiveView web platform for profiles, leaderboards, account management, text packs, downloads, and moderation. Rooms, chat, racing, ghosts, ranked ELO, practice, and code mode run through an Elixir/Phoenix server with OTP processes, Postgres, and a dedicated race WebSocket."
+longDescription: "A typing world woven between a Rust + Raylib desktop client and a Gleam service running on Erlang/OTP. Every keystroke draws another thread through rooms, races, ghosts, and ranked play, while Wisp and Mist carry the real-time pulse. Beyond the race, a Lustre web platform gathers profiles, leaderboards, text packs, accounts, and moderation into the same patient web."
 accent: "lavender"
 status: "active"
-techStack: ["Elixir", "Phoenix LiveView", "Rust", "PostgreSQL", "Raylib", "SQLite"]
-tags: ["multiplayer", "real-time", "typing", "competitive", "elixir", "rust"]
+techStack: ["Gleam", "Erlang/OTP", "Rust", "Wisp", "Mist", "Lustre", "PostgreSQL", "Raylib", "SQLite"]
+tags: ["multiplayer", "real-time", "typing", "competitive", "gleam", "rust"]
 links: { github: "https://github.com/Fuyuhane/origumo" }
 order: 2
 ---
 
 ## The Vessel
 
-A native-first competitive typing race where speed meets craft. The Rust + Raylib client carries practice, rooms, real-time races, ghosts, ranked play, and code mode, while Phoenix LiveView keeps the web side close to accounts, profiles, leaderboards, text packs, and moderation.
+Origumo begins where fingers meet keys: a Rust + Raylib client where each strike pulls the web tighter through practice, rooms, races, ghosts, ranked play, and code. Behind it, Gleam actors keep watch over every living thread, while Lustre opens the wider web to profiles, leaderboards, text packs, accounts, and moderation.
 
 ## Core Features
 
@@ -27,14 +27,14 @@ A native-first competitive typing race where speed meets craft. The Rust + Rayli
 - **Practice Mode**; timed tests, custom text, offline results, and sync
 - **Custom Themes**; JSON themes with a full editor for everyone
 
-## Operational Capabilities
+## Threads To Be Woven
 
 | Capability | Engine |
 |------------|--------|
-| Real-time rooms | Phoenix Channels + supervised RoomServer GenServers, with chat and spectators |
-| Race orchestration | RaceServer processes with a dedicated binary race WebSocket |
+| Real-time rooms | Gleam/OTP typed actors and a custom control WebSocket, with chat and spectators |
+| Race orchestration | Supervised race actors with a dedicated binary WebSocket through Mist |
 | Low-latency play | Rust + Raylib native client with compact keystroke streams |
-| Leaderboards + ranks | Ecto/Postgres-backed results, ghosts, and ELO history |
+| Leaderboards + ranks | Pog/Squirrel and PostgreSQL-backed results, ghosts, and ELO history |
 | Fair play | Keystroke replays in R2, statistical timing checks, server-side validation |
 | Offline practice | Local SQLite results, text packs, ghosts, and sync queue |
-| Background jobs | Oban for replay checks, daily challenges, exports, and deletion |
+| Background jobs | PostgreSQL-backed durable jobs claimed by bounded Gleam workers |
