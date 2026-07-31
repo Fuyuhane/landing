@@ -2,9 +2,7 @@
 import { getCollection } from 'astro:content';
 import { accentVars } from '@/lib/accents';
 
-const vessels = (await getCollection('vessels'))
-  .filter((v) => v.data.status === 'active')
-  .sort((a, b) => a.data.order - b.data.order);
+const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="relative py-36 md:py-52">
@@ -16,13 +14,13 @@ const vessels = (await getCollection('vessels'))
           class="eyebrow block mb-5"
           style="color: var(--gold); opacity: 0.7;"
         >
-          Active Vessels
+          Planned Vessels
         </span>
         <h2
           class="text-[clamp(1.875rem,4vw,3rem)]"
           style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
         >
-          Currently on the wheel
+          Forms on the worktable
         </h2>
       </div>
       <div class="sm:col-span-4 reveal reveal-delay-1">
@@ -30,8 +28,8 @@ const vessels = (await getCollection('vessels'))
           class="text-sm leading-[1.9] font-light sm:text-right"
           style="color: var(--mist);"
         >
-          Like a potter's kiln, we fire one at a time.<br class="hidden sm:block" />
-          The others rest, breathing, waiting.
+          Each is still being charted.<br class="hidden sm:block" />
+          Their forms differ; the care behind them is shared.
         </p>
       </div>
     </div>
@@ -93,6 +91,13 @@ const vessels = (await getCollection('vessels'))
               >
                 {vessel.data.description}
               </p>
+
+              <span
+                class="inline-block text-[9px] tracking-[0.18em] uppercase font-normal"
+                style={`color: ${accentDeep};`}
+              >
+                {vessel.data.status}
+              </span>
 
               <!-- Tech tags -->
               <div class="flex flex-wrap items-center gap-2 pt-1">

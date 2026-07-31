@@ -3,10 +3,11 @@ title: "Origumo"
 kanji: "織蛛"
 romaji: "Origumo"
 meaning: "The Weaving Spider"
-description: "Like a weaving spider in moonlight, each keystroke lays a thread, and thread by thread, speed becomes craft."
-longDescription: "A typing world woven between a Rust + Raylib desktop client and a Gleam service running on Erlang/OTP. Every keystroke draws another thread through rooms, races, ghosts, and ranked play, while Wisp and Mist carry the real-time pulse. Beyond the race, a Lustre web platform gathers profiles, leaderboards, text packs, accounts, and moderation into the same patient web."
+description: "The weaving spider works one patient thread at a time. Origumo gathers keystrokes into races, rivalries, and the slow craft of becoming precise."
+seoDescription: "Origumo is a planned multiplayer typing game with native Rust and Raylib races, Gleam and Erlang/OTP services, ranked matchmaking, ghost racing, and practice modes."
+longDescription: "Origumo is planned as one global typing game with a native Rust and Raylib client for play, a Gleam and Erlang/OTP service for real-time races, and a Lustre web platform for profiles, leaderboards, text packs, accounts, and moderation. Its first path runs from creating or joining a room through racing, results, and rematches; ghost racing, ranked play, code practice, and community text packs deepen the weave."
 accent: "lavender"
-status: "active"
+status: "planning"
 techStack: ["Gleam", "Erlang/OTP", "Rust", "Wisp", "Mist", "Lustre", "PostgreSQL", "Raylib", "SQLite"]
 tags: ["multiplayer", "real-time", "typing", "competitive", "gleam", "rust"]
 links: { github: "https://github.com/Fuyuhane/origumo" }
@@ -15,19 +16,19 @@ order: 2
 
 ## The Vessel
 
-Origumo turns a solitary measure of speed into a shared craft. Typists learn the rhythm alone, meet rivals across the web, chase the ghosts of who they were, and climb from Snail to Origumo one careful line at a time. The quickest fingers may reach the finish first, but precision is what keeps the weave from breaking.
+The weaving spider does not finish its web in one motion. It crosses the same space with patience until separate threads can hold together. Origumo follows that rhythm: practice begins alone, then opens into live races, old ghosts, seasonal ranks, and a community gathered around the pleasure of becoming precise.
 
-## Core Features
+## The Planned Weave
 
 - **Native racing**; race from the Rust + Raylib desktop client
 - **Real-time competition**; see opponents' cursors advancing as they type
 - **Ghost Racer**; race against your past self, beat your personal best
-- **Ranked Matchmaking**; ELO-based ladder rising from Snail to Origumo
+- **Ranked Matchmaking**; Elo-based ladder rising from Snail to Origumo
 - **Code Mode**; type real code snippets with syntax highlighting
 - **Practice Mode**; timed tests, custom text, offline results, and sync
 - **Custom Themes**; JSON themes with a full editor for everyone
 
-## Threads To Be Woven
+## Beneath the Threads
 
 | Capability | Engine |
 |------------|--------|

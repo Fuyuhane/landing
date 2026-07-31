@@ -3,37 +3,36 @@ title: "Karidayori"
 kanji: "雁便り"
 romaji: "Karidayori"
 meaning: "Tidings Borne by Geese"
-description: "Like geese returning with the season, words arrive from far horizons, and distant strangers slowly become names you wait for."
-longDescription: "A worldwide penpal platform for text-only letters. Browse by country, discover thoughtful profiles, and write through a safety-first mailbox shaped around 13+ age-tier isolation, optional moderated photos, contact-info scanning, reports, and letters that naturally expire. Built as a Rust + Datastar + Maud web app, open to all countries but careful with every border between people."
+description: "Migrating geese once carried the thought of letters crossing a distant sky. Karidayori gives that journey a mailbox, where unfamiliar names may slowly become familiar."
+seoDescription: "Karidayori is a planned worldwide penpal platform for moderated, text-only letters, with server-side age-tier safety, data minimization, and country-based discovery."
+longDescription: "Karidayori is planned as a worldwide penpal platform for text-only letters, available wherever law and infrastructure allow. People browse a country directory, choose a thoughtful profile, send a letter, and reply through a mailbox built around server-side age tiers, moderation, auditability, and data minimization. A Go modular monolith with templ and HTMX keeps the exchange direct and accessible."
 accent: "lavender"
-status: "active"
-techStack: ["Rust", "Axum", "SQLx", "Tokio", "Datastar", "Maud", "PostgreSQL", "Cloudflare R2"]
-tags: ["penpals", "directory", "safety", "global", "rust"]
+status: "planning"
+techStack: ["Go", "chi", "HTMX", "templ", "sqlc", "pgx", "Goose", "PostgreSQL"]
+tags: ["penpals", "directory", "safety", "global", "go"]
 links: { github: "https://github.com/Fuyuhane/karidayori" }
 order: 3
 ---
 
 ## The Vessel
 
-Karidayori is a global letter-writing directory. It lets people browse by country, discover thoughtful profiles, and send text-only letters through a mailbox guarded by age tiers, moderation, and data minimization, an exchange shaped by care rather than speed.
+In classical poetry, migrating geese bore news across distance and season. Karidayori keeps that image close, but gives the journey a careful modern form. A person finds someone beyond their familiar horizon, writes without the noise of media attachments, and waits for words to return.
 
 ## Core Principles
 
-- **All countries welcome**; no geo gates, no cultural bias
+- **Worldwide intent**; available where legal and technical conditions permit
 - **Text-only letters**; writing first, no attachments
-- **Optional photos**; profiles can be anonymous or expressive
-- **Directory model**; discover by country, scan, and choose
-- **Age-tier walls**; minors and adults never cross the letter boundary
-- **Safety-first**; reports, content scanning, and audit logs baked in
+- **Directory model**; discover profiles by country and choose whom to write
+- **Age-tier safety**; policy remains enforced on the server
+- **Data minimization**; collect only what the exchange needs
+- **Moderation by design**; reports and auditability are part of the foundation
 
 ## Operational Capabilities
 
 | Capability | Engine |
 |------------|--------|
-| Global discovery | Country pages, profile filters, and age-tiered search |
-| Timezone-aware presence | IANA timezone activity with reduced precision for minors |
-| Safe correspondence | Server-side age policy + text-only letter composer |
-| Guardian consent | Minor accounts activate only after a verified adult signs consent |
-| Profile depth | Bios, hobbies, city-level location, optional moderated photos |
-| Moderation flow | Contact-info scanner, reports, auto-suspension, audit log |
-| Letter lifecycle | Inbox, archive, thread, report, and 12-month expiry |
+| Global discovery | Country pages, thoughtful profiles, and age-tiered search |
+| Safe correspondence | Server-side age policy and a text-only letter composer |
+| Mailbox | Send a letter, receive it, and reply when interest is mutual |
+| Moderation flow | Reports, review tools, and an auditable trail |
+| Web foundation | Go modular monolith with templ, HTMX, sqlc, pgx, and PostgreSQL |

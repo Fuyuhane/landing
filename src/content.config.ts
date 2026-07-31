@@ -10,9 +10,10 @@ const vessels = defineCollection({
     romaji: z.string(),
     meaning: z.string(),
     description: z.string(),
+    seoDescription: z.string(),
     longDescription: z.string(),
     accent: z.enum(["mint", "lavender"]),
-    status: z.enum(["active", "resting", "coming-soon"]),
+    status: z.enum(["planning", "development", "live", "resting"]),
     techStack: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     links: z

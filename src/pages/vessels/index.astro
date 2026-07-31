@@ -6,12 +6,12 @@ import { accentVars } from '@/lib/accents';
 const vessels = (await getCollection('vessels'))
   .sort((a, b) => a.data.order - b.data.order);
 
-const activeVessels = vessels.filter((v) => v.data.status === 'active');
+const plannedVessels = vessels.filter((v) => v.data.status === 'planning');
 ---
 
 <BaseLayout
   title="Vessels"
-  description="Each vessel bears its own 銘, a name that carries the spirit of its purpose."
+  description="Explore Fuyuhane's planned software projects for maritime communication, typing competition, penpal letters, and blood donation coordination."
 >
   <!-- Hero -->
   <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
@@ -30,8 +30,8 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
         class="text-[clamp(1.5rem,2.5vw,2.25rem)] mb-8"
         style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
       >
-        Named works,<br />
-        <em class="font-light" style="color: var(--mint);">different intimacies</em>
+        Four names,<br />
+        <em class="font-light" style="color: var(--mint);">four forms of connection</em>
       </h1>
     </div>
 
@@ -42,7 +42,7 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
     ></div>
   </section>
 
-  <!-- Active Vessels -->
+  <!-- Planned Vessels -->
   <section class="py-20 sm:py-32">
     <div class="max-w-[80rem] mx-auto px-6 lg:px-12">
       <div class="mb-16 reveal">
@@ -51,14 +51,14 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
             class="eyebrow"
             style="color: var(--gold); opacity: 0.7;"
           >
-            Currently Firing
+            In Planning
           </span>
           <div class="flex-1 rule-gold"></div>
         </div>
       </div>
 
       <div class="space-y-4">
-        {activeVessels.map((vessel, i) => {
+        {plannedVessels.map((vessel, i) => {
           const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
           return (
           <a
@@ -108,6 +108,12 @@ const activeVessels = vessels.filter((v) => v.data.status === 'active');
                   >
                     {vessel.data.description}
                   </p>
+                  <span
+                    class="inline-block mt-4 text-[9px] tracking-[0.18em] uppercase font-normal"
+                    style={`color: ${accentDeep};`}
+                  >
+                    {vessel.data.status}
+                  </span>
                   <div class="flex flex-wrap gap-1.5 mt-4">
                     {vessel.data.techStack.map((tech: string) => (
                       <span

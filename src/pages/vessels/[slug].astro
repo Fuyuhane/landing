@@ -19,7 +19,7 @@ const { color: accentVar, deep: accentDeep } = accentVars(vessel.data.accent);
 
 <BaseLayout
   title={`${vessel.data.title} (${vessel.data.kanji})`}
-  description={vessel.data.description}
+  description={vessel.data.seoDescription}
 >
   <!-- Hero -->
   <section class="relative py-32 sm:py-44 overflow-hidden">
@@ -73,7 +73,7 @@ const { color: accentVar, deep: accentDeep } = accentVars(vessel.data.accent);
             class="text-[11px] tracking-[0.2em] uppercase mb-8 font-normal"
             style={`color: ${accentDeep};`}
           >
-            {vessel.data.romaji} &middot; {vessel.data.meaning}
+            {vessel.data.romaji} &middot; {vessel.data.meaning} &middot; {vessel.data.status}
           </p>
           <p
             class="text-[clamp(1.125rem,1.5vw,1.25rem)] leading-[1.6] max-w-xl font-light"
@@ -92,7 +92,7 @@ const { color: accentVar, deep: accentDeep } = accentVars(vessel.data.accent);
                 class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase border transition-all duration-300 font-normal"
                 style="border-color: var(--surface-border-hover); color: var(--cloud);"
               >
-                Github
+                GitHub
               </a>
             )}
 
