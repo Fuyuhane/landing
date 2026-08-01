@@ -11,7 +11,7 @@ const plannedVessels = vessels.filter((v) => v.data.status === 'planning');
 
 <BaseLayout
   title="Vessels"
-  description="Explore Fuyuhane's planned software projects for maritime communication, typing competition, penpal letters, and blood donation coordination."
+  description="Explore a selection of Fuyuhane's planned software projects for maritime communication, typing competition, penpal letters, and blood donation coordination."
 >
   <!-- Hero -->
   <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
@@ -30,8 +30,8 @@ const plannedVessels = vessels.filter((v) => v.data.status === 'planning');
         class="text-[clamp(1.5rem,2.5vw,2.25rem)] mb-8"
         style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
       >
-        Four names,<br />
-        <em class="font-light" style="color: var(--mint);">four forms of connection</em>
+        Each carries a name,<br />
+        <em class="font-light" style="color: var(--mint);">each follows its own purpose</em>
       </h1>
     </div>
 
@@ -42,7 +42,7 @@ const plannedVessels = vessels.filter((v) => v.data.status === 'planning');
     ></div>
   </section>
 
-  <!-- Planned Vessels -->
+  <!-- Selected Vessels -->
   <section class="py-20 sm:py-32">
     <div class="max-w-[80rem] mx-auto px-6 lg:px-12">
       <div class="mb-16 reveal">
@@ -51,7 +51,7 @@ const plannedVessels = vessels.filter((v) => v.data.status === 'planning');
             class="eyebrow"
             style="color: var(--gold); opacity: 0.7;"
           >
-            In Planning
+            Selected Plans
           </span>
           <div class="flex-1 rule-gold"></div>
         </div>
