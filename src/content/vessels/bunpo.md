@@ -3,11 +3,12 @@ title: "Bunpo"
 kanji: "分蜂"
 romaji: "Bunpo"
 meaning: "The Bees Dividing Their Hive"
-description: "A strong hive divides so life may continue elsewhere. Bunpo carries that image into a careful plan for blood donation, where giving joins a wider community of need."
-seoDescription: "Bunpo is a planned France-first blood donation coordination platform for self-tracking, eligibility reminders, regional need indicators, and privacy-reduced impact updates."
-longDescription: "Bunpo begins as a France-first plan for donors to record their own history and follow clearly provisional eligibility reminders. Legally reusable public data may later show regional need; verified donations, facility inventory, impact updates, and emergency broadcasts depend on approved EFS or authority partnerships. It coordinates information and attention, never clinical eligibility or transfusion decisions, and no real donor data is accepted before its legal, HDS provider, privacy, security, and retention gates are resolved."
+description: "A strong hive divides so life may continue elsewhere. Bunpo carries that image into blood donation, where one gift joins a wider community of need."
+seoDescription: "Bunpo brings France-first blood donation history, eligibility reminders, regional need signals, and privacy-conscious impact updates into one place."
+longDescription: "Bunpo begins with the memory of a single donor and opens outward toward the needs of a region. Deeper connections between verified gifts, facilities, impact updates, and emergency calls grow only through approved EFS or authority partnerships. The vessel coordinates information and attention without making clinical decisions, while real donor data remains behind firm legal, hosting, privacy, security, and retention gates."
+workbench: "Donation history, provisional reminders, regional awareness, and firm privacy boundaries define the work in hand."
+horizon: "The first useful path will let a donor keep a private history and understand when another donation may be possible, without crossing into clinical advice."
 accent: "mint"
-status: "planning"
 techStack: ["Rust", "Axum", "SQLx", "Tokio", "Datastar", "Maud", "PostgreSQL"]
 tags: ["healthcare", "coordination", "donation", "france-first", "rust"]
 links: { github: "https://github.com/Fuyuhane/bunpo" }

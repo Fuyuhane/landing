@@ -1,10 +1,7 @@
 ---
-import '@fontsource-variable/fraunces/index.css';
+import '@fontsource-variable/fraunces/wght.css';
 import '@fontsource-variable/fraunces/wght-italic.css';
-import '@fontsource-variable/hanken-grotesk/index.css';
-import '@fontsource-variable/hanken-grotesk/wght-italic.css';
-import '@fontsource/zen-old-mincho/400.css';
-import '@fontsource/zen-old-mincho/900.css';
+import '@fontsource-variable/hanken-grotesk/wght.css';
 import '@/styles/global.css';
 
 import Nav from '@components/layout/Nav.astro';
@@ -48,7 +45,7 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Fuyuhane, a craft atelier anchored in winter" />
+    <meta property="og:image:alt" content="Fuyuhane hand-drawn ptarmigan and wordmark" />
     <meta property="og:site_name" content="Fuyuhane" />
 
     <!-- Twitter -->
@@ -68,7 +65,12 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
 
     <script is:inline>
       document.documentElement.classList.add('js');
-      var storedTheme = localStorage.getItem('fuyuhane-theme');
+      var storedTheme;
+      try {
+        storedTheme = localStorage.getItem('fuyuhane-theme');
+      } catch (error) {
+        storedTheme = null;
+      }
       var prefersLight =
         window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
 
@@ -76,13 +78,14 @@ const ogImageURL = new URL(ogImage, metadataBase).toString();
         document.documentElement.classList.add('theme-light');
         document
           .querySelector('meta[name="theme-color"]')
-          .setAttribute('content', '#FAFAF8');
+          .setAttribute('content', '#FBFAF6');
       }
     </script>
   </head>
   <body class="min-h-screen flex flex-col">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <Nav />
-    <main class="flex-1">
+    <main id="main-content" class="flex-1" tabindex="-1">
       <slot />
     </main>
     <Footer />

@@ -1,21 +1,23 @@
-# Fuyuhane Landing
+# Fuyuhane landing
 
-The landing page of [fuyuhane.com](https://fuyuhane.com) — a craft atelier anchored in winter.
+The static site for [fuyuhane.com](https://fuyuhane.com), presenting the named software projects of Fuyuhane.
 
 ## Stack
 
-- **Astro 5** with static generation
-- **Tailwind CSS v4**
-- **TypeScript** (strict)
-- **Bun** runtime
+- Astro 7 with static generation
+- Tailwind CSS 4
+- TypeScript in strict mode
+- pnpm
 
 ## Commands
 
 | Command | Action |
 |:--------|:-------|
-| `bun install` | Install dependencies |
-| `bun dev` | Start dev server at `localhost:4321` |
-| `bun check` | Run Astro + TypeScript checks |
-| `bun verify` | Run checks + production build |
-| `bun build` | Build production site to `./dist/` |
-| `bun preview` | Preview build locally |
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Start the development server |
+| `pnpm check` | Run Astro and TypeScript diagnostics |
+| `pnpm verify` | Run diagnostics and build the production site |
+| `pnpm build` | Build the production site in `dist/` |
+| `pnpm preview` | Preview the production build |
+
+The repository uses one package manager. Keep `pnpm-lock.yaml` in sync with `package.json`.

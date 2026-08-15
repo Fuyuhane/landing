@@ -2,222 +2,68 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import lavenderWordmark from '@assets/logos/fuyuhane-03.jpg';
+
+const principles = [
+  {
+    number: '01',
+    title: 'Begin with a boundary',
+    text: 'A vessel finds its shape as much through what it refuses to carry as through what it holds, so restraint belongs at the beginning of the work.',
+  },
+  {
+    number: '02',
+    title: 'Carry the hidden weight',
+    text: "Calm at the surface comes from giving the machinery underneath enough care that its complexity never becomes somebody else's burden.",
+  },
+  {
+    number: '03',
+    title: 'Keep risk near the first sketch',
+    text: 'Privacy, safety, failure, and ownership enter the work early, while there is still room for them to shape the whole.',
+  },
+  {
+    number: '04',
+    title: 'Let the work answer',
+    text: 'A name gives direction, but use, testing, and the resistance of the real world teach each vessel what it must become.',
+  },
+];
 ---
 
 <BaseLayout
-  title="Philosophy"
-  description="The design philosophy of Fuyuhane: clear surfaces, deliberate boundaries, patient engineering, and care for what remains unseen."
+  title="Working Principles"
+  description="The Fuyuhane philosophy brings patience, restraint, clear boundaries, and care for unseen work into every vessel."
 >
-  <!-- Hero -->
-  <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-    <!-- Atmospheric gradient -->
-    <div class="bg-atmosphere"></div>
-
-    <!-- Large kanji -->
-    <div
-       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[clamp(11rem,38vw,30rem)] leading-none opacity-[0.02]"
-    >
-      道
-    </div>
-
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <h1
-        class="text-[clamp(1.5rem,2.5vw,2.25rem)]"
-        style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
-      >
-        Quiet at the surface,<br />
-        <em class="font-light" style="color: var(--lavender);">rigorous underneath</em>
-      </h1>
-    </div>
-
-    <!-- Bottom fade -->
-    <div
-      class="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
-      style="background: linear-gradient(transparent, var(--charcoal));"
-    ></div>
-  </section>
-
-  <!-- The Craft -->
-  <section class="py-28 sm:py-40">
-    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-      <div class="grid grid-cols-1 sm:grid-cols-12 gap-12 xl:gap-24">
-        <div class="sm:col-span-3 reveal">
-          <span
-            class="eyebrow block mb-5"
-            style="color: var(--gold); opacity: 0.7;"
-          >
-            The Craft
-          </span>
-          <div class="w-12 h-px" style="background: linear-gradient(90deg, var(--lavender), transparent); opacity: 0.3;"></div>
-        </div>
-
-        <div class="sm:col-span-9 space-y-10">
-          <p
-            class="text-[clamp(1.5rem,2.5vw,1.875rem)] leading-[1.3] reveal"
-            style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.02em;"
-          >
-            We tend software as a winter garden: with patience, restraint,
-            and care for the life hidden below the frost.
-          </p>
-
-          <div class="space-y-6 reveal reveal-delay-1">
-            <p
-              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
-              style="color: var(--silver);"
-            >
-              Complexity belongs in the roots. What reaches the hand should feel
-              clear in form, calm in motion, and honest about what it can do.
-            </p>
-            <p
-              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
-              style="color: var(--silver);"
-            >
-              The <strong class="font-normal" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> seal
-              is a commitment, not a claim of perfection. It asks us to give unseen
-              work the same attention as the surface, and to never call haste a virtue.
-            </p>
-          </div>
-        </div>
+  <header class="bg-[var(--surface-quiet)] py-20 sm:py-28">
+    <div class="content-shell grid gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
+      <div>
+        <p class="eyebrow mb-4">Working principles</p>
+        <h1 class="page-title max-w-4xl">Quiet at the surface, rigorous underneath.</h1>
+        <p class="lede mt-7">
+          We make software as we would tend a winter garden, with patience, restraint, and care for what remains unseen.
+        </p>
       </div>
+      <Image src={lavenderWordmark} alt="Hand-drawn Fuyuhane wordmark on lavender" width={400} height={400} class="mx-auto w-full max-w-xs rounded-xl" />
     </div>
-  </section>
+  </header>
 
-  <!-- Rule -->
-  <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-    <div class="rule-lavender"></div>
-  </div>
+  <section class="py-20 sm:py-28" aria-labelledby="principle-list-heading">
+    <div class="reading-shell">
+      <h2 id="principle-list-heading" class="sr-only">Four working principles</h2>
+      <ol class="space-y-5">
+        {principles.map((principle) => (
+          <li class="reveal rounded-xl bg-[var(--surface-bg)] p-7 sm:p-9">
+            <article class="grid gap-5 sm:grid-cols-[3rem_1fr]">
+              <p class="meta-label pt-1">{principle.number}</p>
+              <div>
+                <h3 class="card-title">{principle.title}</h3>
+                <p class="body-copy mt-4 text-[1.0625rem]">{principle.text}</p>
+              </div>
+            </article>
+          </li>
+        ))}
+      </ol>
 
-  <!-- The Restraint -->
-  <section class="py-28 sm:py-40">
-    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-      <div class="grid grid-cols-1 sm:grid-cols-12 gap-12 xl:gap-24">
-        <div class="sm:col-span-3 reveal">
-          <span
-            class="eyebrow block mb-5"
-            style="color: var(--gold); opacity: 0.7;"
-          >
-            The Restraint
-          </span>
-          <div class="w-12 h-px" style="background: linear-gradient(90deg, var(--mint), transparent); opacity: 0.3;"></div>
-        </div>
-
-        <div class="sm:col-span-9 space-y-10">
-          <p
-            class="text-[clamp(1.5rem,2.5vw,1.875rem)] leading-[1.3] reveal"
-            style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.02em;"
-          >
-            Restraint begins with deciding what a vessel will not carry.
-            A clear boundary is not an absence; it is part of the shape.
-          </p>
-
-          <div class="space-y-6 reveal reveal-delay-1">
-            <p
-              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
-              style="color: var(--silver);"
-            >
-              We choose the smallest honest scope, name the risks before the features,
-              and keep privacy, safety, and failure close to the first sketch. A calm
-              interface matters little if the machinery beneath it cannot be trusted.
-            </p>
-            <p
-              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
-              style="color: var(--silver);"
-            >
-              Plans may gather together, but attention remains finite. We let each work
-              declare its purpose and limits before asking it to become real.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Rule -->
-  <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-    <div class="rule-gold"></div>
-  </div>
-
-  <!-- The Promise -->
-  <section class="py-28 sm:py-40">
-    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-      <div class="grid grid-cols-1 sm:grid-cols-12 gap-12 xl:gap-24">
-        <div class="sm:col-span-3 reveal">
-          <span
-            class="eyebrow block mb-5"
-            style="color: var(--gold); opacity: 0.7;"
-          >
-            The Promise
-          </span>
-          <div class="w-12 h-px" style="background: linear-gradient(90deg, var(--lavender), transparent); opacity: 0.3;"></div>
-        </div>
-
-        <div class="sm:col-span-9 reveal">
-          <p
-            class="text-[clamp(1.5rem,2.5vw,1.875rem)] leading-[1.3]"
-            style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.02em;"
-          >
-            We believe in quiet design,
-            in precision without spectacle,
-            in beauty that does not ask to be noticed.
-          </p>
-          <p
-            class="mt-10 text-[clamp(1.5rem,2.5vw,1.875rem)] leading-[1.3]"
-            style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.02em;"
-          >
-            Software should speak clearly,
-            move calmly,
-            and remain useful after novelty fades.
-            <em class="font-light" style="color: var(--lavender);">Beauty may bloom in cold air; it should never hide the roots that hold it.</em>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Lavender wordmark -->
-  <section class="relative py-24 overflow-hidden">
-    <div class="max-w-sm mx-auto px-6 reveal">
-      <Image
-        src={lavenderWordmark}
-        alt=""
-        width={400}
-        height={400}
-        class="w-full rounded-xl opacity-50 hover:opacity-70 transition-opacity duration-1000"
-        aria-hidden="true"
-      />
-    </div>
-  </section>
-
-  <!-- Closing -->
-  <section class="relative py-32 sm:py-48 text-center overflow-hidden">
-    <div
-       class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 kanji-architectural text-[clamp(7rem,26vw,18rem)] leading-none opacity-[0.012]"
-    >
-      永
-    </div>
-
-    <div class="relative z-10 max-w-2xl mx-auto px-6 reveal">
-      <div class="w-8 h-px mx-auto mb-10" style="background: var(--gold); opacity: 0.3;"></div>
-
-      <p
-        class="text-[clamp(1.875rem,5vw,3.75rem)] leading-[1.1]"
-        style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
-      >
-        The garden is eternal.<br />
-        The vessels are mortal.<br />
-        <em class="font-light" style="color: var(--lavender);">We craft accordingly.</em>
-      </p>
-
-      <div class="mt-14 flex items-center justify-center gap-3">
-        <div class="w-6 h-px" style="background: var(--gold); opacity: 0.2;"></div>
-        <div
-          class="kanji-watermark text-3xl"
-          style="color: var(--lavender); opacity: 0.2;"
-        >
-          冬羽
-        </div>
-        <div class="w-6 h-px" style="background: var(--gold); opacity: 0.2;"></div>
-      </div>
+      <blockquote class="mt-14 bg-[var(--surface-quiet)] p-8 sm:p-12">
+        <p class="section-title">Beauty may bloom in cold air, but it should never hide the roots that hold it.</p>
+      </blockquote>
     </div>
   </section>
 </BaseLayout>

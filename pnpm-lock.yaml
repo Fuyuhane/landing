@@ -14,15 +14,15 @@ importers:
       '@fontsource-variable/hanken-grotesk':
         specifier: ^5.2.8
         version: 5.3.0
-      '@fontsource/zen-old-mincho':
-        specifier: ^5.2.8
-        version: 5.3.0
       '@tailwindcss/vite':
         specifier: ^4.3.1
         version: 4.3.3(vite@8.1.5(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
       astro:
-        specifier: ^7.0.2
+        specifier: 7.1.6
         version: 7.1.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(jiti@2.7.0)(yaml@2.9.0)
+      neotraverse:
+        specifier: 1.0.1
+        version: 1.0.1
       tailwindcss:
         specifier: ^4.3.1
         version: 4.3.3
@@ -34,7 +34,7 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
       vite:
-        specifier: ^8.1.0
+        specifier: 8.1.5
         version: 8.1.5(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
 
 packages:
@@ -414,9 +414,6 @@ packages:
 
   '@fontsource-variable/hanken-grotesk@5.3.0':
     resolution: {integrity: sha512-DOd0FqL+3cH2dfNy0JtSq9tUfxBz5mLmHMjTU0DOr3E9Zo6wxuatCl53DIPNrSPgCsnuKyM739BTIG5glCLirw==}
-
-  '@fontsource/zen-old-mincho@5.3.0':
-    resolution: {integrity: sha512-pNvegTkx6rOQRaBMcUoxxeNoIRJajdY0TeX4ngf/26KrtsVoqY11ho6WlwPWDYHi7PY65vf88TV2xjIO+YxQ8Q==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -2263,8 +2260,6 @@ snapshots:
   '@fontsource-variable/fraunces@5.3.0': {}
 
   '@fontsource-variable/hanken-grotesk@5.3.0': {}
-
-  '@fontsource/zen-old-mincho@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true

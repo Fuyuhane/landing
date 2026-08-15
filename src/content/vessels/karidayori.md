@@ -4,10 +4,11 @@ kanji: "雁便り"
 romaji: "Karidayori"
 meaning: "Tidings Borne by Geese"
 description: "Migrating geese once carried the thought of letters crossing a distant sky. Karidayori gives that journey a mailbox, where unfamiliar names may slowly become familiar."
-seoDescription: "Karidayori is a planned worldwide penpal platform for moderated, text-only letters, with server-side age-tier safety, data minimization, and country-based discovery."
-longDescription: "Karidayori is planned as a worldwide penpal platform for text-only letters, available wherever law and infrastructure allow. People browse a country directory, choose a thoughtful profile, send a letter, and reply through a mailbox built around server-side age tiers, moderation, auditability, and data minimization. A Go modular monolith with templ and HTMX keeps the exchange direct and accessible."
+seoDescription: "Karidayori carries text-only letters between penpals through country-based discovery, server-side age safeguards, moderation, and careful data boundaries."
+longDescription: "Karidayori gives distant letters a quiet modern home. A person wanders beyond a familiar horizon, meets an unfamiliar name, and sends a few considered words into the waiting mailbox. The exchange stays direct and accessible while careful boundaries stand around younger writers, private correspondence, and the small amount of data a letter truly needs."
+workbench: "The country directory and mailbox are taking shape around age boundaries, moderation, and deliberate data restraint."
+horizon: "The first exchange will carry a text-only letter from a country profile into another person's mailbox, with every age rule held on the server."
 accent: "lavender"
-status: "planning"
 techStack: ["Go", "chi", "HTMX", "templ", "sqlc", "pgx", "Goose", "PostgreSQL"]
 tags: ["penpals", "directory", "safety", "global", "go"]
 links: { github: "https://github.com/Fuyuhane/karidayori" }

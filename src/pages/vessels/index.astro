@@ -3,144 +3,60 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { accentVars } from '@/lib/accents';
 
-const vessels = (await getCollection('vessels'))
-  .sort((a, b) => a.data.order - b.data.order);
-
-const plannedVessels = vessels.filter((v) => v.data.status === 'planning');
+const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
-  title="Vessels"
-  description="Explore a selection of Fuyuhane's planned software projects for maritime communication, typing competition, penpal letters, and blood donation coordination."
+  title="Projects"
+  description="Meet the vessels of Fuyuhane, each named for the purpose and movement carried within it."
 >
-  <!-- Hero -->
-  <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-    <!-- Atmospheric gradient -->
-    <div class="bg-atmosphere"></div>
-
-    <!-- Kanji -->
-    <div
-       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[clamp(11rem,38vw,30rem)] leading-none opacity-[0.02]"
-    >
-      器
+  <header class="relative overflow-hidden bg-[var(--surface-quiet)] py-20 sm:py-28">
+    <div class="absolute right-[6vw] top-1/2 -translate-y-1/2 text-kanji text-[clamp(8rem,24vw,18rem)] leading-none text-[var(--paper)] opacity-[0.035]" lang="ja" aria-hidden="true">器</div>
+    <div class="content-shell relative">
+      <p class="eyebrow mb-4">The vessels</p>
+      <h1 class="page-title max-w-4xl">Each carries a name, and each follows its own purpose.</h1>
+      <p class="lede mt-7">
+        These works share one table, yet each moves by a different rhythm, carrying messages, races, gifts, guarded containers, and remembered work beneath the same winter wings.
+      </p>
     </div>
+  </header>
 
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <h1
-        class="text-[clamp(1.5rem,2.5vw,2.25rem)] mb-8"
-        style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
-      >
-        Each carries a name,<br />
-        <em class="font-light" style="color: var(--mint);">each follows its own purpose</em>
-      </h1>
-    </div>
-
-    <!-- Bottom fade -->
-    <div
-      class="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
-      style="background: linear-gradient(transparent, var(--charcoal));"
-    ></div>
-  </section>
-
-  <!-- Selected Vessels -->
-  <section class="py-20 sm:py-32">
-    <div class="max-w-[80rem] mx-auto px-6 lg:px-12">
-      <div class="mb-16 reveal">
-        <div class="flex items-center gap-4 mb-2">
-          <span
-            class="eyebrow"
-            style="color: var(--gold); opacity: 0.7;"
-          >
-            Selected Plans
-          </span>
-          <div class="flex-1 rule-gold"></div>
-        </div>
-      </div>
-
-      <div class="space-y-4">
-        {plannedVessels.map((vessel, i) => {
-          const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
+  <section class="py-20 sm:py-28" aria-labelledby="project-list-heading">
+    <div class="content-shell">
+      <h2 id="project-list-heading" class="sr-only">Fuyuhane projects</h2>
+      <ol class="space-y-6">
+        {vessels.map((vessel, index) => {
+          const { deep: accentDeep } = accentVars(vessel.data.accent);
           return (
-          <a
-            href={`/vessels/${vessel.id}`}
-            class={`group block reveal reveal-delay-${i + 1}`}
-          >
-            <article
-              class="relative p-8 sm:p-12 rounded-xl border transition-all duration-700 overflow-hidden surface-card surface-card-hover"
-            >
-              <!-- Decorative kanji -->
-              <div
-                class="absolute right-0 bottom-4 kanji-architectural vessel-card-watermark text-[clamp(2.5rem,10vw,6rem)] leading-none transition-opacity duration-700 whitespace-nowrap"
-              >
-                {vessel.data.kanji}
-              </div>
+            <li class="reveal">
+              <article class="rounded-xl bg-[var(--surface-bg)] p-6 sm:p-9">
+                <div class="grid gap-8 lg:grid-cols-[3.5rem_1fr_1.2fr]">
+                  <p class="meta-label pt-1">0{index + 1}</p>
 
-              <div class="relative z-10 grid grid-cols-1 xl:grid-cols-12 gap-5 xl:gap-8 items-start">
-                <!-- Kanji + Name -->
-                <div class="xl:col-span-5 flex items-center gap-4 min-w-0">
-                  <span
-                    class="text-[clamp(1.75rem,2.2vw,2.25rem)] shrink-0 text-kanji font-normal"
-                    style="color: var(--paper); opacity: 0.8;"
-                  >
-                    {vessel.data.kanji}
-                  </span>
-                  <div class="flex-1 min-w-0">
-                    <h2
-                      class="text-[clamp(1.125rem,1.4vw,1.375rem)] font-light"
-                      style="font-family: var(--font-display); color: var(--paper);"
-                    >
-                      {vessel.data.title}
-                    </h2>
-                    <span
-                      class="text-[10px] tracking-[0.2em] uppercase font-normal"
-                      style={`color: ${accentDeep};`}
-                    >
-                      {vessel.data.meaning}
-                    </span>
+                  <div class="flex items-start gap-4 lg:self-center">
+                    <span class="text-kanji text-4xl text-[var(--paper)]" lang="ja">{vessel.data.kanji}</span>
+                    <div>
+                      <h3 class="card-title">{vessel.data.title}</h3>
+                      <p class="mt-1 text-sm font-semibold" style={`color: ${accentDeep};`}>{vessel.data.meaning}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p class="body-copy">{vessel.data.description}</p>
+                    <dl class="mt-6">
+                      <div>
+                        <dt class="meta-label mb-2">At the workbench</dt>
+                        <dd class="text-[0.9375rem] leading-7 text-[var(--silver)]">{vessel.data.workbench}</dd>
+                      </div>
+                    </dl>
+                    <a class="button-primary mt-7" href={`/vessels/${vessel.id}`}>Enter the vessel <span aria-hidden="true">→</span></a>
                   </div>
                 </div>
-
-                <!-- Description -->
-                <div class="xl:col-span-5">
-                  <p
-                    class="text-sm leading-[1.8] font-light"
-                    style="color: var(--silver);"
-                  >
-                    {vessel.data.description}
-                  </p>
-                  <span
-                    class="inline-block mt-4 text-[9px] tracking-[0.18em] uppercase font-normal"
-                    style={`color: ${accentDeep};`}
-                  >
-                    {vessel.data.status}
-                  </span>
-                  <div class="flex flex-wrap gap-1.5 mt-4">
-                    {vessel.data.techStack.map((tech: string) => (
-                      <span
-                        class="px-2.5 py-0.5 rounded text-[9px] tracking-[0.1em] uppercase font-normal"
-                        style="background: var(--surface-tag-bg); color: var(--mist); border: 1px solid var(--surface-tag-border);"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <!-- Arrow -->
-                <div class="xl:col-span-2 flex items-center justify-start xl:justify-end gap-4">
-                  <span
-                    class="text-xl transition-all duration-500 group-hover:translate-x-2 opacity-30 group-hover:opacity-80"
-                    style={`color: ${accentColor};`}
-                  >
-                    &rarr;
-                  </span>
-                </div>
-              </div>
-            </article>
-          </a>
+              </article>
+            </li>
           );
         })}
-      </div>
+      </ol>
     </div>
   </section>
 </BaseLayout>

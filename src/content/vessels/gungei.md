@@ -4,14 +4,15 @@ kanji: "群鯨"
 romaji: "Gungei"
 meaning: "The Whale Pod"
 description: "A whale pod shares awareness across cold and uncertain water. Gungei follows that formation, with each vessel listening, remembering, and relaying for the others."
-seoDescription: "Gungei is a planned Zig ship-to-ship mesh network, beginning with a local simulation of discovery, gossip routing, distress propagation, persistence, and observability."
-longDescription: "Gungei begins with a committed portfolio demo: a local Zig mesh simulation with a terminal interface, observable gossip, distress propagation, persistent event logs, and chaos drills. The wider ship-to-ship system remains aspirational. LoRa coordination, a Ground Station, hardware sales, cloud services, and a Raylib tactical display proceed only after demand, field evidence, and radio, privacy, security, and certification gates are met."
+seoDescription: "Gungei explores ship-to-ship mesh networking in Zig through discovery, gossip routing, distress propagation, persistence, and observability."
+longDescription: "Gungei begins close to shore, in a small simulated sea where messages may appear, vanish, and find another way through. The mesh can be watched under calm and chaos alike before the work reaches toward LoRa coordination, a Ground Station, and hardware shaped by field evidence, radio constraints, privacy, security, and certification."
+workbench: "The first Zig nodes bring discovery, gossip, distress traffic, and persistent event logs into the same moving current."
+horizon: "A terminal observer will make the life of the mesh visible as messages travel, vanish, and find another path."
 accent: "mint"
-status: "planning"
 techStack: ["Zig", "Raylib", "SQLite", "libvaxis", "LoRa", "PostgreSQL", "SvelteKit"]
 tags: ["distributed-systems", "p2p", "mesh-networking", "maritime", "zig"]
 links: { github: "https://github.com/Fuyuhane/gungei" }
-order: 1
+order: 2
 ---
 ## The Vessel
 
@@ -36,4 +37,4 @@ Whales move in loose formation, aware of one another across distances no single 
 | Event sourcing | SQLite append-only event log; Ground Station PostgreSQL optional |
 | Convoy coordination | Custom Raft consensus, scoped to Ground Station and convoy clusters, never the open mesh |
 | Observer surfaces | libvaxis TUI, WebSocket observer protocol, SvelteKit topology view |
-| Aspirational field path | LoRa coordination radio, Raspberry Pi adapters, Raylib tactical display, and CE/Giteki gates |
+| Field path | LoRa coordination radio, Raspberry Pi adapters, Raylib tactical display, and CE/Giteki gates |

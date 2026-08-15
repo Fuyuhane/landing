@@ -5,248 +5,127 @@ import { accentVars } from '@/lib/accents';
 
 export async function getStaticPaths() {
   const vessels = await getCollection('vessels');
-  return vessels.map((vessel) => ({
-    params: { slug: vessel.id },
-    props: { vessel },
-  }));
+  return vessels.map((vessel) => ({ params: { slug: vessel.id }, props: { vessel } }));
 }
 
 const { vessel } = Astro.props;
 const { Content } = await render(vessel);
-
-const { color: accentVar, deep: accentDeep } = accentVars(vessel.data.accent);
+const { deep: accentDeep } = accentVars(vessel.data.accent);
 ---
 
-<BaseLayout
-  title={`${vessel.data.title} (${vessel.data.kanji})`}
-  description={vessel.data.seoDescription}
->
-  <!-- Hero -->
-  <section class="relative py-32 sm:py-44 overflow-hidden">
-    <div class="bg-atmosphere"></div>
-
-    <!-- Large kanji -->
-    <div
-       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[clamp(11rem,38vw,30rem)] leading-none opacity-[0.02]"
-    >
-      {vessel.data.kanji}
-    </div>
-
-    <div class="relative z-10 max-w-[70rem] mx-auto px-6 lg:px-12">
-      <!-- Back link -->
-      <a
-        href="/vessels"
-        class="group inline-flex items-center gap-3 mb-16 transition-all duration-300"
-      >
-        <span
-          class="inline-block transition-transform duration-300 group-hover:-translate-x-1 text-sm"
-          style={`color: ${accentVar}; opacity: 0.6;`}
-        >
-          &larr;
-        </span>
-        <span
-          class="text-[10px] tracking-[0.2em] uppercase font-normal transition-colors duration-300"
-          style="color: var(--mist);"
-        >
-          Vessel index
-        </span>
+<BaseLayout title={`${vessel.data.title} (${vessel.data.kanji})`} description={vessel.data.seoDescription}>
+  <header class="relative overflow-hidden bg-[var(--surface-quiet)] py-16 sm:py-24">
+    <div class="reading-shell relative">
+      <a href="/vessels" class="text-link inline-flex min-h-11 items-center gap-2 text-sm">
+        <span aria-hidden="true">←</span> Project index
       </a>
 
-      <div class="flex flex-col sm:flex-row items-start gap-10">
-        <!-- Kanji -->
-        <span
-          class="text-[clamp(4.5rem,8vw,8rem)] shrink-0"
-          style={`font-family: var(--font-kanji); font-weight: 400; color: var(--paper); opacity: 0.9; animation: fadeIn 1s var(--ease-out-expo) both;`}
-        >
-          {vessel.data.kanji}
-        </span>
+      <div class="mt-10 grid gap-8 sm:grid-cols-[auto_1fr] sm:items-start">
+        <span class="text-kanji text-[clamp(4.5rem,9vw,7.5rem)] leading-none text-[var(--paper)]" lang="ja" aria-hidden="true">{vessel.data.kanji}</span>
+        <div>
+          <div class="mb-4 flex flex-wrap items-center gap-3">
+            <span class="meta-label" style={`color: ${accentDeep};`}>{vessel.data.meaning}</span>
+          </div>
+          <h1 class="page-title">{vessel.data.title}</h1>
+          <p class="lede mt-6">{vessel.data.seoDescription}</p>
 
-        <!-- Info -->
-        <div style="animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;">
-          <h1
-            class="text-[clamp(2.25rem,5vw,4.5rem)] mb-3"
-            style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em;"
-          >
-            {vessel.data.title}
-          </h1>
-          <p
-            class="text-[11px] tracking-[0.2em] uppercase mb-8 font-normal"
-            style={`color: ${accentDeep};`}
-          >
-            {vessel.data.romaji} &middot; {vessel.data.meaning} &middot; {vessel.data.status}
-          </p>
-          <p
-            class="text-[clamp(1.125rem,1.5vw,1.25rem)] leading-[1.6] max-w-xl font-light"
-            style="font-family: var(--font-display); color: var(--silver);"
-          >
-            {vessel.data.description}
-          </p>
-
-          <!-- Links -->
-          <div class="flex flex-wrap items-center gap-4 mt-10">
+          <div class="mt-8 flex flex-wrap gap-3">
             {vessel.data.links.github && (
-              <a
-                href={vessel.data.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase border transition-all duration-300 font-normal"
-                style="border-color: var(--surface-border-hover); color: var(--cloud);"
-              >
-                GitHub
+              <a class="button-primary" href={vessel.data.links.github} target="_blank" rel="noopener noreferrer">
+                Visit the repository <span aria-hidden="true">↗</span>
               </a>
             )}
-
             {vessel.data.links.live && (
-              <a
-                href={vessel.data.links.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-1.5 rounded text-[10px] tracking-[0.15em] uppercase transition-all duration-300 font-normal"
-                style={`background: ${accentVar}; color: var(--void);`}
-              >
-                Visit
+              <a class="button-secondary" href={vessel.data.links.live} target="_blank" rel="noopener noreferrer">
+                Open the project <span aria-hidden="true">↗</span>
               </a>
             )}
           </div>
         </div>
       </div>
     </div>
+  </header>
 
-    <!-- Bottom fade -->
-    <div
-      class="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none"
-      style="background: linear-gradient(transparent, var(--charcoal));"
-    ></div>
-  </section>
+  <section class="py-20 sm:py-28" aria-label="Project details">
+    <div class="reading-shell grid gap-14 lg:grid-cols-[1fr_18rem] lg:items-start">
+      <article class="min-w-0">
+        <section aria-labelledby="workbench-heading">
+          <p class="eyebrow mb-3">At the workbench</p>
+          <h2 id="workbench-heading" class="section-title">This is where the vessel takes shape.</h2>
+          <p class="body-copy mt-6 text-[1.0625rem]">{vessel.data.longDescription}</p>
+        </section>
 
-  <!-- Content -->
-  <section class="py-20 sm:py-28">
-    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-      <!-- Extended description -->
-      <div class="reveal mb-20">
-        <p
-          class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light max-w-3xl"
-          style="color: var(--silver);"
-        >
-          {vessel.data.longDescription}
-        </p>
-      </div>
-
-      <!-- Tech stack -->
-      <div class="reveal reveal-delay-1 mb-20">
-        <div class="flex items-center gap-4 mb-8">
-          <h3
-            class="eyebrow"
-            style={`color: ${accentDeep};`}
-          >
-            Technology
-          </h3>
-          <div class="flex-1 h-px" style={`background: linear-gradient(90deg, ${accentVar}, transparent); opacity: 0.15;`}></div>
+        <div class="prose-vessel mt-16">
+          <Content />
         </div>
-        <div class="flex flex-wrap gap-2">
-          {vessel.data.techStack.map((tech: string) => (
-            <span
-              class="px-4 py-2 rounded text-sm border transition-all duration-300 font-light"
-              style="border-color: var(--surface-border); color: var(--cloud);"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
+      </article>
 
-      <!-- Rule -->
-      <div class="rule-gold mb-20"></div>
+      <aside class="rounded-xl bg-[var(--surface-bg)] p-6 lg:sticky lg:top-24" aria-label="Project direction and technology">
+        <section>
+          <h2 class="meta-label mb-3 tracking-[0.15em]">In hand</h2>
+          <p class="text-[0.9375rem] leading-7 text-[var(--silver)]">{vessel.data.workbench}</p>
+        </section>
 
-      <!-- Markdown content -->
-      <div class="reveal reveal-delay-2 prose-vessel">
-        <Content />
-      </div>
+        <section class="mt-7">
+          <h2 class="meta-label mb-3 tracking-[0.15em]">On the horizon</h2>
+          <p class="text-[0.9375rem] leading-7 text-[var(--silver)]">{vessel.data.horizon}</p>
+        </section>
+
+        <section class="mt-7">
+          <h2 class="meta-label mb-3 tracking-[0.15em]">Technical direction</h2>
+          <ul class="space-y-2">
+            {vessel.data.techStack.map((tech: string) => (
+              <li class="text-sm text-[var(--silver)]">{tech}</li>
+            ))}
+          </ul>
+        </section>
+      </aside>
     </div>
   </section>
 
-  <!-- Back to vessels -->
-  <section class="py-20 text-center">
-    <a
-      href="/vessels"
-      class="group inline-flex items-center gap-4 transition-all duration-300"
-    >
-      <span
-        class="inline-block transition-transform duration-300 group-hover:-translate-x-1.5 text-sm"
-        style={`color: ${accentVar}; opacity: 0.6;`}
-      >
-        &larr;
-      </span>
-      <span
-        class="text-[11px] tracking-[0.25em] uppercase font-normal transition-colors duration-300"
-        style="color: var(--mist);"
-      >
-        Back to vessels
-      </span>
-    </a>
+  <section class="bg-[var(--surface-quiet)] py-16 text-center">
+    <div class="reading-shell">
+      <p class="text-base text-[var(--silver)]">A vessel finds its shape through use, resistance, and the hands that keep returning to the work.</p>
+      <a href="/vessels" class="text-link mt-5 inline-block">Return to the vessels</a>
+    </div>
   </section>
 </BaseLayout>
 
 <style is:global>
+  .prose-vessel {
+    color: var(--silver);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
   .prose-vessel h2 {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    margin-top: 3.5rem;
-    margin-bottom: 1.2rem;
-    color: var(--paper);
-    letter-spacing: -0.02em;
+    margin: 3.5rem 0 1rem;
+    font-size: clamp(1.9rem, 3vw, 2.5rem);
   }
 
   .prose-vessel h3 {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    margin-top: 2.5rem;
-    margin-bottom: 0.75rem;
-    color: var(--paper);
-    letter-spacing: -0.01em;
+    margin: 2.5rem 0 0.8rem;
+    font-size: 1.5rem;
   }
 
-  .prose-vessel p {
-    font-family: var(--font-body);
-    color: var(--silver);
-    line-height: 1.9;
+  .prose-vessel p,
+  .prose-vessel ul {
     margin-bottom: 1.25rem;
-    font-weight: 300;
   }
 
   .prose-vessel ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1.5rem;
+    padding-left: 1.35rem;
+    list-style: disc;
   }
 
   .prose-vessel li {
-    font-family: var(--font-body);
-    color: var(--silver);
-    padding-left: 1.5rem;
-    position: relative;
-    margin-bottom: 0.5rem;
-    line-height: 1.8;
-    font-weight: 300;
-  }
-
-  .prose-vessel li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.75em;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.5;
+    margin-bottom: 0.55rem;
+    padding-left: 0.25rem;
   }
 
   .prose-vessel strong {
-    font-weight: 500;
     color: var(--paper);
+    font-weight: 700;
   }
 
   .prose-vessel em {
@@ -254,28 +133,49 @@ const { color: accentVar, deep: accentDeep } = accentVars(vessel.data.accent);
   }
 
   .prose-vessel table {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    margin: 1.75rem 0;
+    overflow-x: auto;
     border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-family: var(--font-body);
-    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .prose-vessel th,
+  .prose-vessel td {
+    padding: 0.85rem 1rem;
+    text-align: left;
   }
 
   .prose-vessel th {
-    text-align: left;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--surface-border-hover);
+    background: var(--surface-bg);
     color: var(--paper);
-    font-weight: 400;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
   }
 
   .prose-vessel td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--surface-border);
+    background: var(--surface-quiet);
     color: var(--silver);
-    font-weight: 300;
+    white-space: normal;
+  }
+
+  .prose-vessel tr + tr td {
+    box-shadow: inset 0 1px color-mix(in srgb, var(--paper) 9%, transparent);
+  }
+
+  @media (max-width: 640px) {
+    .prose-vessel table {
+      font-size: 0.9375rem;
+    }
+
+    .prose-vessel th,
+    .prose-vessel td {
+      min-width: 10rem;
+      padding: 0.75rem;
+    }
   }
 </style>

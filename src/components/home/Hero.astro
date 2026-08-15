@@ -4,183 +4,64 @@ import Snowfall from '@components/effects/Snowfall.astro';
 import heroLogo from '@assets/logos/fuyuhane-logo-black-01.png';
 ---
 
-<section class="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
-  <!-- Base atmospheric gradient: void to charcoal -->
-  <div class="bg-atmosphere z-0"></div>
-
-  <!-- Architectural kanji; massive structural element -->
-  <div
-     class="hero-kanji absolute top-1/2 left-1/2 kanji-architectural inline-flex items-center gap-[0.08em] text-[clamp(8rem,22vw,20rem)] leading-none select-none pointer-events-none z-0"
-    aria-hidden="true"
-    data-hero-kanji
-  >
-    <span>冬</span><span>羽</span>
-  </div>
-
-  <!-- Atmospheric particles -->
+<section class="home-hero relative overflow-hidden">
+  <div class="bg-atmosphere" aria-hidden="true"></div>
   <Snowfall />
 
-  <!-- Main content -->
-  <div class="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto">
-    <!-- Logo -->
-    <div class="mb-10 hero-fade">
+  <div class="content-shell relative z-10 grid items-center gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
+    <div class="max-w-3xl">
+      <p class="mb-6 flex items-baseline gap-2 whitespace-nowrap text-xs font-semibold tracking-[0.02em] text-[var(--mist)] sm:gap-3 sm:text-sm sm:tracking-[0.04em]">
+        <span class="text-[var(--mint-deep)]"><span lang="ja">冬羽</span> · Fuyuhane</span>
+        <span>Independent software atelier</span>
+      </p>
+
+      <h1 class="display-title">
+        A craft atelier <span class="inline-block whitespace-nowrap">anchored in winter.</span>
+      </h1>
+
+      <p class="mt-7 lede">
+        We shape named systems for connection, spirited play, shared care,
+        and the quiet machinery that carries other work safely forward.
+      </p>
+
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="button-primary" href="#projects">Explore the projects <span aria-hidden="true">↓</span></a>
+        <a class="button-secondary" href="https://github.com/Fuyuhane" target="_blank" rel="noopener noreferrer">
+          View GitHub <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="hero-mark mx-auto w-full max-w-md px-6" aria-label="Fuyuhane, anchored in winter">
       <Image
         src={heroLogo}
-        alt="Fuyuhane"
+        alt="Fuyuhane hand-drawn ptarmigan and wordmark"
         width={440}
         height={220}
         loading="eager"
         fetchpriority="high"
-        class="w-[220px] h-auto"
+        class="h-auto w-full"
         style="filter: var(--brand-logo-filter); opacity: var(--hero-logo-opacity);"
       />
     </div>
-
-    <!-- Gold accent line -->
-    <div class="w-12 h-px mb-8 hero-fade-up" style="background: var(--gold); opacity: 0.4;"></div>
-
-    <!-- Tagline -->
-    <div class="space-y-6 hero-fade-up">
-      <p
-        class="text-[clamp(0.6875rem,1vw,0.75rem)] tracking-[0.4em] uppercase text-body font-normal"
-        style="color: var(--gold);"
-      >
-        冬羽 &middot; Fuyuhane
-      </p>
-
-      <h1
-        class="text-[clamp(1.75rem,2.5vw,2.25rem)]"
-        style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; line-height: 1.05;"
-      >
-        A craft atelier<br />
-        <em class="font-light" style="color: var(--mint);">anchored in winter</em>
-      </h1>
-
-      <p
-        class="max-w-md mx-auto text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
-        style="color: var(--silver);"
-      >
-        An independent software atelier shaping named systems for connection,
-        play, care, and resilient communication.
-      </p>
-    </div>
-
-    <!-- Scroll indicator: a winter feather (冬羽) drifting down -->
-    <div class="mt-20 flex flex-col items-center gap-4 hero-fade-delayed">
-      <span
-        class="text-[9px] tracking-[0.4em] uppercase font-normal"
-        style="color: var(--smoke);"
-      >
-        Scroll
-      </span>
-      <div class="scroll-feather relative w-10 h-16" aria-hidden="true">
-        <svg
-          class="feather-glyph absolute left-1/2 top-0"
-          width="16"
-          height="37"
-          viewBox="0 0 28 64"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M14 4 C 13.4 24, 13.3 42, 14 51 L 13.5 61" />
-          <path d="M14 5 C 6.5 15, 5.5 33, 9.5 47" />
-          <path d="M14 5 C 21.5 15, 22.5 33, 18.5 47" />
-        </svg>
-      </div>
-    </div>
   </div>
-
-  <!-- Bottom fade into charcoal -->
-  <div
-    class="absolute bottom-0 left-0 right-0 h-40 z-10 pointer-events-none"
-    style="background: linear-gradient(transparent, var(--charcoal));"
-  ></div>
 </section>
 
 <style>
-  .hero-fade {
-    animation: fadeIn 2.5s var(--ease-out-expo) forwards;
+  .home-hero {
+    min-height: min(46rem, calc(100svh - 4.5rem));
+    display: flex;
+    align-items: center;
   }
 
-  .hero-fade-up {
-    animation: fadeInUp 1.8s var(--ease-out-expo) 0.6s both;
-  }
-
-  .hero-fade-delayed {
-    animation: fadeIn 1.5s var(--ease-out-expo) 1.8s both;
-  }
-
-  /* Scroll feather: drifts down with a gentle sway and rotation, then fades,
-     like a feather settling in still winter air. */
-  .scroll-feather {
-    color: var(--gold);
-  }
-
-  .feather-glyph {
-    margin-left: -8px; /* centre the 16px-wide glyph on left: 50% */
-    opacity: 0;
-    will-change: transform, opacity;
-    animation: featherFall 4s var(--ease-out-expo) infinite;
-  }
-
-  @keyframes featherFall {
-    0%   { transform: translate(-7px, -6px) rotate(-14deg); opacity: 0; }
-    18%  { opacity: 0.85; }
-    32%  { transform: translate(7px, 12px) rotate(11deg); }
-    55%  { transform: translate(-6px, 28px) rotate(-9deg); opacity: 0.8; }
-    80%  { transform: translate(5px, 43px) rotate(9deg); opacity: 0.5; }
-    100% { transform: translate(-2px, 56px) rotate(-5deg); opacity: 0; }
-  }
-
-  /* Base centering kept here so JS scroll parallax can layer an offset via a custom prop */
-  .hero-kanji {
-    transform: translate(-50%, calc(-45% + var(--kanji-py, 0px)));
-    transition: transform 0.4s var(--ease-out-expo);
-    will-change: transform;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-fade,
-    .hero-fade-up,
-    .hero-fade-delayed {
-      animation: none;
+  @media (max-width: 1023px) {
+    .home-hero {
+      min-height: auto;
     }
 
-    .feather-glyph {
-      animation: none;
-      opacity: 0.55;
-      transform: translate(-1px, 14px) rotate(-4deg);
-    }
-
-    .hero-kanji {
-      transition: none;
+    .hero-mark {
+      max-width: 21rem;
     }
   }
 </style>
-
-<script>
-  const kanji = document.querySelector<HTMLElement>('[data-hero-kanji]');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (kanji && !reduceMotion) {
-    let frame = 0;
-
-    const apply = () => {
-      frame = 0;
-      // Drift slower than the page for a parallax sense of depth.
-      const offset = Math.min(window.scrollY, window.innerHeight) * 0.12;
-      kanji.style.setProperty('--kanji-py', `${offset}px`);
-    };
-
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (!frame) frame = requestAnimationFrame(apply);
-      },
-      { passive: true }
-    );
-  }
-</script>

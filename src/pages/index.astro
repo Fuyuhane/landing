@@ -7,47 +7,22 @@ import VesselPreview from '@components/home/VesselPreview.astro';
 
 <BaseLayout
   title="Independent Software Atelier"
-  description="Fuyuhane is an independent software atelier shaping named systems for connection, play, care, and resilient communication."
+  description="Fuyuhane is an independent software atelier shaping named systems for connection, play, care, resilient communication, and the tools behind careful work."
 >
   <Hero />
-
-  <!-- Gold rule divider -->
-  <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
-    <div class="rule-gold"></div>
-  </div>
-
+  <VesselPreview />
   <PhilosophyTeaser />
 
-  <!-- Mint rule divider -->
-  <div class="max-w-[90rem] mx-auto px-6 lg:px-12">
-    <div class="rule-mint"></div>
-  </div>
-
-  <VesselPreview />
-
-  <!-- Closing statement -->
-  <section class="relative py-40 sm:py-56 text-center overflow-hidden">
-    <!-- Background kanji -->
-    <div
-       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[clamp(8rem,28vw,20rem)] leading-none opacity-[0.015]"
-    >
-      器
-    </div>
-
-    <div class="relative z-10 max-w-2xl mx-auto px-6 reveal">
-      <!-- Decorative gold line -->
-      <div class="w-8 h-px mx-auto mb-10" style="background: var(--gold); opacity: 0.3;"></div>
-
-      <p
-        class="text-[clamp(1.875rem,4vw,3rem)] leading-[1.15]"
-        style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
-      >
-        Different vessels.<br />
-        A patient way of making.<br />
-        <em class="font-light" style="color: var(--mint);">Each begins with a purpose.</em>
+  <section class="py-24 text-center sm:py-32" aria-labelledby="closing-heading">
+    <div class="reading-shell reveal">
+      <p class="eyebrow mb-4">Follow the work</p>
+      <h2 id="closing-heading" class="section-title">Different vessels share one patient way of making.</h2>
+      <p class="lede mx-auto mt-6">
+        Follow the names to their repositories, where each thread of the work can be seen as it finds its place.
       </p>
-
-      <div class="w-8 h-px mx-auto mt-10" style="background: var(--gold); opacity: 0.3;"></div>
+      <a class="button-primary mt-8" href="https://github.com/Fuyuhane" target="_blank" rel="noopener noreferrer">
+        Visit Fuyuhane on GitHub <span aria-hidden="true">↗</span>
+      </a>
     </div>
   </section>
 </BaseLayout>

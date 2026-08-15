@@ -12,8 +12,9 @@ const vessels = defineCollection({
     description: z.string(),
     seoDescription: z.string(),
     longDescription: z.string(),
+    workbench: z.string(),
+    horizon: z.string(),
     accent: z.enum(["mint", "lavender"]),
-    status: z.enum(["planning", "development", "live", "resting"]),
     techStack: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     links: z

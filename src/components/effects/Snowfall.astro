@@ -1,21 +1,47 @@
 ---
-// Falling snow particles; pure CSS, no JS overhead
+const snowflakes = Array.from({ length: 54 }, (_, index) => {
+  const depth = index % 3;
+  const isCrystal = index % 11 === 0;
+  const drift = -64 + ((index * 29) % 129);
+  const sway = (index % 2 === 0 ? 1 : -1) * (9 + ((index * 13) % 23));
+
+  return {
+    isCrystal,
+    x: 1 + ((index * 37 + 9) % 98),
+    size: isCrystal ? 4.5 + depth * 0.7 : 1.3 + depth * 0.8 + ((index * 11) % 6) / 10,
+    duration: 29 - depth * 5 + ((index * 7) % 45) / 10,
+    delay: -((index * 17) % 300) / 10,
+    opacity: (isCrystal ? 0.3 : 0.17 + depth * 0.1) + ((index * 3) % 6) / 100,
+    rotation: -45 + ((index * 41) % 91),
+    roundness: 42 + ((index * 17) % 17),
+    drift,
+    sway,
+    middle: drift * 0.45,
+    late: drift - sway * 0.35,
+  };
+});
 ---
 
 <div class="particle-container" aria-hidden="true">
-  <!-- Fine snow particles -->
-  {Array.from({ length: 70 }).map(() => (
+  {snowflakes.map((flake) => (
     <div
-      class="snowflake"
+      class:list={['snowflake', { 'snowflake-crystal': flake.isCrystal }]}
       style={`
-        --x: ${Math.random() * 100}%;
-        --delay: ${Math.random() * 20}s;
-        --duration: ${10 + Math.random() * 16}s;
-        --size: ${1.5 + Math.random() * 2.5}px;
-        --drift: ${-30 + Math.random() * 60}px;
-        --opacity: ${0.15 + Math.random() * 0.35};
+        --x: ${flake.x}%;
+        --size: ${flake.size}px;
+        --duration: ${flake.duration}s;
+        --delay: ${flake.delay}s;
+        --opacity: ${flake.opacity};
+        --drift: ${flake.drift}px;
+        --sway: ${flake.sway}px;
+        --middle: ${flake.middle}px;
+        --late: ${flake.late}px;
+        --rotation: ${flake.rotation}deg;
+        --roundness: ${flake.roundness}%;
       `}
-    />
+    >
+      <span class="snowflake-shape"></span>
+    </div>
   ))}
 </div>
 
@@ -26,43 +52,87 @@
     overflow: hidden;
     pointer-events: none;
     z-index: 1;
+    contain: strict;
   }
 
-  /* Fine snow particles */
   .snowflake {
     position: absolute;
-    top: -10px;
+    top: -1rem;
     left: var(--x);
-    width: calc(var(--size) + var(--snowflake-size-boost));
-    height: calc(var(--size) + var(--snowflake-size-boost));
-    background: var(--snowflake-color);
-    border-radius: 50%;
-    opacity: calc(var(--opacity) * var(--snowflake-opacity-boost));
+    width: var(--size);
+    height: var(--size);
+    opacity: 0;
     animation: snow-drift var(--duration) linear var(--delay) infinite;
-    will-change: transform;
+    will-change: transform, opacity;
+  }
+
+  .snowflake-shape {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: rotate(var(--rotation));
+    border-radius: var(--roundness);
+    background: var(--snowflake-color);
+  }
+
+  .snowflake-crystal .snowflake-shape {
+    position: relative;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .snowflake-crystal .snowflake-shape::before,
+  .snowflake-crystal .snowflake-shape::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: var(--snowflake-color);
+  }
+
+  .snowflake-crystal .snowflake-shape::after {
+    transform: translateX(-50%) rotate(90deg);
   }
 
   @keyframes snow-drift {
     0% {
-      transform: translateY(-10px) translateX(0);
+      transform: translate3d(0, -4vh, 0);
       opacity: 0;
     }
-    5% {
+    8% {
       opacity: calc(var(--opacity) * var(--snowflake-opacity-boost));
     }
-    85% {
+    28% {
+      transform: translate3d(var(--sway), 28vh, 0);
+    }
+    54% {
+      transform: translate3d(var(--middle), 57vh, 0);
+    }
+    78% {
+      transform: translate3d(var(--late), 82vh, 0);
+    }
+    88% {
       opacity: calc(var(--opacity) * var(--snowflake-opacity-boost));
     }
     100% {
-      transform: translateY(100vh) translateX(var(--drift));
+      transform: translate3d(var(--drift), 105vh, 0);
       opacity: 0;
     }
   }
 
+  @media (max-width: 640px) {
+    .snowflake:nth-child(n + 43) {
+      display: none;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .snowflake {
-      animation: none;
-      opacity: calc(var(--opacity) * 0.3);
+    .particle-container {
+      display: none;
     }
   }
 </style>

@@ -7,244 +7,90 @@ import katsutoPhoto from '@assets/logos/katsuto.jpg';
 const team = [
   {
     name: 'Vincent "Nugget"',
-    role: 'Detective',
-    bio: 'Building vessels from code and curiosity. Systems thinker, swamp master.',
+    role: 'The Detective',
+    bio: 'Follows each thread through code, building the hidden machinery that lets every vessel stay true to its name.',
     photo: katsutoPhoto,
-    socials: {
-      github: 'https://github.com/nuggocto',
-      x: 'https://x.com/nuggocto',
-      email: 'nuggocto@fuyuhane.com',
-    },
-    accent: 'mint',
+    links: [
+      { href: 'https://github.com/nuggocto', label: 'GitHub' },
+      { href: 'https://x.com/nuggocto', label: 'X' },
+      { href: 'mailto:nuggocto@fuyuhane.com', label: 'Email' },
+    ],
   },
   {
     name: 'The Best Designer',
-    role: 'Designer',
-    bio: 'The hand behind the Ptarmigan. Shaping the visual language of Fuyuhane; from logo to palette to the feeling between the pixels.',
-    socials: {},
-    accent: 'lavender',
+    role: 'The Artist',
+    bio: 'Draws the lines that give Fuyuhane its face, from the watchful ptarmigan to the colours gathered around its winter wings.',
+    links: [],
   },
 ];
 ---
 
 <BaseLayout
   title="About"
-  description="Meet the people behind Fuyuhane and the hand-drawn ptarmigan that gave the independent software atelier its winter wings."
+  description="Meet the developer and designer behind Fuyuhane, where systems shaped in code meet a visual language drawn by hand."
 >
-  <!-- Hero -->
-  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-    <div class="bg-atmosphere"></div>
-
-    <!-- Kanji -->
-    <div
-       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 kanji-architectural text-[clamp(11rem,38vw,27rem)] leading-none opacity-[0.02]"
-    >
-      人
-    </div>
-
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <h1
-        class="text-[clamp(1.5rem,2.5vw,2.25rem)]"
-        style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.04em; animation: fadeInUp 1.4s var(--ease-out-expo) 0.2s both;"
-      >
-        The artisans behind<br />
-        <em class="font-light" style="color: var(--mint);">冬羽</em>
-      </h1>
-    </div>
-
-    <!-- Bottom fade -->
-    <div
-      class="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
-      style="background: linear-gradient(transparent, var(--charcoal));"
-    ></div>
-  </section>
-
-  <!-- The Atelier Story -->
-  <section class="py-28 sm:py-40">
-    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-      <div class="grid grid-cols-1 sm:grid-cols-12 gap-12 xl:gap-24 items-start">
-        <!-- Left: Seal -->
-        <div class="sm:col-span-4 reveal">
-          <div class="sticky top-28">
-            <div class="inline-block">
-              <Image
-                src={sealLogo}
-                alt="Fuyuhane seal"
-                width={200}
-                height={200}
-                class="rounded-xl ring-1"
-                style="--tw-ring-color: var(--surface-border);"
-              />
-            </div>
-            <div class="mt-8">
-              <span
-                class="eyebrow block"
-                style="color: var(--gold); opacity: 0.7;"
-              >
-                Est. 2026
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Story -->
-        <div class="sm:col-span-8 space-y-10">
-          <div class="reveal">
-            <h2
-              class="text-[clamp(1.875rem,3vw,2.25rem)] mb-8"
-              style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
-            >
-              Where winter wings began
-            </h2>
-            <p
-              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
-              style="color: var(--silver);"
-            >
-              Fuyuhane began in 2026 where two kinds of making met: systems shaped
-              in code and a visual language shaped by hand. The atelier gives each
-              work a name so its purpose can lead the machinery that follows.
-            </p>
-          </div>
-
-          <div class="reveal reveal-delay-1">
-            <p
-              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
-              style="color: var(--silver);"
-            >
-              The name <strong class="font-normal" style="font-family: var(--font-kanji); color: var(--paper);">冬羽</strong> means
-              winter wings. It comes from the ptarmigan, a bird whose plumage changes
-              with the seasons while the creature beneath remains itself. The bird in
-              our seal was drawn by hand; imperfect, alert, and alive.
-            </p>
-          </div>
-
-          <div class="reveal reveal-delay-2">
-            <p
-              class="text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.9] font-light"
-              style="color: var(--silver);"
-            >
-              The seal joins those disciplines. It marks a commitment to careful systems
-              and human surfaces, with neither treated as decoration for the other. The
-              vessels shown here are still plans. Their names hold the direction while
-              patient engineering gives them form.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Rule -->
-  <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-    <div class="rule-gold"></div>
-  </div>
-
-  <!-- The Artisans -->
-  <section class="py-28 sm:py-40">
-    <div class="max-w-[70rem] mx-auto px-6 lg:px-12">
-       <div class="mb-16 sm:mb-24 reveal">
-        <span
-          class="eyebrow block mb-5"
-          style="color: var(--gold); opacity: 0.7;"
-        >
-          The Artisans
-        </span>
-        <h2
-          class="text-[clamp(1.875rem,3vw,2.25rem)]"
-          style="font-family: var(--font-display); font-weight: 300; color: var(--paper); letter-spacing: -0.03em;"
-        >
-          People behind the vessels
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {team.map((member, i) => {
-          const accentDeep = member.accent === 'mint' ? 'var(--mint-deep)' : 'var(--lavender-deep)';
-          return (
-          <article
-             class={`reveal reveal-delay-${i + 1} group relative p-8 sm:p-10 rounded-xl border transition-all duration-700 overflow-hidden surface-card surface-card-hover`}
-          >
-            <div class="relative z-10 space-y-6">
-              <!-- Avatar + Name -->
-              <div class="flex items-center gap-5">
-                <div
-                  class="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center text-lg shrink-0 ring-1"
-                  style={`--tw-ring-color: var(--surface-border); background: ${member.accent === 'mint' ? 'var(--mint-avatar-bg)' : 'var(--lavender-avatar-bg)'}; font-family: var(--font-kanji); color: ${accentDeep};`}
-                >
-                  {member.photo ? (
-                    <Image
-                      src={member.photo}
-                      alt={`${member.name} portrait`}
-                      width={64}
-                      height={64}
-                      class="w-full h-full object-cover"
-                    />
-                  ) : (
-                    member.name.charAt(0)
-                  )}
-                </div>
-                <div>
-                  <h3
-                    class="text-lg"
-                    style="font-family: var(--font-display); font-weight: 300; color: var(--paper);"
-                  >
-                    {member.name}
-                  </h3>
-                  <span
-                    class="text-[10px] tracking-[0.2em] uppercase font-normal"
-                    style={`color: ${accentDeep};`}
-                  >
-                    {member.role}
-                  </span>
-                </div>
-              </div>
-
-              <!-- Bio -->
-              <p
-                class="text-sm leading-[1.8] font-light"
-                style="color: var(--silver);"
-              >
-                {member.bio}
-              </p>
-
-              <!-- Social links -->
-              {Object.keys(member.socials).length > 0 && (
-                <div class="flex gap-5 pt-2">
-                  {Object.entries(member.socials).map(([platform, url]) => {
-                    const href =
-                      platform === 'email' && typeof url === 'string' && !url.startsWith('mailto:')
-                        ? `mailto:${url}`
-                        : url;
-                    const isExternal = platform !== 'email';
-
-                    return (
-                      <a
-                        href={href as string}
-                        target={isExternal ? '_blank' : undefined}
-                        rel={isExternal ? 'noopener noreferrer' : undefined}
-                        class="text-[10px] tracking-[0.15em] uppercase transition-colors duration-300 link-hover font-normal"
-                        style="color: var(--mist);"
-                      >
-                        {platform}
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </article>
-          );
-        })}
-      </div>
-
-      <!-- Note -->
-      <div class="mt-16 text-center reveal">
-        <p
-          class="text-xs font-light tracking-wide"
-          style="color: var(--smoke);"
-        >
-          The atelier grows with the seasons. More artisans may join the craft.
+  <header class="bg-[var(--surface-quiet)] py-20 sm:py-28">
+    <div class="content-shell grid gap-12 lg:grid-cols-[1fr_20rem] lg:items-center">
+      <div>
+        <p class="eyebrow mb-4">About Fuyuhane</p>
+        <h1 class="page-title max-w-4xl">Two kinds of making, held beneath one winter name.</h1>
+        <p class="lede mt-7">
+          Here, each work receives a name so its purpose can lead the machinery that follows, while a hand-drawn ptarmigan keeps watch over the table.
         </p>
+      </div>
+      <Image src={sealLogo} alt="Hand-drawn Fuyuhane ptarmigan seal" width={320} height={320} class="mx-auto w-full max-w-[18rem] rounded-xl" />
+    </div>
+  </header>
+
+  <section class="py-20 sm:py-28" aria-labelledby="origin-heading">
+    <div class="reading-shell grid gap-10 md:grid-cols-[0.65fr_1.35fr]">
+      <div>
+        <p class="eyebrow mb-3">Origin</p>
+        <h2 id="origin-heading" class="section-title">Winter wings</h2>
+      </div>
+      <div class="space-y-6 body-copy text-[1.0625rem]">
+        <p>
+          Fuyuhane began in 2026 where systems shaped in code met a visual language shaped by hand.
+        </p>
+        <p>
+          <span class="text-kanji font-semibold text-[var(--paper)]" lang="ja">冬羽</span> means winter wings. The name comes from the ptarmigan, whose plumage changes with the seasons while the bird remains itself. The seal keeps the uneven line of the original drawing.
+        </p>
+        <p>
+          The seal joins those disciplines. It marks a commitment to careful systems and human surfaces, with neither treated as decoration for the other.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[var(--surface-quiet)] py-20 sm:py-28" aria-labelledby="people-heading">
+    <div class="content-shell">
+      <p class="eyebrow mb-4">People</p>
+      <h2 id="people-heading" class="section-title">The hands behind the vessels.</h2>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {team.map((member) => (
+          <article class="rounded-xl bg-[var(--surface-bg)] p-7 sm:p-9">
+            <div class="flex items-center gap-5">
+              {member.photo ? (
+                <Image src={member.photo} alt={`${member.name} portrait`} width={80} height={80} class="h-20 w-20 rounded-full object-cover" />
+              ) : (
+                <div class="text-kanji flex h-20 w-20 items-center justify-center rounded-full bg-[var(--surface-bg-hover)] text-2xl text-[var(--lavender)]" aria-hidden="true">冬</div>
+              )}
+              <div>
+                <h3 class="card-title">{member.name}</h3>
+                <p class="mt-1 text-sm font-bold text-[var(--mint-deep)]">{member.role}</p>
+              </div>
+            </div>
+            <p class="body-copy mt-6">{member.bio}</p>
+            {member.links.length > 0 && (
+              <ul class="mt-6 flex flex-wrap gap-5">
+                {member.links.map((link) => (
+                  <li><a class="text-link text-sm" href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}>{link.label}</a></li>
+                ))}
+              </ul>
+            )}
+          </article>
+        ))}
       </div>
     </div>
   </section>
