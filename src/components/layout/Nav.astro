@@ -149,7 +149,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     transform: translateY(-100%);
   }
 
-  .site-nav:focus-within {
+  .site-nav:has(:focus-visible) {
     pointer-events: auto;
     transform: translateY(0);
   }
@@ -232,7 +232,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     const distance = currentScrollY - lastScrollY;
     const menuIsOpen = menu?.getAttribute('aria-hidden') === 'false';
 
-    if (currentScrollY <= 24 || menuIsOpen || siteNav?.contains(document.activeElement)) {
+    if (currentScrollY <= 24 || menuIsOpen) {
       setNavHidden(false);
     } else if (distance > 8) {
       setNavHidden(true);
@@ -292,7 +292,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       // The selected theme still applies for the current page when storage is unavailable.
     }
 
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', nextIsLight ? '#FBFAF6' : '#0E0E0E');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', nextIsLight ? '#FFFFFF' : '#090909');
     syncThemeControls();
   };
 

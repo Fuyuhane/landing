@@ -41,8 +41,8 @@
 }
 
 .theme-light {
-  --void: #f7f5ef;
-  --charcoal: #fbfaf6;
+  --void: #ffffff;
+  --charcoal: #ffffff;
   --sumi: #f0eee7;
   --stone: #d7d3ca;
   --smoke: #74716a;
@@ -59,8 +59,8 @@
 
   --surface-bg: #f0eee7;
   --surface-bg-hover: #e9e6dd;
-  --surface-quiet: #f6f4ee;
-  --frost-bg: rgba(251, 250, 246, 0.95);
+  --surface-quiet: #ffffff;
+  --frost-bg: rgba(255, 255, 255, 0.95);
   --focus: #1f6653;
 
   --brand-logo-filter: none;
@@ -68,8 +68,8 @@
   --noise-blend: multiply;
   --noise-opacity: 0.015;
   --footer-logo-opacity: 1;
-  --snowflake-color: #65625c;
-  --snowflake-opacity-boost: 0.55;
+  --snowflake-color: #000000;
+  --snowflake-opacity-boost: 1.85;
 }
 
 html {
