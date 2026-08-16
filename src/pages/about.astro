@@ -8,6 +8,7 @@ const team = [
   {
     name: 'Vincent "Nugget"',
     role: 'The Detective',
+    roleColor: 'var(--mint-deep)',
     bio: 'Follows each thread through code, building the hidden machinery that lets every vessel stay true to its name.',
     photo: katsutoPhoto,
     links: [
@@ -19,6 +20,7 @@ const team = [
   {
     name: 'The Best Designer',
     role: 'The Artist',
+    roleColor: 'var(--lavender-deep)',
     bio: 'Draws the lines that give Fuyuhane its face, from the watchful ptarmigan to the colours gathered around its winter wings.',
     links: [],
   },
@@ -78,7 +80,7 @@ const team = [
               )}
               <div>
                 <h3 class="card-title">{member.name}</h3>
-                <p class="mt-1 text-sm font-bold text-[var(--mint-deep)]">{member.role}</p>
+                <p class="mt-1 text-sm font-bold" style={`color: ${member.roleColor};`}>{member.role}</p>
               </div>
             </div>
             <p class="body-copy mt-6">{member.bio}</p>

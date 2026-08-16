@@ -26,7 +26,7 @@ const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b
       <h2 id="project-list-heading" class="sr-only">Fuyuhane projects</h2>
       <ol class="space-y-6">
         {vessels.map((vessel, index) => {
-          const { deep: accentDeep } = accentVars(vessel.data.accent);
+          const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
           return (
             <li class="reveal">
               <article class="rounded-xl bg-[var(--surface-bg)] p-6 sm:p-9">
@@ -49,7 +49,13 @@ const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b
                         <dd class="text-[0.9375rem] leading-7 text-[var(--silver)]">{vessel.data.workbench}</dd>
                       </div>
                     </dl>
-                    <a class="button-primary mt-7" href={`/vessels/${vessel.id}`}>Enter the vessel <span aria-hidden="true">→</span></a>
+                    <a
+                      class="vessel-link mt-7 inline-block"
+                      href={`/vessels/${vessel.id}`}
+                      style={`--vessel-accent: ${accentColor};`}
+                    >
+                      Enter the vessel <span aria-hidden="true">→</span>
+                    </a>
                   </div>
                 </div>
               </article>

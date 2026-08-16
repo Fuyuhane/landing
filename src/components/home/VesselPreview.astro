@@ -18,7 +18,7 @@ const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b
 
     <div class="mt-14 space-y-4">
       {vessels.map((vessel, index) => {
-        const { deep: accentDeep } = accentVars(vessel.data.accent);
+        const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
         return (
           <article class={`project-row reveal reveal-delay-${Math.min(index + 1, 4)} rounded-xl bg-[var(--surface-bg)] p-6 sm:p-8`}>
             <div class="grid gap-7 lg:grid-cols-[4rem_1fr_1.15fr_auto] lg:items-start">
@@ -33,7 +33,11 @@ const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b
                 <p class="body-copy">{vessel.data.description}</p>
               </div>
 
-              <a class="button-secondary whitespace-nowrap lg:self-center" href={`/vessels/${vessel.id}`}>
+              <a
+                class="vessel-link inline-block whitespace-nowrap lg:self-center"
+                href={`/vessels/${vessel.id}`}
+                style={`--vessel-accent: ${accentColor};`}
+              >
                 Enter the vessel <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -57,4 +61,5 @@ const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b
     background: var(--surface-bg-hover);
     transform: translateY(-2px);
   }
+
 </style>

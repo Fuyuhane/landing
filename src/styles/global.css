@@ -3,7 +3,7 @@
 :root {
   --void: #090909;
   --charcoal: #090909;
-  --sumi: #171717;
+  --sumi: #0d0d0d;
   --stone: #292929;
   --smoke: #75736e;
   --mist: #9a9790;
@@ -17,8 +17,8 @@
   --lavender-deep: #ae8fd1;
   --gold: #d0b36f;
 
-  --surface-bg: #151515;
-  --surface-bg-hover: #1b1b1b;
+  --surface-bg: #0d0d0d;
+  --surface-bg-hover: #151515;
   --surface-quiet: #090909;
   --frost-bg: rgba(9, 9, 9, 0.94);
   --focus: #87d8be;
@@ -43,7 +43,7 @@
 .theme-light {
   --void: #ffffff;
   --charcoal: #ffffff;
-  --sumi: #f0eee7;
+  --sumi: #fefcf8;
   --stone: #d7d3ca;
   --smoke: #74716a;
   --mist: #65625c;
@@ -57,8 +57,8 @@
   --lavender-deep: #5d3f82;
   --gold: #715719;
 
-  --surface-bg: #f0eee7;
-  --surface-bg-hover: #e9e6dd;
+  --surface-bg: #fefcf8;
+  --surface-bg-hover: #faf6ef;
   --surface-quiet: #ffffff;
   --frost-bg: rgba(255, 255, 255, 0.95);
   --focus: #1f6653;
@@ -246,6 +246,19 @@ a {
 
 .text-link:hover {
   color: var(--mint);
+}
+
+.vessel-link {
+  color: var(--paper);
+  font-weight: 700;
+  text-decoration-color: var(--vessel-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  transition: color var(--duration-fast) ease;
+}
+
+.vessel-link:hover {
+  color: var(--vessel-accent);
 }
 
 ::selection {

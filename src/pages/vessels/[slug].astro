@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
 const { vessel } = Astro.props;
 const { Content } = await render(vessel);
-const { deep: accentDeep } = accentVars(vessel.data.accent);
+const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
 ---
 
 <BaseLayout title={`${vessel.data.title} (${vessel.data.kanji})`} description={vessel.data.seoDescription}>
@@ -31,7 +31,13 @@ const { deep: accentDeep } = accentVars(vessel.data.accent);
 
           <div class="mt-8 flex flex-wrap gap-3">
             {vessel.data.links.github && (
-              <a class="button-primary" href={vessel.data.links.github} target="_blank" rel="noopener noreferrer">
+              <a
+                class="vessel-link inline-block"
+                href={vessel.data.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={`--vessel-accent: ${accentColor};`}
+              >
                 Visit the repository <span aria-hidden="true">↗</span>
               </a>
             )}
@@ -86,7 +92,13 @@ const { deep: accentDeep } = accentVars(vessel.data.accent);
   <section class="bg-[var(--surface-quiet)] py-16 text-center">
     <div class="reading-shell">
       <p class="text-base text-[var(--silver)]">A vessel finds its shape through use, resistance, and the hands that keep returning to the work.</p>
-      <a href="/vessels" class="text-link mt-5 inline-block">Return to the vessels</a>
+      <a
+        href="/vessels"
+        class="vessel-link mt-5 inline-block"
+        style={`--vessel-accent: ${accentColor};`}
+      >
+        Return to the vessels
+      </a>
     </div>
   </section>
 </BaseLayout>
