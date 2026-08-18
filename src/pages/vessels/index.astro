@@ -25,14 +25,12 @@ const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b
     <div class="content-shell">
       <h2 id="project-list-heading" class="sr-only">Fuyuhane projects</h2>
       <ol class="space-y-6">
-        {vessels.map((vessel, index) => {
+        {vessels.map((vessel) => {
           const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
           return (
             <li class="reveal">
               <article class="rounded-xl bg-[var(--surface-bg)] p-6 sm:p-9">
-                <div class="grid gap-8 lg:grid-cols-[3.5rem_1fr_1.2fr]">
-                  <p class="meta-label pt-1">0{index + 1}</p>
-
+                <div class="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
                   <div class="flex items-start gap-4 lg:self-center">
                     <span class="text-kanji text-4xl text-[var(--paper)]" lang="ja">{vessel.data.kanji}</span>
                     <div>
