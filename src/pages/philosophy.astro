@@ -5,22 +5,18 @@ import lavenderWordmark from '@assets/logos/fuyuhane-03.jpg';
 
 const principles = [
   {
-    number: '01',
     title: 'Begin with a boundary',
     text: 'A vessel finds its shape as much through what it refuses to carry as through what it holds, so restraint belongs at the beginning of the work.',
   },
   {
-    number: '02',
     title: 'Carry the hidden weight',
     text: "Calm at the surface comes from giving the machinery underneath enough care that its complexity never becomes somebody else's burden.",
   },
   {
-    number: '03',
     title: 'Keep risk near the first sketch',
     text: 'Privacy, safety, failure, and ownership enter the work early, while there is still room for them to shape the whole.',
   },
   {
-    number: '04',
     title: 'Let the work answer',
     text: 'A name gives direction, but use, testing, and the resistance of the real world teach each vessel what it must become.',
   },
@@ -34,7 +30,6 @@ const principles = [
   <header class="bg-[var(--surface-quiet)] py-20 sm:py-28">
     <div class="content-shell grid gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
       <div>
-        <p class="eyebrow mb-4">Working principles</p>
         <h1 class="page-title max-w-4xl">Quiet at the surface, rigorous underneath.</h1>
         <p class="lede mt-7">
           We make software as we would tend a winter garden, with patience, restraint, and care for what remains unseen.
@@ -50,12 +45,9 @@ const principles = [
       <ol class="space-y-5">
         {principles.map((principle) => (
           <li class="reveal rounded-xl bg-[var(--surface-bg)] p-7 sm:p-9">
-            <article class="grid gap-5 sm:grid-cols-[3rem_1fr]">
-              <p class="meta-label pt-1">{principle.number}</p>
-              <div>
-                <h3 class="card-title">{principle.title}</h3>
-                <p class="body-copy mt-4 text-[1.0625rem]">{principle.text}</p>
-              </div>
+            <article>
+              <h3 class="card-title">{principle.title}</h3>
+              <p class="body-copy mt-4 text-[1.0625rem]">{principle.text}</p>
             </article>
           </li>
         ))}

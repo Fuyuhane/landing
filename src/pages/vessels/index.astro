@@ -16,7 +16,7 @@ const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b
       <p class="eyebrow mb-4">The vessels</p>
       <h1 class="page-title max-w-4xl">Each carries a name, and each follows its own purpose.</h1>
       <p class="lede mt-7">
-        These works share one table, yet each moves by a different rhythm, carrying messages, races, gifts, guarded containers, and remembered work beneath the same winter wings.
+        We work on different kinds of software, each with its own purpose.
       </p>
     </div>
   </header>
@@ -41,12 +41,7 @@ const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b
 
                   <div>
                     <p class="body-copy">{vessel.data.description}</p>
-                    <dl class="mt-6">
-                      <div>
-                        <dt class="meta-label mb-2">At the workbench</dt>
-                        <dd class="text-[0.9375rem] leading-7 text-[var(--silver)]">{vessel.data.workbench}</dd>
-                      </div>
-                    </dl>
+                    <p class="mt-6 text-[0.9375rem] leading-7 text-[var(--silver)]">{vessel.data.workbench}</p>
                     <a
                       class="vessel-link mt-7 inline-block"
                       href={`/vessels/${vessel.id}`}

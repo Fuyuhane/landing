@@ -3,7 +3,7 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 
 const vessels = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/vessels" }),
+  loader: glob({ pattern: ["origumo.md", "bunpo.md"], base: "./src/content/vessels" }),
   schema: z.object({
     title: z.string(),
     kanji: z.string(),

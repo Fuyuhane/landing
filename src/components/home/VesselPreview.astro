@@ -5,18 +5,18 @@ import { accentVars } from '@/lib/accents';
 const vessels = (await getCollection('vessels')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section id="projects" class="py-24 sm:py-32" aria-labelledby="projects-heading">
+<section id="projects" class="py-20 sm:py-24" aria-labelledby="projects-heading">
   <div class="content-shell">
     <div class="mx-auto max-w-4xl text-center">
       <div class="reveal">
         <h2 id="projects-heading" class="section-title">Different vessels, each following its own purpose.</h2>
       </div>
       <p class="lede reveal reveal-delay-1 mx-auto mt-6">
-        Across uncertain water and distant letters, through spirited races, shared gifts, guarded boxes, and work remembered underground, each vessel keeps its own rhythm.
+        Through spirited races and shared gifts, each vessel keeps its own rhythm.
       </p>
     </div>
 
-    <div class="mt-14 space-y-4">
+    <div class="mt-12 space-y-4">
       {vessels.map((vessel, index) => {
         const { color: accentColor, deep: accentDeep } = accentVars(vessel.data.accent);
         return (
